@@ -590,3 +590,62 @@ a{ color:inherit; text-decoration:none; }
 .targeting--flush{ margin-top:0; padding-top:0; border-top:0; }
 .link{ font-weight:600; color:var(--accent); }
 .link:hover{ color:var(--accent-ink); }
+
+/* ============================================================
+   SaaS pass 2 — shared components
+   ============================================================ */
+/* nav products dropdown */
+.nav__dd{ position:relative; }
+.nav__ddbtn{ background:none; border:0; font:inherit; font-size:14.5px; font-weight:500;
+  color:rgba(255,255,255,.74); cursor:pointer; display:inline-flex; align-items:center; gap:5px; padding:0;
+  transition:color .15s ease; }
+.nav__ddbtn .car{ font-size:8px; transition:transform .15s; }
+.nav__dd:hover .nav__ddbtn, .nav__dd:focus-within .nav__ddbtn{ color:#fff; }
+.nav__dd:hover .car{ transform:rotate(180deg); }
+.nav.is-solid .nav__ddbtn{ color:var(--muted); }
+.nav.is-solid .nav__dd:hover .nav__ddbtn, .nav.is-solid .nav__dd:focus-within .nav__ddbtn{ color:var(--ink); }
+.nav__ddmenu{ position:absolute; top:calc(100% + 14px); left:50%; transform:translateX(-50%) translateY(6px);
+  background:var(--paper); border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow-lg);
+  padding:8px; min-width:270px; opacity:0; visibility:hidden; transition:.15s ease; z-index:60; }
+.nav__ddmenu::before{ content:""; position:absolute; top:-14px; left:0; right:0; height:14px; }
+.nav__dd:hover .nav__ddmenu, .nav__dd:focus-within .nav__ddmenu{ opacity:1; visibility:visible;
+  transform:translateX(-50%) translateY(0); }
+.nav__links .nav__ddmenu a{ display:block; padding:10px 14px; border-radius:9px; color:var(--ink);
+  font-size:14px; font-weight:600; }
+.nav__links .nav__ddmenu a small{ display:block; font-size:12px; color:var(--muted); font-weight:400; margin-top:1px; }
+.nav__links .nav__ddmenu a:hover{ background:var(--accent-soft); color:var(--ink); }
+
+/* gradient screenshot panel */
+.uiframe{ position:relative; border-radius:24px; padding:clamp(18px,3.4vw,44px); border:1px solid var(--line);
+  background:
+    radial-gradient(80% 90% at 18% 0%, rgba(46,91,255,.16), transparent 62%),
+    radial-gradient(70% 80% at 92% 100%, rgba(15,179,155,.09), transparent 60%),
+    var(--accent-soft); }
+.uiframe > *{ position:relative; }
+
+/* capability chips */
+.caps{ display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
+.caps span{ font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase;
+  font-weight:700; padding:5px 12px; border-radius:999px; background:var(--paper); border:1px solid var(--line);
+  color:var(--accent-ink); }
+
+/* journey flow-builder mock */
+.flow{ max-width:640px; margin:0 auto; }
+.flow__node{ position:relative; background:var(--paper); border:1px solid var(--line); border-radius:14px;
+  padding:14px 18px; box-shadow:var(--shadow-sm); }
+.flow__node + .flow__node, .flow__branch + .flow__node{ margin-top:34px; }
+.flow__node + .flow__node::before{ content:""; position:absolute; left:50%; top:-35px; width:2px; height:34px;
+  background:var(--accent); opacity:.45; }
+.flow__node--trigger{ border-color:var(--accent); box-shadow:0 0 0 1px var(--accent), var(--shadow-sm); }
+.flow__k{ font-family:var(--mono); font-size:9.5px; letter-spacing:.09em; text-transform:uppercase; font-weight:700;
+  color:var(--accent-ink); margin-bottom:3px; }
+.flow__node p:not([class]){ font-size:13.5px; line-height:1.45; }
+.flow__branch{ display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:34px; position:relative; }
+.flow__branch::before{ content:""; position:absolute; left:25%; right:25%; top:-17px; height:2px;
+  background:var(--accent); opacity:.45; }
+.flow__branch .flow__node::before{ content:""; position:absolute; left:50%; top:-17px; width:2px; height:17px;
+  background:var(--accent); opacity:.45; }
+.flow__lane{ display:flex; flex-direction:column; }
+.flow__lane .flow__node + .flow__node{ margin-top:26px; }
+.flow__lane .flow__node + .flow__node::before{ top:-27px; height:26px; }
+@media(max-width:640px){ .flow__branch{ grid-template-columns:1fr; } .flow__branch::before{ display:none; } }

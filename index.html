@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=pf3">
+<link rel="stylesheet" href="styles.css?v=pf5">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%230A0D14'/%3E%3Cpath d='M9 9h14v8.5L16 25l-7-7.5z' fill='%232E5BFF'/%3E%3C/svg%3E">
 <script>document.documentElement.className += ' js';</script>
 <style>
@@ -26,8 +26,10 @@
   .hm-chip--sms{ background:rgba(15,179,155,.12); color:#0A7D6C; }
   .hm-chip--meta{ background:var(--ink); color:#fff; }
 
-  /* ── Hero dashboard mock ── */
-  .hm-dash{ margin-top:64px; background:var(--paper); color:var(--ink); border:1px solid var(--line);
+  /* ── Hero dashboard mock (inside gradient uiframe) ── */
+  .hm-heroframe{ margin-top:64px; }
+  .hm-caps{ margin-top:26px; }
+  .hm-dash{ background:var(--paper); color:var(--ink); border:1px solid var(--line);
     border-radius:var(--r-lg); box-shadow:var(--shadow-lg); overflow:hidden; }
   .hm-dash__bar{ display:flex; align-items:center; gap:6px; padding:12px 18px; background:var(--paper-3); border-bottom:1px solid var(--line); }
   .hm-dash__tag{ margin-left:auto; font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
@@ -170,6 +172,20 @@
   .hm-home__foot{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; padding:14px 24px;
     border-top:1px solid var(--line); background:var(--paper-2); font-size:13px; color:var(--muted); }
 
+  /* ── Homefield AI band (dark) ── */
+  .hm-ai{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+  .hm-ai__card{ background:var(--ink-2); border:1px solid var(--line-dark); border-radius:var(--r);
+    padding:26px 24px; }
+  .hm-ai__k{ font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+    color:#9DB2FF; margin-bottom:12px; }
+  .hm-ai__card h3{ font-size:17.5px; margin-bottom:8px; }
+  .hm-ai__card > p:not([class]){ font-size:13.5px; color:var(--muted-dark); line-height:1.6; }
+  .hm-ai__note{ margin-top:36px; text-align:center; font-size:14.5px; color:var(--muted-dark); }
+  .hm-ai__note strong{ color:#fff; font-weight:600; }
+
+  /* ── Journeys teaser flow caption ── */
+  .hm-flowcap{ margin-top:28px; }
+
   /* ── Scale band ── */
   .hm-scale{ display:grid; grid-template-columns:repeat(4,1fr); gap:32px; text-align:center; }
   .hm-scale span{ display:block; font-family:var(--serif); font-size:clamp(38px,4.6vw,56px); line-height:1;
@@ -231,6 +247,7 @@
     .hm-chan__mock{ min-height:0; padding:22px; }
     .hm-res{ grid-template-columns:1fr; max-width:520px; margin:0 auto; }
     .hm-scale{ grid-template-columns:1fr 1fr; gap:36px 24px; }
+    .hm-ai{ grid-template-columns:1fr 1fr; }
     .hm-int{ grid-template-columns:repeat(3,1fr); }
     .hm-ind{ grid-template-columns:1fr 1fr; }
   }
@@ -247,6 +264,7 @@
     .hm-dash__row{ grid-template-columns:1fr auto; row-gap:4px; }
     .hm-dash__st{ grid-column:1 / -1; text-align:left; }
     .hm-why{ grid-template-columns:1fr; }
+    .hm-ai{ grid-template-columns:1fr; }
     .hm-int{ grid-template-columns:1fr 1fr; }
     .hm-ind{ grid-template-columns:1fr; }
     .hm-duo__card{ padding:28px 24px; }
@@ -269,7 +287,16 @@
     </a>
 
     <nav class="nav__links" aria-label="Primary">
-      <a href="platform.html">Platform</a>
+      <div class="nav__dd">
+        <button class="nav__ddbtn" type="button" aria-haspopup="true">Product <span class="car">▾</span></button>
+        <div class="nav__ddmenu">
+          <a href="platform.html">Platform overview<small>Segments, journeys, reporting — one dashboard</small></a>
+          <a href="managed-email.html">Managed email<small>The channel we run for you</small></a>
+          <a href="sms.html">SMS<small>Consent-based follow-up texting</small></a>
+          <a href="postcards.html">Postcards<small>Triggered mail, no minimum drops</small></a>
+          <a href="retargeting.html">Meta retargeting<small>Audiences synced to your ad account</small></a>
+        </div>
+      </div>
       <a href="industries.html">Solutions</a>
       <a href="pricing.html">Pricing</a>
       <a href="faq.html">FAQ</a>
@@ -284,7 +311,11 @@
     </button>
   </div>
   <div class="mobilenav" id="mobileNav" hidden>
-    <a href="platform.html">Platform</a>
+    <a href="platform.html">Platform overview</a>
+    <a href="managed-email.html">Managed email</a>
+    <a href="sms.html">SMS</a>
+    <a href="postcards.html">Postcards</a>
+    <a href="retargeting.html">Meta retargeting</a>
     <a href="industries.html">Solutions</a>
     <a href="pricing.html">Pricing</a>
     <a href="faq.html">FAQ</a>
@@ -310,19 +341,27 @@
       <a class="btn btn--primary btn--lg" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Get a demo</a>
       <a class="btn btn--quiet btn--lg" href="platform.html">Take the tour →</a>
     </div>
+    <div class="caps hm-caps reveal" aria-label="Platform capabilities">
+      <span>Segments</span>
+      <span>Journeys</span>
+      <span>4 Channels</span>
+      <span>Reporting</span>
+      <span>Homefield AI</span>
+    </div>
   </div>
 
   <div class="wrap">
     <!-- SAMPLE CONTENT — dashboard mock with sample figures for layout; not live product data -->
-    <div class="hm-dash reveal" role="img" aria-label="Sample Homefield dashboard showing campaign stats and four running campaigns">
+    <div class="uiframe hm-heroframe reveal">
+    <div class="hm-dash" role="img" aria-label="Sample Homefield dashboard showing campaign stats and four running campaigns">
       <div class="hm-dash__bar">
         <span class="dot"></span><span class="dot"></span><span class="dot"></span>
         <span class="hm-dash__tag">app.homefield — Campaigns</span>
       </div>
       <div class="hm-dash__body">
         <div class="hm-dash__side" aria-hidden="true">
-          <span>Audiences</span>
-          <span class="is-on">Campaigns</span>
+          <span>Segments</span>
+          <span class="is-on">Journeys</span>
           <span>Channels</span>
           <span>Reporting</span>
         </div>
@@ -359,6 +398,7 @@
           </div>
         </div>
       </div>
+    </div>
     </div>
 
     <ul class="hero__strip reveal" aria-label="At a glance">
@@ -462,6 +502,65 @@
   </div>
 </section>
 
+<!-- ── JOURNEYS TEASER ───────────────────────────────── -->
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="sechead sechead--center">
+      <p class="eyebrow eyebrow--dark">Journeys</p>
+      <h2>One journey. <em>Every channel.</em></h2>
+      <p class="lede">
+        Build it once — the platform walks each home through email, SMS, mail and ads
+        as it responds.
+      </p>
+    </div>
+
+    <!-- SAMPLE CONTENT — journey-builder mock for layout; simplified from the full builder -->
+    <div class="uiframe">
+      <div class="flow" role="img" aria-label="Sample journey: a roof-age trigger starts a managed email sequence, waits three days, then branches on reply — SMS follow-up and a qualified-lead alert if yes, a postcard if no">
+        <div class="flow__node flow__node--trigger">
+          <p class="flow__k">Trigger</p>
+          <p>Roof passes year 18</p>
+        </div>
+        <div class="flow__node">
+          <p class="flow__k">Action</p>
+          <p>Managed email · 3-touch sequence</p>
+        </div>
+        <div class="flow__node">
+          <p class="flow__k">Wait</p>
+          <p>3 days</p>
+        </div>
+        <div class="flow__node">
+          <p class="flow__k">Branch</p>
+          <p>Replied?</p>
+        </div>
+        <div class="flow__branch">
+          <div class="flow__lane">
+            <div class="flow__node">
+              <p class="flow__k">Yes · Action</p>
+              <p>SMS follow-up · consent on reply</p>
+            </div>
+            <div class="flow__node">
+              <p class="flow__k">Alert</p>
+              <p>Qualified lead → your inbox, Slack &amp; CRM</p>
+            </div>
+          </div>
+          <div class="flow__lane">
+            <div class="flow__node">
+              <p class="flow__k">No · Action</p>
+              <p>Postcard · aging-roof template</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="fineprint fineprint--center hm-flowcap">
+      One cohesive multi-channel strategy — you build it once, the platform runs it per home.
+      <a class="hm-link" href="platform.html">Explore journeys →</a>
+    </p>
+  </div>
+</section>
+
 <!-- ── ONE SERVICE + ONE PLATFORM ────────────────────── -->
 <!-- ── CHANNELS ──────────────────────────────────────── -->
 <section class="section section--tight section--paper">
@@ -529,7 +628,7 @@
         <div class="hm-chan__cap">
           <h3>SMS</h3>
           <p>Consent-aware follow-up texting — for homeowners who replied or opted in.</p>
-          <a class="hm-link" href="platform.html">SMS on the platform →</a>
+          <a class="hm-link" href="sms.html">Explore SMS →</a>
         </div>
       </div>
 
@@ -545,7 +644,7 @@
         <div class="hm-chan__cap">
           <h3>Postcards</h3>
           <p>Triggered mail — a signal fires, a card prints. No minimum drops.</p>
-          <a class="hm-link" href="platform.html">Postcards on the platform →</a>
+          <a class="hm-link" href="postcards.html">Explore postcards →</a>
         </div>
       </div>
 
@@ -569,7 +668,7 @@
         <div class="hm-chan__cap">
           <h3>Meta retargeting</h3>
           <p>Your homeowner segments, synced to Meta as custom audiences.</p>
-          <a class="hm-link" href="platform.html">Retargeting on the platform →</a>
+          <a class="hm-link" href="retargeting.html">Explore retargeting →</a>
         </div>
       </div>
     </div>
@@ -624,6 +723,45 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ── HOMEFIELD AI ──────────────────────────────────── -->
+<section class="section section--tight section--dark">
+  <div class="wrap">
+    <div class="sechead sechead--center sechead--onDark">
+      <p class="eyebrow">Homefield AI</p>
+      <h2>The intelligence <em>under every touch.</em></h2>
+      <p class="lede">
+        Homefield AI is the layer that decides who, when and what — four concrete jobs,
+        no magic claims.
+      </p>
+    </div>
+
+    <div class="hm-ai">
+      <div class="hm-ai__card">
+        <p class="hm-ai__k">Watches</p>
+        <h3>275M+ homes, 40+ signals</h3>
+        <p>Scores every home daily — renewal windows, roof and system age, equity and tenure, storms.</p>
+      </div>
+      <div class="hm-ai__card">
+        <p class="hm-ai__k">Times</p>
+        <h3>Every touch, per home</h3>
+        <p>Send-time is set by each home's moment — not by a campaign calendar.</p>
+      </div>
+      <div class="hm-ai__card">
+        <p class="hm-ai__k">Writes</p>
+        <h3>Per-address copy</h3>
+        <p>Every email names the real street and the real context — no mail-merge blanks.</p>
+      </div>
+      <div class="hm-ai__card">
+        <p class="hm-ai__k">Grades</p>
+        <h3>Every reply</h3>
+        <p>Qualified or not — it's how managed email bills honestly, per real lead.</p>
+      </div>
+    </div>
+
+    <p class="hm-ai__note"><strong>You approve every sequence</strong> — the AI does the timing, not the spending.</p>
   </div>
 </section>
 
@@ -858,14 +996,16 @@
         <h5>Product</h5>
         <a href="platform.html">Platform</a>
         <a href="managed-email.html">Managed email</a>
-        <a href="industries.html">Solutions</a>
-        <a href="pricing.html">Pricing</a>
+        <a href="sms.html">SMS</a>
+        <a href="postcards.html">Postcards</a>
+        <a href="retargeting.html">Meta retargeting</a>
       </div>
       <div>
         <h5>Company</h5>
+        <a href="industries.html">Solutions</a>
+        <a href="pricing.html">Pricing</a>
         <a href="faq.html">FAQ</a>
         <a href="contact.html">Contact</a>
-        <a href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Get a demo</a>
       </div>
       <div>
         <h5>Legal</h5>

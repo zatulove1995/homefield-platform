@@ -3,19 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The platform — audiences, SMS, postcards &amp; retargeting — Homefield</title>
-<meta name="description" content="The engine that times Homefield's managed email — renewal windows, roof and system age, equity, storms — as self-serve software. Build homeowner segments from 275M+ records, drive SMS follow-up, triggered postcards, and Facebook retargeting, and read the whole strategy in one report. Not territorial — available everywhere.">
-<meta property="og:title" content="The Homefield platform — every channel, fired at the moment">
-<meta property="og:description" content="Build homeowner segments from 275M+ records, then fire SMS follow-up, triggered postcards, and Facebook retargeting the week each home hits its moment. One calendar, one budget, one report. Self-serve, not territorial.">
+<title>Platform overview — segments, journeys, channels &amp; reporting — Homefield</title>
+<meta name="description" content="Tour the Homefield platform capability by capability: build living homeowner segments from 275M+ records, draw journeys that run every channel as one strategy, fire SMS, postcards and Meta retargeting, and read the whole thing in one report. Self-serve, not territorial.">
+<meta property="og:title" content="The Homefield platform — segments, journeys, channels, reporting">
+<meta property="og:description" content="Build homeowner segments from 275M+ records, draw journeys where email, SMS, postcards and Meta ads are steps in one flow, and grade the whole strategy in one report. Self-serve, not territorial.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=pf3">
+<link rel="stylesheet" href="styles.css?v=pf5">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%230A0D14'/%3E%3Cpath d='M9 9h14v8.5L16 25l-7-7.5z' fill='%232E5BFF'/%3E%3C/svg%3E">
 <script>document.documentElement.className += ' js';</script>
 <style>
 /* ── platform-page components (pl-) ─────────────────── */
+
+/* Capability-tour helpers */
+.pl-caps{ justify-content:flex-start; margin-top:28px; }
+.pl-frame{ max-width:920px; margin:0 auto; }
+.pl-flowlabel{ text-align:center; font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:20px; }
+.pl-jsteps{ margin-top:44px; }
+.pl-more{ margin-top:22px; font-size:15px; }
 
 /* Platform diagram — data in → engine → channels out */
 .pl-arch{ display:grid; grid-template-columns:1fr 44px 1.08fr 44px 1fr; align-items:stretch; }
@@ -161,6 +168,7 @@
   .pl-seg__num{ font-size:36px; }
   .pl-report__tabs{ gap:18px; padding:0 18px; }
   .pl-int__wall{ gap:12px 22px; }
+  .pl-jsteps{ margin-top:32px; }
 }
 </style>
 </head>
@@ -180,7 +188,16 @@
     </a>
 
     <nav class="nav__links" aria-label="Primary">
-      <a href="platform.html">Platform</a>
+      <div class="nav__dd">
+        <button class="nav__ddbtn" type="button" aria-haspopup="true">Product <span class="car">▾</span></button>
+        <div class="nav__ddmenu">
+          <a href="platform.html">Platform overview<small>Segments, journeys, reporting — one dashboard</small></a>
+          <a href="managed-email.html">Managed email<small>The channel we run for you</small></a>
+          <a href="sms.html">SMS<small>Consent-based follow-up texting</small></a>
+          <a href="postcards.html">Postcards<small>Triggered mail, no minimum drops</small></a>
+          <a href="retargeting.html">Meta retargeting<small>Audiences synced to your ad account</small></a>
+        </div>
+      </div>
       <a href="industries.html">Solutions</a>
       <a href="pricing.html">Pricing</a>
       <a href="faq.html">FAQ</a>
@@ -195,7 +212,11 @@
     </button>
   </div>
   <div class="mobilenav" id="mobileNav" hidden>
-    <a href="platform.html">Platform</a>
+    <a href="platform.html">Platform overview</a>
+    <a href="managed-email.html">Managed email</a>
+    <a href="sms.html">SMS</a>
+    <a href="postcards.html">Postcards</a>
+    <a href="retargeting.html">Meta retargeting</a>
     <a href="industries.html">Solutions</a>
     <a href="pricing.html">Pricing</a>
     <a href="faq.html">FAQ</a>
@@ -209,25 +230,31 @@
 <section class="hero hero--page">
   <div class="hero__glow" aria-hidden="true"></div>
   <div class="wrap hero__inner">
-    <p class="eyebrow reveal">The platform</p>
+    <p class="eyebrow reveal">Platform overview</p>
     <h1 class="hero__h1 reveal">The same signals. <em>Now in your hands.</em></h1>
     <p class="hero__sub reveal">
       The engine that times our managed email — renewal windows, roof and system age, equity,
-      storms — as self-serve software, driving three more channels: SMS follow-up, triggered
-      postcards, and Facebook retargeting.
+      storms — as self-serve software. Build segments from 275M+ homes, draw journeys that run
+      themselves, fire SMS, postcards and Meta retargeting, and read it all in one report.
     </p>
     <p class="hero__note reveal"><strong>Not territorial.</strong> Every ZIP is open to every business — no lock required.</p>
+    <div class="caps pl-caps reveal">
+      <span>Data &amp; Segments</span>
+      <span>Journeys</span>
+      <span>Channels</span>
+      <span>Reporting</span>
+    </div>
   </div>
 </section>
 
-<!-- ── PLATFORM DIAGRAM ──────────────────────────────── -->
+<!-- ── ARCHITECTURE SUMMARY ──────────────────────────── -->
 <section class="section section--paper">
   <div class="wrap">
     <div class="sechead sechead--center">
-      <p class="eyebrow eyebrow--dark">How it fits together</p>
+      <p class="eyebrow eyebrow--dark">The architecture</p>
       <h2>Data in. Moment scored. <em>Channels out.</em></h2>
-      <p class="lede">The whole platform on one slide: everything we watch, the engine that times it,
-      and the four channels it fires.</p>
+      <p class="lede">The whole platform on one slide — then the rest of this page walks it as four
+      capabilities: Data &amp; Segments → Journeys → Channels → Reporting.</p>
     </div>
 
     <div class="pl-arch reveal">
@@ -281,11 +308,11 @@
   </div>
 </section>
 
-<!-- ── AUDIENCES ─────────────────────────────────────── -->
+<!-- ── 01 · DATA & SEGMENTS ──────────────────────────── -->
 <section class="section">
   <div class="wrap grid-2">
     <div class="grid-2__text">
-      <p class="eyebrow eyebrow--dark">Audiences</p>
+      <p class="eyebrow eyebrow--dark">01 · Data &amp; segments</p>
       <h2>Start with 275M+ homes. Keep only your slice.</h2>
       <p class="lede">
         The same homeowner records that time our managed email, with your filters on top.
@@ -295,92 +322,183 @@
       <ul class="ticks">
         <li><strong>Your filters</strong> — ZIP, home value, home and system age, tenure, equity, owner-occupancy</li>
         <li><strong>Living segments</strong> — refreshed as renewal windows open, roofs age in, and storms pass through</li>
-        <li><strong>One segment, three channels</strong> — the same audience drives your texts, cards, and ads</li>
+        <li><strong>One segment, everywhere</strong> — the same audience feeds your journeys, texts, cards, and ads</li>
       </ul>
     </div>
 
     <!-- SAMPLE CONTENT — illustrative segment for layout -->
     <div class="grid-2__visual">
-      <div class="pl-seg">
-        <div class="pl-seg__bar">
-          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-          <span class="pl-seg__tag">Audience builder</span>
-        </div>
-        <div class="pl-seg__body">
-          <p class="pl-seg__label">Filters</p>
-          <div class="pl-chips">
-            <span class="pl-chip">ZIP 30204–30224</span>
-            <span class="pl-chip">Value $250k–$600k</span>
-            <span class="pl-chip">Roof 17+ yrs</span>
-            <span class="pl-chip">Tenure 7+ yrs</span>
-            <span class="pl-chip">Equity 40%+</span>
-            <span class="pl-chip">Owner-occupied</span>
-            <span class="pl-chip pl-chip--add">+ Add filter</span>
+      <div class="uiframe reveal">
+        <div class="pl-seg">
+          <div class="pl-seg__bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="pl-seg__tag">Segment builder</span>
           </div>
-          <div class="pl-seg__count">
-            <span class="pl-seg__num">4,318</span>
-            <span class="pl-seg__unit">homes match today</span>
+          <div class="pl-seg__body">
+            <p class="pl-seg__label">Filters</p>
+            <div class="pl-chips">
+              <span class="pl-chip">ZIP 30204–30224</span>
+              <span class="pl-chip">Value $250k–$600k</span>
+              <span class="pl-chip">Roof 17+ yrs</span>
+              <span class="pl-chip">Tenure 7+ yrs</span>
+              <span class="pl-chip">Equity 40%+</span>
+              <span class="pl-chip">Owner-occupied</span>
+              <span class="pl-chip pl-chip--add">+ Add filter</span>
+            </div>
+            <div class="pl-seg__count">
+              <span class="pl-seg__num">4,318</span>
+              <span class="pl-seg__unit">homes match today</span>
+            </div>
+            <ul class="pl-seg__delta">
+              <li><span>+112</span>entered a renewal window this week</li>
+              <li><span>+37</span>roofs crossed year 18</li>
+              <li><span class="pl-out">−54</span>moments passed — removed automatically</li>
+            </ul>
           </div>
-          <ul class="pl-seg__delta">
-            <li><span>+112</span>entered a renewal window this week</li>
-            <li><span>+37</span>roofs crossed year 18</li>
-            <li><span class="pl-out">−54</span>moments passed — removed automatically</li>
-          </ul>
+          <p class="pl-seg__foot">Refreshes daily. No list-buying, no CSV uploads, no stale data.</p>
         </div>
-        <p class="pl-seg__foot">Refreshes daily. No list-buying, no CSV uploads, no stale data.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── SMS ───────────────────────────────────────────── -->
+<!-- ── 02 · JOURNEYS ─────────────────────────────────── -->
 <section class="section section--paper">
-  <div class="wrap grid-2 grid-2--flip">
-    <div class="grid-2__text">
-      <p class="eyebrow eyebrow--dark">SMS</p>
-      <h2>The follow-up channel. Never the cold one.</h2>
-      <p class="lede">
-        We don't do cold texts, and neither should you. SMS on Homefield goes only to homeowners
-        who replied or opted in — the fastest way to turn a warm reply into a booked appointment,
-        with the compliance handled for you.
-      </p>
-      <ul class="ticks">
-        <li><strong>Automated sequences</strong> to homeowners who replied or opted in — consent-aware by design</li>
-        <li><strong>Two-way inbox</strong> — pick up any thread by hand the moment it gets interesting</li>
-        <li><strong>10DLC registration handled</strong> — carrier compliance done for you at signup</li>
-        <li><strong>Quiet hours and opt-outs automatic</strong> — STOP honored instantly, every time</li>
-        <li><strong>3¢ a message</strong>, billed on usage — no bundles, no breakage</li>
-      </ul>
+  <div class="wrap">
+    <div class="sechead sechead--center">
+      <p class="eyebrow eyebrow--dark">02 · Journeys</p>
+      <h2>One cohesive strategy, drawn as <em>one flow.</em></h2>
+      <p class="lede">This is what a multi-channel strategy looks like when it's actually one strategy —
+      email, SMS, mail and ads as steps in a single journey, not four tools with four calendars.
+      Draw it once; every home that hits the trigger walks through.</p>
     </div>
 
-    <!-- SAMPLE CONTENT — illustrative consented thread for layout -->
-    <div class="grid-2__visual">
-      <div class="pl-sms">
-        <div class="pl-sms__bar">
-          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-          <span class="pl-sms__tag">Two-way inbox</span>
+    <!-- SAMPLE CONTENT — illustrative journey for layout -->
+    <div class="uiframe pl-frame reveal">
+      <p class="pl-flowlabel">Journey · Aging roofs — ZIP 30204</p>
+      <div class="flow">
+        <div class="flow__node flow__node--trigger">
+          <p class="flow__k">Trigger</p>
+          <p>Roof passes year 18</p>
         </div>
-        <div class="pl-sms__thread">
-          <p class="pl-sms__note">Dana · replied to your email Tue · consented</p>
-          <p class="pl-sms__msg pl-sms__msg--out">Hi Dana, it's Mike from Ridgeline Roofing — you asked about a roof estimate. Would Thursday morning or Friday afternoon work for a quick look?</p>
-          <p class="pl-sms__msg pl-sms__msg--in">Friday afternoon works. Anytime after 2.</p>
-          <p class="pl-sms__msg pl-sms__msg--out">Booked — Friday 2:30. I'll text when I'm 15 minutes out.</p>
+        <div class="flow__node">
+          <p class="flow__k">Action</p>
+          <p>Managed email · 3-touch sequence</p>
         </div>
-        <div class="pl-sms__foot">
-          <span>Quiet hours enforced</span>
-          <span>Opt-outs automatic</span>
-          <span>10DLC registered</span>
+        <div class="flow__node">
+          <p class="flow__k">Wait</p>
+          <p>3 days</p>
+        </div>
+        <div class="flow__node">
+          <p class="flow__k">Branch</p>
+          <p>Replied?</p>
+        </div>
+        <div class="flow__branch">
+          <div class="flow__lane">
+            <div class="flow__node">
+              <p class="flow__k">Yes · Action</p>
+              <p>SMS follow-up · consent on reply</p>
+            </div>
+            <div class="flow__node">
+              <p class="flow__k">Action</p>
+              <p>Alert: qualified lead</p>
+            </div>
+          </div>
+          <div class="flow__lane">
+            <div class="flow__node">
+              <p class="flow__k">No · Action</p>
+              <p>Postcard · aging-roof template</p>
+            </div>
+            <div class="flow__node">
+              <p class="flow__k">Action</p>
+              <p>Add to Meta audience</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="steps pl-jsteps">
+      <article class="step reveal">
+        <p class="step__n">TRIGGERS</p>
+        <h3>Start from any signal</h3>
+        <p>Renewal windows, roof age, storm paths, equity — or your own events: a quote sent,
+        a job finished, a webhook from your CRM. Anything the engine sees can start a journey.</p>
+      </article>
+      <article class="step reveal">
+        <p class="step__n">CHANNELS</p>
+        <h3>Steps, not silos</h3>
+        <p>Email, SMS, postcards and Meta are steps in the same flow — each touch knows what
+        the last one did, so the card never mails to a home that already replied.</p>
+      </article>
+      <article class="step reveal">
+        <p class="step__n">PACING</p>
+        <h3>Every home at its own pace</h3>
+        <p>A journey isn't a blast date. Each home enters the day its own signal fires and moves
+        through on its own clock — one home in April, its neighbor in June.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ── 03 · CHANNELS ─────────────────────────────────── -->
+<section class="section">
+  <div class="wrap">
+    <div class="sechead sechead--center">
+      <p class="eyebrow eyebrow--dark">03 · Channels</p>
+      <h2>Every channel, <em>fired at the moment.</em></h2>
+      <p class="lede">Email is the channel we run for you — <a class="link" href="managed-email.html">see managed
+      email</a>. The other three are yours to drive, each with its own page, each a step in the same journeys.</p>
+    </div>
+
+    <div class="grid-2 grid-2--flip">
+      <div class="grid-2__text">
+        <p class="eyebrow eyebrow--dark">Channels · SMS</p>
+        <h2>The follow-up channel. Never the cold one.</h2>
+        <p class="lede">
+          We don't do cold texts, and neither should you. SMS on Homefield goes only to homeowners
+          who replied or opted in — the fastest way to turn a warm reply into a booked appointment,
+          with the compliance handled for you.
+        </p>
+        <ul class="ticks">
+          <li><strong>Automated sequences</strong> to homeowners who replied or opted in — consent-aware by design</li>
+          <li><strong>Two-way inbox</strong> — pick up any thread by hand the moment it gets interesting</li>
+          <li><strong>10DLC registration handled</strong> — carrier compliance done for you at signup</li>
+          <li><strong>Quiet hours and opt-outs automatic</strong> — STOP honored instantly, every time</li>
+          <li><strong>3¢ a message</strong>, billed on usage — no bundles, no breakage</li>
+        </ul>
+        <p class="pl-more"><a class="link" href="sms.html">Explore the SMS channel →</a></p>
+      </div>
+
+      <!-- SAMPLE CONTENT — illustrative consented thread for layout -->
+      <div class="grid-2__visual">
+        <div class="pl-sms">
+          <div class="pl-sms__bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="pl-sms__tag">Two-way inbox</span>
+          </div>
+          <div class="pl-sms__thread">
+            <p class="pl-sms__note">Dana · replied to your email Tue · consented</p>
+            <p class="pl-sms__msg pl-sms__msg--out">Hi Dana, it's Mike from Ridgeline Roofing — you asked about a roof estimate. Would Thursday morning or Friday afternoon work for a quick look?</p>
+            <p class="pl-sms__msg pl-sms__msg--in">Friday afternoon works. Anytime after 2.</p>
+            <p class="pl-sms__msg pl-sms__msg--out">Booked — Friday 2:30. I'll text when I'm 15 minutes out.</p>
+          </div>
+          <div class="pl-sms__foot">
+            <span>Quiet hours enforced</span>
+            <span>Opt-outs automatic</span>
+            <span>10DLC registered</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── POSTCARDS ─────────────────────────────────────── -->
-<section class="section">
+<!-- ── CHANNELS · POSTCARDS ──────────────────────────── -->
+<section class="section section--paper">
   <div class="wrap grid-2">
     <div class="grid-2__text">
-      <p class="eyebrow eyebrow--dark">Postcards</p>
+      <p class="eyebrow eyebrow--dark">Channels · Postcards</p>
       <h2>Mail that fires on a signal, not a season.</h2>
       <p class="lede">
         Choose a trigger — a renewal window opening, a roof aging in, a storm passing through,
@@ -393,6 +511,7 @@
         <li><strong>No design work</strong> — templates in your branding, ready the day you sign up</li>
         <li><strong>79¢ a card</strong>, postage included — billed only for what mails</li>
       </ul>
+      <p class="pl-more"><a class="link" href="postcards.html">Explore the postcards channel →</a></p>
     </div>
 
     <!-- SAMPLE CONTENT — illustrative card for layout -->
@@ -417,11 +536,11 @@
   </div>
 </section>
 
-<!-- ── FACEBOOK RETARGETING ──────────────────────────── -->
-<section class="section section--paper">
+<!-- ── CHANNELS · META RETARGETING ───────────────────── -->
+<section class="section">
   <div class="wrap grid-2 grid-2--flip">
     <div class="grid-2__text">
-      <p class="eyebrow eyebrow--dark">Facebook retargeting</p>
+      <p class="eyebrow eyebrow--dark">Channels · Meta retargeting</p>
       <h2>Be everywhere, the week it matters.</h2>
       <p class="lede">
         Sync any segment to Meta as a custom audience, refreshed continuously as homes enter
@@ -434,6 +553,7 @@
         <li><strong>Timed to the other channels</strong> — the ad follows the email and the card, same home, same week</li>
         <li><strong>Free to sync</strong> — ad spend runs in your Meta account</li>
       </ul>
+      <p class="pl-more"><a class="link" href="retargeting.html">Explore the retargeting channel →</a></p>
     </div>
 
     <!-- SAMPLE CONTENT — illustrative ad for layout -->
@@ -500,71 +620,73 @@
   </div>
 </section>
 
-<!-- ── ONE PLACE ─────────────────────────────────────── -->
+<!-- ── 04 · REPORTING ────────────────────────────────── -->
 <section class="section section--paper">
   <div class="wrap">
     <div class="sechead sechead--center">
-      <p class="eyebrow eyebrow--dark">One place</p>
+      <p class="eyebrow eyebrow--dark">04 · Reporting</p>
       <h2>Stop grading channels. <em>Grade the strategy.</em></h2>
       <p class="lede">One calendar, one budget, one report — cost per customer across the strategy, not per channel.</p>
     </div>
 
     <!-- SAMPLE CONTENT — illustrative report for layout; figures are not benchmarks -->
-    <div class="pl-report reveal">
-      <div class="pl-report__bar">
-        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-        <span class="pl-report__tag">Reporting</span>
+    <div class="uiframe pl-frame reveal">
+      <div class="pl-report">
+        <div class="pl-report__bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="pl-report__tag">Reporting</span>
+        </div>
+        <div class="pl-report__tabs" aria-hidden="true">
+          <span class="pl-report__tab">Overview</span>
+          <span class="pl-report__tab pl-report__tab--on">Channels</span>
+          <span class="pl-report__tab">Homes</span>
+        </div>
+        <div class="pl-report__scroll">
+          <table class="pl-report__table">
+            <thead>
+              <tr>
+                <th>Channel</th>
+                <th>Spend</th>
+                <th>Replies</th>
+                <th>Cost / customer</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Managed email<span>done-for-you</span></td>
+                <td>Billed per lead</td>
+                <td>42</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>SMS follow-up<span>3¢ / message</span></td>
+                <td>$86</td>
+                <td>31</td>
+                <td>$29</td>
+              </tr>
+              <tr>
+                <td>Postcards<span>79¢ / card, postage incl.</span></td>
+                <td>$612</td>
+                <td>18</td>
+                <td>$102</td>
+              </tr>
+              <tr>
+                <td>Meta retargeting<span>spend from your ad account</span></td>
+                <td>$540</td>
+                <td>11</td>
+                <td>$135</td>
+              </tr>
+              <tr class="pl-report__total">
+                <td>Total — the strategy</td>
+                <td>$1,238</td>
+                <td>102</td>
+                <td>$109</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="pl-report__foot">A customer counts once — even after four touches across four channels. Total is platform spend only — managed email is billed per qualified lead.</p>
       </div>
-      <div class="pl-report__tabs" aria-hidden="true">
-        <span class="pl-report__tab">Overview</span>
-        <span class="pl-report__tab pl-report__tab--on">Channels</span>
-        <span class="pl-report__tab">Homes</span>
-      </div>
-      <div class="pl-report__scroll">
-        <table class="pl-report__table">
-          <thead>
-            <tr>
-              <th>Channel</th>
-              <th>Spend</th>
-              <th>Replies</th>
-              <th>Cost / customer</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Managed email<span>done-for-you</span></td>
-              <td>Billed per lead</td>
-              <td>42</td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td>SMS follow-up<span>3¢ / message</span></td>
-              <td>$86</td>
-              <td>31</td>
-              <td>$29</td>
-            </tr>
-            <tr>
-              <td>Postcards<span>79¢ / card, postage incl.</span></td>
-              <td>$612</td>
-              <td>18</td>
-              <td>$102</td>
-            </tr>
-            <tr>
-              <td>Meta retargeting<span>spend from your ad account</span></td>
-              <td>$540</td>
-              <td>11</td>
-              <td>$135</td>
-            </tr>
-            <tr class="pl-report__total">
-              <td>Total — the strategy</td>
-              <td>$2,718</td>
-              <td>102</td>
-              <td>$109</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="pl-report__foot">A customer counts once — even after four touches across four channels.</p>
     </div>
 
     <!-- SAMPLE FIGURES — layout only -->
@@ -601,7 +723,7 @@
       <article class="pl-vs__card reveal">
         <p class="pl-vs__label">The platform — self-serve</p>
         <h3>You run it. Everywhere you like.</h3>
-        <p class="pl-vs__lede">Audiences, SMS follow-up, triggered postcards, and retargeting in your own
+        <p class="pl-vs__lede">Segments, journeys, SMS follow-up, triggered postcards, and retargeting in your own
         hands — no territory required, open to any business in any ZIP, including ones we manage email in.</p>
         <ul class="ticks">
           <li><strong>Not territorial</strong> — every ZIP open to every business</li>
@@ -677,14 +799,16 @@
         <h5>Product</h5>
         <a href="platform.html">Platform</a>
         <a href="managed-email.html">Managed email</a>
-        <a href="industries.html">Solutions</a>
-        <a href="pricing.html">Pricing</a>
+        <a href="sms.html">SMS</a>
+        <a href="postcards.html">Postcards</a>
+        <a href="retargeting.html">Meta retargeting</a>
       </div>
       <div>
         <h5>Company</h5>
+        <a href="industries.html">Solutions</a>
+        <a href="pricing.html">Pricing</a>
         <a href="faq.html">FAQ</a>
         <a href="contact.html">Contact</a>
-        <a href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Get a demo</a>
       </div>
       <div>
         <h5>Legal</h5>

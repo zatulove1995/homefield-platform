@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Postcards — triggered direct mail, no minimum drops — Homefield</title>
+<meta name="description" content="Triggered direct mail for the businesses homeowners hire. Pick a signal — a renewal window opening, a roof crossing year 18, a storm, a listing nearby — and cards print and mail one home at a time. Templates in your branding, 79¢ a card with postage included, address hygiene built in.">
+<meta property="og:title" content="Homefield postcards — mail that fires on a signal">
+<meta property="og:description" content="Triggered direct mail, driven by the signals engine: a card prints when a home hits its moment, not when the calendar says blast. No minimum drops, templates in your branding, postage included.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=pf5">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%230A0D14'/%3E%3Cpath d='M9 9h14v8.5L16 25l-7-7.5z' fill='%232E5BFF'/%3E%3C/svg%3E">
+<script>document.documentElement.className += ' js';</script>
+<style>
+/* ── postcards-page components (pc-) ─────────────────── */
+
+/* Trigger-picker + card-preview mock (sits inside a .uiframe) */
+.pc-build{ background:var(--paper); border:1px solid var(--line); border-radius:var(--r-lg); box-shadow:var(--shadow-lg); overflow:hidden; }
+.pc-build__bar{ display:flex; align-items:center; gap:6px; padding:12px 18px; background:var(--paper-3); border-bottom:1px solid var(--line); }
+.pc-build__tag{ margin-left:auto; font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
+.pc-build__body{ display:grid; grid-template-columns:1fr 1.3fr; }
+.pc-build__rules{ padding:22px 22px 20px; border-right:1px solid var(--line); display:flex; flex-direction:column; gap:10px; }
+.pc-build__label{ font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-bottom:2px; }
+.pc-rule{ display:flex; gap:12px; align-items:flex-start; background:var(--paper-2); border:1px solid var(--line); border-radius:var(--r-sm); padding:12px 14px; }
+.pc-rule__k{ font-family:var(--mono); font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-ink); background:var(--accent-soft); padding:4px 9px; border-radius:999px; flex-shrink:0; margin-top:1px; }
+.pc-rule p:not([class]){ font-size:13.5px; line-height:1.5; color:var(--ink-3); }
+.pc-rule p em{ font-style:normal; color:var(--muted); }
+.pc-build__stat{ margin-top:auto; padding-top:14px; border-top:1px solid var(--line); font-size:13px; color:var(--muted); line-height:1.6; }
+.pc-build__stat strong{ color:var(--ink); font-weight:600; }
+.pc-build__preview{ padding:22px; }
+.pc-build__foot{ padding:12px 22px; border-top:1px solid var(--line); background:#FCFCFD; font-size:12.5px; color:var(--muted); display:flex; flex-wrap:wrap; gap:4px 14px; }
+
+/* Card-front mock (postcard proof) */
+.pc-card{ display:grid; grid-template-columns:1.5fr 1fr; background:var(--paper); border:1px solid var(--line); border-radius:var(--r); box-shadow:var(--shadow); overflow:hidden; }
+.pc-card__front{ padding:22px 22px 20px; display:flex; flex-direction:column; }
+.pc-card__brand{ font-size:11px; font-weight:600; letter-spacing:.09em; text-transform:uppercase; color:var(--accent-ink); }
+.pc-card__head{ font-family:var(--serif); font-weight:400; font-size:clamp(20px,2.2vw,26px); line-height:1.1; letter-spacing:-.02em; margin:14px 0 8px; }
+.pc-card__body{ font-size:13px; color:var(--muted); line-height:1.55; }
+.pc-card__addr{ border-left:1px dashed var(--line); padding:18px; display:flex; flex-direction:column; min-height:170px; }
+.pc-card__stamp{ align-self:flex-end; width:44px; height:52px; border:1px solid var(--line); border-radius:4px; display:grid; place-items:center; font-family:var(--mono); font-size:8.5px; text-transform:uppercase; color:var(--muted); text-align:center; line-height:1.35; padding:4px; }
+.pc-card__to{ margin-top:auto; font-family:var(--mono); font-size:12.5px; color:var(--ink-3); line-height:1.6; }
+.pc-card__to span{ display:block; font-size:10px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin-bottom:4px; }
+
+/* Feature grid */
+.pc-feat{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+.pc-feat__card{ background:var(--paper); border:1px solid var(--line); border-radius:var(--r-lg); padding:28px 26px 26px; box-shadow:var(--shadow-sm); }
+.pc-feat__k{ font-family:var(--mono); font-size:10.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:12px; }
+.pc-feat__card h3{ font-size:19px; margin-bottom:8px; }
+.pc-feat__card p:not([class]){ font-size:14.5px; color:var(--muted); line-height:1.6; }
+
+/* Highlighted node in the journey flow — where the postcard sits */
+.pc-flow-hl{ border-color:var(--accent); box-shadow:0 0 0 1px var(--accent), var(--shadow-sm); background:var(--accent-soft); }
+
+/* Timed vs blast — dark-section compare cards */
+.pc-vs{ display:grid; grid-template-columns:1fr 1fr; gap:20px; align-items:stretch; }
+.pc-vs__card{ border:1px solid var(--line-dark); border-radius:var(--r-lg); padding:32px 30px 28px; }
+.pc-vs__card--timed{ background:var(--paper); border-color:var(--paper); color:var(--ink); box-shadow:var(--shadow-lg); }
+.pc-vs__label{ font-family:var(--mono); font-size:10.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted-dark); margin-bottom:16px; }
+.pc-vs__card--timed .pc-vs__label{ color:var(--accent-ink); }
+.pc-vs__big{ font-family:var(--serif); font-weight:400; font-size:clamp(24px,3vw,32px); line-height:1.12; letter-spacing:-.02em; margin-bottom:12px; }
+.pc-vs__card p:not([class]){ font-size:14.5px; color:var(--muted-dark); line-height:1.6; }
+.pc-vs__card--timed p:not([class]){ color:var(--muted); }
+
+/* Works-with strip */
+.pc-works{ padding:64px 0; }
+.pc-works__caption{ text-align:center; font-family:var(--mono); font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:26px; }
+.pc-works__wall{ display:flex; flex-wrap:wrap; justify-content:center; gap:14px 34px; max-width:880px; margin:0 auto 18px; list-style:none; padding:0; }
+.pc-works__wall li{ font-family:var(--mono); font-size:13px; letter-spacing:.04em; color:var(--ink-3); opacity:.75; white-space:nowrap; }
+.pc-works__note{ text-align:center; font-size:13px; color:var(--muted); max-width:620px; margin:0 auto; }
+
+/* Pricing card */
+.pc-price{ max-width:720px; margin:0 auto; background:var(--paper); border:1px solid var(--line); border-radius:var(--r-lg); box-shadow:var(--shadow); padding:36px 34px; display:grid; grid-template-columns:auto 1fr; gap:14px 40px; align-items:center; }
+.pc-price__num{ font-family:var(--serif); font-size:clamp(52px,7vw,72px); line-height:1; letter-spacing:-.03em; }
+.pc-price__unit{ font-size:13.5px; color:var(--muted); margin-top:8px; max-width:150px; line-height:1.5; }
+
+@media (max-width:960px){
+  .pc-build__body{ grid-template-columns:1fr; }
+  .pc-build__rules{ border-right:0; border-bottom:1px solid var(--line); }
+  .pc-feat{ grid-template-columns:1fr 1fr; }
+  .pc-vs{ grid-template-columns:1fr; }
+}
+@media (max-width:640px){
+  .pc-feat{ grid-template-columns:1fr; }
+  .pc-card{ grid-template-columns:1fr; }
+  .pc-card__addr{ border-left:0; border-top:1px dashed var(--line); min-height:140px; }
+  .pc-price{ grid-template-columns:1fr; gap:22px; }
+  .pc-price__unit{ max-width:none; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="index.html" aria-label="Homefield home">
+      <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".35"/>
+        <path d="M9 8 H23 V17 L16 24 L9 17 Z" fill="currentColor"/>
+        <path d="M16 8 H23 V17 L16 24 Z" fill="currentColor" opacity=".45"/>
+      </svg>
+      <span class="brand__word">Homefield</span>
+    </a>
+
+    <nav class="nav__links" aria-label="Primary">
+      <div class="nav__dd">
+        <button class="nav__ddbtn" type="button" aria-haspopup="true">Product <span class="car">▾</span></button>
+        <div class="nav__ddmenu">
+          <a href="platform.html">Platform overview<small>Segments, journeys, reporting — one dashboard</small></a>
+          <a href="managed-email.html">Managed email<small>The channel we run for you</small></a>
+          <a href="sms.html">SMS<small>Consent-based follow-up texting</small></a>
+          <a href="postcards.html">Postcards<small>Triggered mail, no minimum drops</small></a>
+          <a href="retargeting.html">Meta retargeting<small>Audiences synced to your ad account</small></a>
+        </div>
+      </div>
+      <a href="industries.html">Solutions</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="faq.html">FAQ</a>
+    </nav>
+
+    <div class="nav__cta">
+      <a class="btn btn--ghost btn--sm" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Get a demo</a>
+    </div>
+
+    <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+      <span></span><span></span>
+    </button>
+  </div>
+  <div class="mobilenav" id="mobileNav" hidden>
+    <a href="platform.html">Platform overview</a>
+    <a href="managed-email.html">Managed email</a>
+    <a href="sms.html">SMS</a>
+    <a href="postcards.html">Postcards</a>
+    <a href="retargeting.html">Meta retargeting</a>
+    <a href="industries.html">Solutions</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="faq.html">FAQ</a>
+    <a class="btn btn--primary" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Get a demo</a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ── HERO ──────────────────────────────────────────── -->
+<section class="hero hero--page">
+  <div class="hero__glow" aria-hidden="true"></div>
+  <div class="wrap hero__inner">
+    <p class="eyebrow reveal">Postcards</p>
+    <h1 class="hero__h1 reveal">Mail that fires on a signal.<br><em>Not a mailing list.</em></h1>
+    <p class="hero__sub reveal">
+      Triggered direct mail for the businesses homeowners hire — roofers, HVAC, insurance
+      agencies, agents and investors. A card prints when a home hits its moment, not when
+      the calendar says blast.
+    </p>
+    <p class="hero__note reveal"><strong>79¢ a card, postage included.</strong> No minimum drops — one card mails when one home is ready.</p>
+  </div>
+</section>
+
+<!-- ── TRIGGER PICKER + CARD MOCK ────────────────────── -->
+<section class="section section--paper">
+  <div class="wrap">
+    <div class="sechead sechead--center">
+      <p class="eyebrow eyebrow--dark">The trigger picker</p>
+      <h2>Set it once. <em>It mails itself.</em></h2>
+      <p class="lede">Pick a signal and a template. From then on, every home that crosses the
+      trigger gets a card — printed, addressed and mailed without you touching it.</p>
+    </div>
+
+    <div class="caps reveal" aria-label="Postcard capabilities">
+      <span>Signal triggers</span>
+      <span>Templates</span>
+      <span>Print &amp; postage</span>
+      <span>Address hygiene</span>
+    </div>
+
+    <!-- SAMPLE CONTENT — illustrative trigger and card for layout -->
+    <div class="uiframe reveal" style="margin-top:34px;">
+      <div class="pc-build">
+        <div class="pc-build__bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="pc-build__tag">Postcard trigger</span>
+        </div>
+        <div class="pc-build__body">
+          <div class="pc-build__rules">
+            <p class="pc-build__label">Rule</p>
+            <div class="pc-rule">
+              <span class="pc-rule__k">When</span>
+              <p>Roof passes year 18 <em>· ZIP 30204–30224</em></p>
+            </div>
+            <div class="pc-rule">
+              <span class="pc-rule__k">Then</span>
+              <p>Mail “Aging roof” template <em>· Ridgeline Roofing branding</em></p>
+            </div>
+            <div class="pc-rule">
+              <span class="pc-rule__k">Skip</span>
+              <p>Current customers <em>· undeliverable addresses · homes already in a journey</em></p>
+            </div>
+            <p class="pc-build__stat"><strong>This week:</strong> 37 homes crossed the trigger · 37 cards mailed · $29.23</p>
+          </div>
+          <div class="pc-build__preview">
+            <p class="pc-build__label">Card front · proof</p>
+            <div class="pc-card">
+              <div class="pc-card__front">
+                <p class="pc-card__brand">Ridgeline Roofing</p>
+                <p class="pc-card__head">Your roof was built in 2008.</p>
+                <p class="pc-card__body">Most roofs go 18–22 years. A 20-minute inspection now
+                beats a leak in February — and it's free for Maple Grove homes this month.</p>
+              </div>
+              <div class="pc-card__addr">
+                <span class="pc-card__stamp">First-class postage paid</span>
+                <p class="pc-card__to"><span>To</span>Dana M.<br>214 Birchwood Ln<br>Maple Grove</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pc-build__foot">
+          <span>Printed &amp; mailed automatically</span>
+          <span>In the mailbox ~3 days after the trigger</span>
+          <span>Returned mail suppresses the address</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FEATURE GRID ──────────────────────────────────── -->
+<section class="section">
+  <div class="wrap">
+    <div class="sechead sechead--center">
+      <p class="eyebrow eyebrow--dark">Capabilities</p>
+      <h2>Everything between the signal <em>and the mailbox.</em></h2>
+      <p class="lede">You pick the moment and the message. The platform handles the rest — the
+      watching, the printing, the postage, the list nobody has to maintain.</p>
+    </div>
+
+    <div class="pc-feat">
+      <article class="pc-feat__card reveal">
+        <p class="pc-feat__k">Triggers</p>
+        <h3>Fires on the signal</h3>
+        <p>A renewal window opening, a roof crossing year 18, a storm passing through, a listing
+        going up nearby. Pick the moment — the engine watches 275M+ homes for it, daily.</p>
+      </article>
+      <article class="pc-feat__card reveal">
+        <p class="pc-feat__k">Volume</p>
+        <h3>No minimum drops</h3>
+        <p>Cards go one at a time. When one home crosses the trigger, one card mails; when 400 do
+        after a storm, 400 mail. Never a case count you have to fill.</p>
+      </article>
+      <article class="pc-feat__card reveal">
+        <p class="pc-feat__k">Templates</p>
+        <h3>Your branding, per industry</h3>
+        <p>Proven layouts for roofing, HVAC, insurance and real estate — set in your name, colors
+        and license line at onboarding. No designer, nothing to upload.</p>
+      </article>
+      <article class="pc-feat__card reveal">
+        <p class="pc-feat__k">Postage</p>
+        <h3>Postage included</h3>
+        <p>79¢ a card covers print, first-class postage and mailing. You're billed only for what
+        actually mails — no bundles, no breakage.</p>
+      </article>
+      <article class="pc-feat__card reveal">
+        <p class="pc-feat__k">Hygiene</p>
+        <h3>Clean addresses, automatically</h3>
+        <p>Every address is checked against USPS delivery data before print. Returned mail
+        suppresses the home, and your customer list keeps customers out of the run.</p>
+      </article>
+      <article class="pc-feat__card reveal">
+        <p class="pc-feat__k">Journeys</p>
+        <h3>A step in any journey</h3>
+        <p>Drop a postcard node into a journey like any other action. The classic move: no reply
+        to the email after three days — the card goes to print.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ── IN A JOURNEY ──────────────────────────────────── -->
+<section class="section section--paper">
+  <div class="wrap">
+    <div class="sechead sechead--center">
+      <p class="eyebrow eyebrow--dark">In a journey</p>
+      <h2>Where the card <em>sits.</em></h2>
+      <p class="lede">The email lands first. If the home hasn't replied in three days, the card
+      goes to print — and the Meta audience picks the home up the same week.</p>
+    </div>
+
+    <!-- SAMPLE CONTENT — illustrative journey for layout -->
+    <div class="flow reveal" aria-label="Journey with a postcard step">
+      <div class="flow__node flow__node--trigger">
+        <p class="flow__k">Trigger</p>
+        <p>Roof passes year 18</p>
+      </div>
+      <div class="flow__node">
+        <p class="flow__k">Action</p>
+        <p>Managed email · 3-touch sequence</p>
+      </div>
+      <div class="flow__node">
+        <p class="flow__k">Wait</p>
+        <p>3 days</p>
+      </div>
+      <div class="flow__node">
+        <p class="flow__k">Branch</p>
+        <p>Replied?</p>
+      </div>
+      <div class="flow__branch">
+        <div class="flow__lane">
+          <div class="flow__node">
+            <p class="flow__k">Yes → Action</p>
+            <p>SMS follow-up · consent on reply</p>
+          </div>
+        </div>
+        <div class="flow__lane">
+          <div class="flow__node pc-flow-hl">
+            <p class="flow__k">No → Action</p>
+            <p>Postcard · “Aging roof” template</p>
+          </div>
+          <div class="flow__node">
+            <p class="flow__k">Action</p>
+            <p>Add to Meta audience</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="fineprint fineprint--center" style="margin-top:32px;">
+      One journey, four channels — the postcard is a step, not a separate campaign.
+    </p>
+  </div>
+</section>
+
+<!-- ── TIMED VS BLAST ────────────────────────────────── -->
+<section class="section section--dark">
+  <div class="wrap">
+    <div class="sechead sechead--onDark">
+      <p class="eyebrow">Timed, not blasted</p>
+      <h2>The card was never the problem. <em>The calendar was.</em></h2>
+      <p class="lede">Direct mail works — it's the one channel that sits on the kitchen counter.
+      What wastes money is mailing an entire ZIP because it's spring.</p>
+    </div>
+
+    <!-- SAMPLE FIGURES — illustrative comparison for layout -->
+    <div class="pc-vs">
+      <article class="pc-vs__card reveal">
+        <p class="pc-vs__label">A calendar blast</p>
+        <p class="pc-vs__big">10,000 cards, because it's March.</p>
+        <p>The same card to every roof in the ZIP — most of them eight years old. The medium
+        gets blamed for the targeting.</p>
+      </article>
+      <article class="pc-vs__card pc-vs__card--timed reveal">
+        <p class="pc-vs__label">A Homefield trigger</p>
+        <p class="pc-vs__big">37 cards, because 37 roofs crossed year 18.</p>
+        <p>Same medium, same postage — but every card lands at a home in its moment, the same
+        week the email and the ad land too.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ── WORKS WITH ────────────────────────────────────── -->
+<section class="section section--paper pc-works">
+  <div class="wrap">
+    <p class="pc-works__caption">Works with what you already run</p>
+    <ul class="pc-works__wall" aria-label="Integrations">
+      <li>ServiceTitan</li>
+      <li>Jobber</li>
+      <li>Housecall Pro</li>
+      <li>Follow Up Boss</li>
+      <li>Salesforce</li>
+      <li>HubSpot</li>
+      <li>AMS360</li>
+      <li>EZLynx</li>
+      <li>MLS/IDX</li>
+      <li>Meta Ads</li>
+      <li>Zapier</li>
+      <li>Webhooks &amp; CSV</li>
+    </ul>
+    <p class="pc-works__note">Your customer list syncs in to keep current customers out of the
+    mail run — and every card mailed, trigger fired and return received flows back out to your CRM.</p>
+  </div>
+</section>
+
+<!-- ── PRICING NOTE ──────────────────────────────────── -->
+<section class="section">
+  <div class="wrap">
+    <div class="sechead sechead--center">
+      <p class="eyebrow eyebrow--dark">Pricing</p>
+      <h2>One number. <em>Postage included.</em></h2>
+      <p class="lede">No design fees, no minimums, no monthly mail commitment — you pay for the
+      cards that mail, and nothing else.</p>
+    </div>
+
+    <!-- SAMPLE PRICING — layout only -->
+    <div class="pc-price reveal">
+      <div>
+        <p class="pc-price__num">79¢</p>
+        <p class="pc-price__unit">a card — print, first-class postage and mailing included</p>
+      </div>
+      <ul class="ticks">
+        <li><strong>Billed only for what mails</strong> — suppressed and undeliverable addresses never hit the invoice</li>
+        <li><strong>No minimum drops</strong> — one card is a valid mail run</li>
+        <li><strong>Part of the platform</strong> — $199/mo + usage, alongside SMS and retargeting</li>
+      </ul>
+    </div>
+
+    <!-- SAMPLE PRICING — layout only -->
+    <p class="fineprint fineprint--center" style="margin-top:28px;">
+      Sample pricing for layout — set your own rates before launch. Postcards are a platform
+      channel ($199/mo + usage, not territorial); managed email is billed separately, per
+      qualified lead at a rate quoted by industry.
+    </p>
+  </div>
+</section>
+
+<!-- ── MINI FAQ ──────────────────────────────────────── -->
+<section class="section section--paper">
+  <div class="wrap wrap--narrow">
+    <div class="sechead sechead--center">
+      <p class="eyebrow eyebrow--dark">Quick answers</p>
+      <h2>Three things everyone asks.</h2>
+    </div>
+
+    <div class="faq">
+      <details class="faq__item">
+        <summary>Do I need design work?</summary>
+        <div class="faq__a"><p>No. Every industry gets a set of proven templates — aging roof,
+        renewal window, storm follow-up, just-listed-nearby — set in your name, colors, phone
+        number and license line at onboarding. You can edit the headline and the offer on any
+        trigger; you never open a design tool or upload a file.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary>Is there a minimum?</summary>
+        <div class="faq__a"><p>None. Cards mail one at a time as homes cross your trigger — one
+        card this Tuesday, four hundred the week after a storm. There's no drop size to fill, no
+        campaign to schedule, and no charge for weeks when nothing crosses the trigger.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary>Who prints and mails the cards?</summary>
+        <div class="faq__a"><p>We do. Printing, addressing, first-class postage and mailing are
+        all included in the 79¢ — the card is typically in the mailbox about three days after the
+        trigger fires. Addresses are verified before print, and any card that comes back
+        undeliverable suppresses that home from future runs automatically.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA BAND ──────────────────────────────────────── -->
+<section class="section section--cta">
+  <div class="wrap">
+    <div class="ctaband">
+      <h2>See it on your ZIPs.</h2>
+      <p>Fifteen minutes. We'll pull your market live, show you how many homes hit their moment there every month, and walk the platform on your own territory.</p>
+      <div class="ctaband__actions">
+        <a class="btn btn--primary btn--lg" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Get a demo</a>
+        <a class="btn btn--quiet btn--lg" href="platform.html">Take the tour →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <div class="foot__brand">
+      <a class="brand brand--foot" href="index.html">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true">
+          <circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".35"/>
+          <path d="M9 8 H23 V17 L16 24 L9 17 Z" fill="currentColor"/>
+          <path d="M16 8 H23 V17 L16 24 Z" fill="currentColor" opacity=".45"/>
+        </svg>
+        <span class="brand__word">Homefield</span>
+      </a>
+      <p>The homeowner marketing platform — managed email, SMS, postcards and retargeting, timed to the moment.</p>
+    </div>
+    <nav class="foot__links" aria-label="Footer">
+      <div>
+        <h5>Product</h5>
+        <a href="platform.html">Platform</a>
+        <a href="managed-email.html">Managed email</a>
+        <a href="sms.html">SMS</a>
+        <a href="postcards.html">Postcards</a>
+        <a href="retargeting.html">Meta retargeting</a>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <a href="industries.html">Solutions</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div>
+        <h5>Legal</h5>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </nav>
+  </div>
+  <div class="wrap foot__bar">
+    <p>&copy; <span id="yr">2026</span> Homefield. All rights reserved.</p>
+    <p>Mailing address goes here · CAN-SPAM &amp; TCPA compliant</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

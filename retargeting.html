@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meta retargeting — audiences synced to your ad account — Homefield</title>
+<meta name="description" content="Sync homeowner segments to your Meta ad account as custom audiences, refreshed daily as homes enter and leave their moment. Ads run from your business page, in your account — your spend, your data — the same week the email and the card land.">
+<meta property="og:title" content="Meta retargeting on Homefield — be everywhere, the week it matters">
+<meta property="og:description" content="Homeowner segments synced to your Meta ad account and refreshed as homes enter their moment. Your business page, your pixel, your spend — the ad follows the same week the email and the card land.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=pf5">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%230A0D14'/%3E%3Cpath d='M9 9h14v8.5L16 25l-7-7.5z' fill='%232E5BFF'/%3E%3C/svg%3E">
+<script>document.documentElement.className += ' js';</script>
+<style>
+/* ── retargeting-page components (rt-) ──────────────── */
+
+/* Sync panel + sponsored tile, side by side in the uiframe */
+.rt-duo{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(20px,3.2vw,44px); align-items:center; }
+
+/* Audience-sync panel */
+.rt-sync{ background:var(--paper); border:1px solid var(--line); border-radius:var(--r-lg); box-shadow:var(--shadow); overflow:hidden; }
+.rt-sync__bar{ display:flex; align-items:center; gap:6px; padding:12px 18px; background:var(--paper-3); border-bottom:1px solid var(--line); }
+.rt-sync__tag{ margin-left:auto; font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
+.rt-sync__body{ padding:20px 22px 18px; }
+.rt-sync__label{ font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-bottom:7px; }
+.rt-sync__seg{ display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
+.rt-sync__name{ font-size:16.5px; font-weight:600; letter-spacing:-.01em; }
+.rt-sync__size{ font-size:13px; color:var(--muted); }
+.rt-sync__link{ display:flex; align-items:center; gap:10px; margin:14px 0; font-family:var(--mono); font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); }
+.rt-sync__link::before{ content:""; width:14px; height:22px; border-left:2px solid var(--accent); opacity:.45; margin-left:8px; }
+.rt-sync__rows{ display:flex; flex-direction:column; gap:9px; border-top:1px solid var(--line); padding-top:14px; margin-top:14px; }
+.rt-sync__rows li{ display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:var(--ink-3); line-height:1.5; }
+.rt-sync__rows i{ width:7px; height:7px; border-radius:50%; background:var(--teal); flex-shrink:0; margin-top:6px; }
+.rt-sync__rows li span{ color:var(--muted); }
+.rt-sync__foot{ padding:12px 22px; border-top:1px solid var(--line); background:#FCFCFD; font-size:12.5px; color:var(--muted); }
+
+/* Sponsored-ad tile — same pattern as the platform tour's mock */
+.rt-ad{ max-width:420px; margin:0 auto; width:100%; }
+.rt-ad__sync{ display:flex; align-items:center; gap:8px; margin-bottom:14px; font-family:var(--mono); font-size:12px; color:var(--muted); flex-wrap:wrap; }
+.rt-ad__sync i{ width:7px; height:7px; border-radius:50%; background:var(--teal); flex-shrink:0; }
+.rt-ad__tile{ background:var(--paper); border:1px solid var(--line); border-radius:var(--r); box-shadow:var(--shadow); overflow:hidden; }
+.rt-ad__head{ display:flex; align-items:center; gap:10px; padding:14px 16px 10px; }
+.rt-ad__avatar{ width:36px; height:36px; border-radius:50%; background:var(--accent); color:#fff; display:grid; place-items:center; font-size:12.5px; font-weight:600; flex-shrink:0; }
+.rt-ad__page{ font-size:14px; font-weight:600; }
+.rt-ad__sub{ font-size:12px; color:var(--muted); }
+.rt-ad__text{ padding:0 16px 12px; font-size:14px; line-height:1.5; color:var(--ink-3); }
+.rt-ad__media{ aspect-ratio:1.91/1; background:linear-gradient(135deg, var(--ink) 0%, var(--ink-3) 55%, var(--accent-ink) 140%); color:#fff; display:flex; flex-direction:column; justify-content:flex-end; padding:18px; }
+.rt-ad__media p:not([class]){ font-family:var(--serif); font-size:23px; line-height:1.1; letter-spacing:-.02em; max-width:280px; }
+.rt-ad__foot{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 16px; background:var(--paper-2); border-top:1px solid var(--line); }
+.rt-ad__domain{ font-size:10.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); }
+.rt-ad__title{ font-size:13.5px; font-weight:600; }
+.rt-ad__cta{ flex-shrink:0; font-size:13px; font-weight:600; padding:8px 14px; border-radius:var(--r-sm); background:var(--paper-3); border:1px solid var(--line); white-space:nowrap; }
+
+/* Feature grid */
+.rt-feats{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+.rt-feat{ background:var(--paper); border:1px solid var(--line); border-radius:var(--r-lg); padding:28px 26px 26px; }
+.rt-feat__k{ font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; font-weight:500; color:var(--accent-ink); margin-bottom:14px; }
+.rt-feat h3{ font-size:19px; margin-bottom:8px; }
+.rt-feat p:not([class]){ font-size:14.5px; color:var(--muted); line-height:1.6; }
+
+/* Journey — highlighted node + caption under the shared .flow */
+.rt-hot{ background:var(--accent-soft); border-color:var(--accent); }
+.rt-flowfoot{ margin-top:26px; text-align:center; font-family:var(--mono); font-size:12px; letter-spacing:.04em; color:var(--muted); }
+
+/* Same home, same week — mini timeline on dark */
+.rt-week{ display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
+.rt-week__item{ position:relative; padding-top:26px; }
+.rt-week__item::before{ content:""; position:absolute; top:0; left:0; right:-24px; height:1px; background:var(--line-dark); }
+.rt-week__item:last-child::before{ right:0; }
+.rt-week__item::after{ content:""; position:absolute; top:-4.5px; left:0; width:10px; height:10px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 5px rgba(46,91,255,.18); }
+.rt-week__item--out::after{ background:var(--teal); box-shadow:0 0 0 5px rgba(15,179,155,.18); }
+.rt-week__day{ display:block; font-family:var(--mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:#8FA8FF; margin-bottom:10px; }
+.rt-week__item h3{ font-size:18px; margin-bottom:8px; }
+.rt-week__item p:not([class]){ font-size:14px; color:var(--muted-dark); line-height:1.6; }
+
+/* Works-with strip */
+.rt-works{ padding:64px 0; }
+.rt-works__caption{ text-align:center; font-family:var(--mono); font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:26px; }
+.rt-works__wall{ display:flex; flex-wrap:wrap; justify-content:center; gap:14px 34px; max-width:880px; margin:0 auto 18px; }
+.rt-works__wall li{ font-family:var(--mono); font-size:13px; letter-spacing:.04em; color:var(--ink-3); opacity:.75; white-space:nowrap; }
+.rt-works__note{ text-align:center; font-size:13.5px; color:var(--muted); max-width:620px; margin:0 auto; line-height:1.6; }
+
+/* Pricing note + mini FAQ */
+.rt-final{ display:grid; grid-template-columns:1fr 1.2fr; gap:56px; align-items:start; }
+.rt-price{ background:var(--ink); color:#fff; border-radius:var(--r-lg); padding:32px 30px 30px; box-shadow:var(--shadow-lg); }
+.rt-price__label{ font-family:var(--mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:#8FA8FF; margin-bottom:16px; }
+.rt-price__big{ font-family:var(--serif); font-weight:400; font-size:44px; line-height:1.05; letter-spacing:-.02em; margin-bottom:8px; }
+.rt-price__sub{ font-size:14.5px; color:var(--muted-dark); line-height:1.6; margin-bottom:22px; }
+.rt-final h2{ font-size:clamp(26px,3vw,34px); margin-bottom:20px; }
+
+@media (max-width:960px){
+  .rt-duo{ grid-template-columns:1fr; }
+  .rt-feats{ grid-template-columns:1fr 1fr; }
+  .rt-week{ grid-template-columns:1fr 1fr; gap:36px 24px; }
+  .rt-final{ grid-template-columns:1fr; gap:40px; }
+}
+@media (max-width:640px){
+  .rt-feats{ grid-template-columns:1fr; }
+  .rt-week{ grid-template-columns:1fr; gap:32px; }
+  .rt-week__item::before{ right:0; }
+  .rt-works__wall{ gap:12px 22px; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="index.html" aria-label="Homefield home">
+      <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".35"/>
+        <path d="M9 8 H23 V17 L16 24 L9 17 Z" fill="currentColor"/>
+        <path d="M16 8 H23 V17 L16 24 Z" fill="currentColor" opacity=".45"/>
+      </svg>
+      <span class="brand__word">Homefield</span>
+    </a>
+
+    <nav class="nav__links" aria-label="Primary">
+      <div class="nav__dd">
+        <button class="nav__ddbtn" type="button" aria-haspopup="true">Product <span class="car">▾</span></button>
+        <div class="nav__ddmenu">
+          <a href="platform.html">Platform overview<small>Segments, journeys, reporting — one dashboard</small></a>
+          <a href="managed-email.html">Managed email<small>The channel we run for you</small></a>
+          <a href="sms.html">SMS<small>Consent-based follow-up texting</small></a>
+          <a href="postcards.html">Postcards<small>Triggered mail, no minimum drops</small></a>
+          <a href="retargeting.html">Meta retargeting<small>Audiences synced to your ad account</small></a>
+        </div>
+      </div>
+      <a href="industries.html">Solutions</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="faq.html">FAQ</a>
+    </nav>
+
+    <div class="nav__cta">
+      <a class="btn btn--ghost btn--sm" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Get a demo</a>
+    </div>
+
+    <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+      <span></span><span></span>
+    </button>
+  </div>
+  <div class="mobilenav" id="mobileNav" hidden>
+    <a href="platform.html">Platform overview</a>
+    <a href="managed-email.html">Managed email</a>
+    <a href="sms.html">SMS</a>
+    <a href="postcards.html">Postcards</a>
+    <a href="retargeting.html">Meta retargeting</a>
+    <a href="industries.html">Solutions</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="faq.html">FAQ</a>
+    <a class="btn btn--primary" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Get a demo</a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ── HERO ──────────────────────────────────────────── -->
+<section class="hero hero--page">
+  <div class="hero__glow" aria-hidden="true"></div>
+  <div class="wrap hero__inner">
+    <p class="eyebrow reveal">Meta retargeting</p>
+    <h1 class="hero__h1 reveal">Be everywhere,<br><em>the week it matters.</em></h1>
+    <p class="hero__sub reveal">
+      Your homeowner segments, synced to your Meta ad account as custom audiences and refreshed
+      as homes enter their moment. For every business on the platform — roofers, agencies, agents,
+      investors — the ad follows the same week the email and the card land.
+    </p>
+    <p class="hero__note reveal"><strong>Your account, your data.</strong> Ads run from your business page and your ad account — Homefield only maintains the audience.</p>
+  </div>
+</section>
+
+<!-- ── UI MOCK ───────────────────────────────────────── -->
+<section class="section">
+  <div class="wrap">
+    <div class="sechead sechead--center">
+      <p class="eyebrow eyebrow--dark">The product</p>
+      <h2>One sync. <em>Your name in the feed.</em></h2>
+      <p class="lede">Pick a segment, connect your ad account once, and the audience keeps itself
+      in step — homes join as their moment opens and leave when it passes.</p>
+    </div>
+
+    <!-- SAMPLE CONTENT — illustrative sync + ad for layout -->
+    <div class="uiframe reveal">
+      <div class="rt-duo">
+        <div class="rt-sync">
+          <div class="rt-sync__bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="rt-sync__tag">Audience sync</span>
+          </div>
+          <div class="rt-sync__body">
+            <p class="rt-sync__label">Segment</p>
+            <p class="rt-sync__seg">
+              <span class="rt-sync__name">Roofs 18+ · ZIP set A</span>
+              <span class="rt-sync__size">4,318 homes today</span>
+            </p>
+            <p class="rt-sync__link">Syncs as Meta custom audience</p>
+            <p class="rt-sync__seg">
+              <span class="rt-sync__name">Ridgeline — Roofs 18+ (A)</span>
+              <span class="rt-sync__size">in your ad account</span>
+            </p>
+            <ul class="rt-sync__rows">
+              <li><i></i>Synced to Meta · 2h ago</li>
+              <li><i></i>Refreshed daily — <span>&nbsp;+112 joined · −54 left this week</span></li>
+              <li><i></i>Destination: your ad account · your pixel</li>
+            </ul>
+          </div>
+          <p class="rt-sync__foot">Homefield maintains the audience. It never touches the budget.</p>
+        </div>
+
+        <div class="rt-ad">
+          <p class="rt-ad__sync"><i></i>Audience: Roofs 18+ · ZIP set A · synced 2h ago</p>
+          <div class="rt-ad__tile">
+            <div class="rt-ad__head">
+              <span class="rt-ad__avatar">RR</span>
+              <div>
+                <p class="rt-ad__page">Ridgeline Roofing</p>
+                <p class="rt-ad__sub">Sponsored</p>
+              </div>
+            </div>
+            <p class="rt-ad__text">If your roof went on before 2009, this is the year to have it looked at — before the small stuff becomes the expensive stuff.</p>
+            <div class="rt-ad__media">
+              <p>Your neighborhood's roofs are turning 18.</p>
+            </div>
+            <div class="rt-ad__foot">
+              <div>
+                <p class="rt-ad__domain">ridgelineroofing.com</p>
+                <p class="rt-ad__title">Free 20-minute roof check</p>
+              </div>
+              <span class="rt-ad__cta">Learn more</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FEATURE GRID ──────────────────────────────────── -->
+<section class="section section--paper">
+  <div class="wrap">
+    <div class="sechead sechead--center">
+      <p class="eyebrow eyebrow--dark">What it does</p>
+      <h2>Retargeting that knows <em>whose week it is.</em></h2>
+      <p class="lede">Most retargeting chases people who visited a website. This follows homes that
+      entered their moment — the same homes your other channels are already touching.</p>
+    </div>
+
+    <div class="rt-feats">
+      <article class="rt-feat reveal">
+        <p class="rt-feat__k">Segments</p>
+        <h3>Built from your filters</h3>
+        <p>The same audience builder that drives your texts and cards — ZIP, home value, roof and
+        system age, tenure, equity — synced straight to Meta. No exports, no uploads.</p>
+      </article>
+      <article class="rt-feat reveal">
+        <p class="rt-feat__k">Always current</p>
+        <h3>Synced &amp; refreshed automatically</h3>
+        <p>Homes join the audience the day they enter their moment and the sync runs daily. The
+        audience in Ads Manager is never a stale copy of last month's list.</p>
+      </article>
+      <article class="rt-feat reveal">
+        <p class="rt-feat__k">Your account</p>
+        <h3>Runs in your ad account</h3>
+        <p>Your business page, your pixel, your spend, your account history. Homefield maintains
+        the audience inside your account and never touches the budget.</p>
+      </article>
+      <article class="rt-feat reveal">
+        <p class="rt-feat__k">Timing</p>
+        <h3>Pairs with email and mail</h3>
+        <p>The audience mirrors the homes your other channels touch this week — so the ad shows up
+        in the feed while the email sits in the inbox and the card sits on the counter.</p>
+      </article>
+      <article class="rt-feat reveal">
+        <p class="rt-feat__k">Frequency-safe</p>
+        <h3>Homes leave when the moment passes</h3>
+        <p>Renewal closed, roof replaced, home sold — the home drops out of the audience
+        automatically. Nobody sees your ad for months on end.</p>
+      </article>
+      <article class="rt-feat reveal">
+        <p class="rt-feat__k">Journeys</p>
+        <h3>A step in any journey</h3>
+        <p>"Add to Meta audience" is a journey action like any other. Drop it after any email,
+        SMS, or postcard step and the ad picks up whatever the lane is doing.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ── IN A JOURNEY ──────────────────────────────────── -->
+<section class="section">
+  <div class="wrap">
+    <div class="sechead sechead--center">
+      <p class="eyebrow eyebrow--dark">In a journey</p>
+      <h2>Where Meta sits <em>in the journey.</em></h2>
+      <p class="lede">In the canonical journey, the no-reply lane adds the home to your Meta audience — so
+      the feed repeats what the mailbox just said, the same week.</p>
+    </div>
+
+    <!-- SAMPLE CONTENT — illustrative journey for layout -->
+    <div class="flow reveal" aria-label="Journey with a Meta audience step">
+      <div class="flow__node flow__node--trigger">
+        <p class="flow__k">Trigger</p>
+        <p>Roof passes year 18</p>
+      </div>
+      <div class="flow__node">
+        <p class="flow__k">Action</p>
+        <p>Managed email · 3-touch sequence</p>
+      </div>
+      <div class="flow__node">
+        <p class="flow__k">Wait</p>
+        <p>3 days</p>
+      </div>
+      <div class="flow__node">
+        <p class="flow__k">Branch</p>
+        <p>Replied?</p>
+      </div>
+      <div class="flow__branch">
+        <div class="flow__lane">
+          <div class="flow__node">
+            <p class="flow__k">Yes → SMS</p>
+            <p>SMS follow-up · consent on reply</p>
+          </div>
+        </div>
+        <div class="flow__lane">
+          <div class="flow__node">
+            <p class="flow__k">No → Mail</p>
+            <p>Postcard · aging-roof template</p>
+          </div>
+          <div class="flow__node rt-hot">
+            <p class="flow__k">Action · This page</p>
+            <p>Add to Meta audience — the ad follows the same week</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="rt-flowfoot">The ad runs for as long as the home stays in its moment — then the home leaves the audience.</p>
+  </div>
+</section>
+
+<!-- ── SAME HOME, SAME WEEK ──────────────────────────── -->
+<section class="section section--dark">
+  <div class="wrap">
+    <div class="sechead sechead--onDark">
+      <p class="eyebrow">Same home, same week</p>
+      <h2>The ad is the third voice, <em>not the only one.</em></h2>
+      <p class="lede">Retargeting works here because it never arrives alone — it repeats what the
+      email and the card already said, to the one home hearing it.</p>
+    </div>
+
+    <ol class="rt-week">
+      <li class="rt-week__item reveal">
+        <span class="rt-week__day">Mon</span>
+        <h3>The email lands</h3>
+        <p>Personal, plain-text, in your name — timed to the signal that opened the moment.</p>
+      </li>
+      <li class="rt-week__item reveal">
+        <span class="rt-week__day">Wed</span>
+        <h3>The card arrives</h3>
+        <p>Same home, same signal — the print run was triggered the day the email went out.</p>
+      </li>
+      <li class="rt-week__item reveal">
+        <span class="rt-week__day">All week</span>
+        <h3>The ad follows</h3>
+        <p>Your name in the feed Tuesday, Thursday, Saturday — from your page, to that one segment.</p>
+      </li>
+      <li class="rt-week__item rt-week__item--out reveal">
+        <span class="rt-week__day">Moment passes</span>
+        <h3>The home leaves</h3>
+        <p>Synced out of the audience automatically — the next impression goes to a home that's in its week.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ── WORKS WITH ────────────────────────────────────── -->
+<section class="section section--paper rt-works">
+  <div class="wrap">
+    <p class="rt-works__caption">Works with</p>
+    <ul class="rt-works__wall" aria-label="Retargeting works with">
+      <li>Meta Ads Manager</li>
+      <li>Facebook &amp; Instagram</li>
+      <li>Your business page</li>
+      <li>Your pixel</li>
+      <li>Custom audiences</li>
+    </ul>
+    <p class="rt-works__note">Everything runs inside your own Meta ad account — your spend and your
+    data never leave it. Homefield's only job is keeping the audience current.</p>
+  </div>
+</section>
+
+<!-- ── PRICING NOTE + MINI FAQ ───────────────────────── -->
+<section class="section">
+  <div class="wrap">
+    <div class="rt-final">
+      <div class="rt-price reveal">
+        <p class="rt-price__label">Pricing</p>
+        <p class="rt-price__big">Included.</p>
+        <p class="rt-price__sub">Audience sync is part of the platform subscription — there's no
+        per-sync fee and no markup on media. Ad spend is yours, paid directly to Meta, in your
+        own account.</p>
+        <ul class="ticks ticks--light">
+          <li><strong>Included in the platform</strong> — sync as many segments as you run</li>
+          <li><strong>Ad spend stays yours</strong> — billed by Meta, in your account, at your budget</li>
+          <li><strong>No percentage of spend</strong> — we never take a cut of your media</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2>Three questions, answered.</h2>
+        <div class="faq">
+          <details class="faq__item">
+            <summary>Do I need a Meta ad account?</summary>
+            <div class="faq__a">
+              <p>Yes — your own. Retargeting runs from your ad account and your business page;
+              Homefield maintains the audience inside it. If you don't have one yet, setup takes
+              about ten minutes during onboarding.</p>
+            </div>
+          </details>
+          <details class="faq__item">
+            <summary>Who pays for the ads?</summary>
+            <div class="faq__a">
+              <p>You do, directly to Meta. The subscription covers the sync; the ad dollars stay
+              between you and your ad account, at whatever budget you set. Homefield never touches
+              the spend and never marks it up.</p>
+            </div>
+          </details>
+          <details class="faq__item">
+            <summary>Can homeowners tell it's retargeting?</summary>
+            <div class="faq__a">
+              <p>No — it reads as a normal sponsored post from your business page, because that's
+              exactly what it is. The only difference is who's in the audience and when: homes in
+              their moment, the week your email and card arrive.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- SAMPLE PRICING — layout only -->
+    <p class="fineprint fineprint--center">
+      Sample pricing for layout — set your own rates before launch. The platform subscription is
+      $199/mo + usage; retargeting adds no usage fees, and ad spend runs in your Meta account.
+    </p>
+  </div>
+</section>
+
+<!-- ── CTA BAND ──────────────────────────────────────── -->
+<section class="section section--cta">
+  <div class="wrap">
+    <div class="ctaband">
+      <h2>See it on your ZIPs.</h2>
+      <p>Fifteen minutes. We'll pull your market live, show you how many homes hit their moment there every month, and walk the platform on your own territory.</p>
+      <div class="ctaband__actions">
+        <a class="btn btn--primary btn--lg" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Get a demo</a>
+        <a class="btn btn--quiet btn--lg" href="platform.html">Take the tour →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <div class="foot__brand">
+      <a class="brand brand--foot" href="index.html">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true">
+          <circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".35"/>
+          <path d="M9 8 H23 V17 L16 24 L9 17 Z" fill="currentColor"/>
+          <path d="M16 8 H23 V17 L16 24 Z" fill="currentColor" opacity=".45"/>
+        </svg>
+        <span class="brand__word">Homefield</span>
+      </a>
+      <p>The homeowner marketing platform — managed email, SMS, postcards and retargeting, timed to the moment.</p>
+    </div>
+    <nav class="foot__links" aria-label="Footer">
+      <div>
+        <h5>Product</h5>
+        <a href="platform.html">Platform</a>
+        <a href="managed-email.html">Managed email</a>
+        <a href="sms.html">SMS</a>
+        <a href="postcards.html">Postcards</a>
+        <a href="retargeting.html">Meta retargeting</a>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <a href="industries.html">Solutions</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div>
+        <h5>Legal</h5>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </nav>
+  </div>
+  <div class="wrap foot__bar">
+    <p>&copy; <span id="yr">2026</span> Homefield. All rights reserved.</p>
+    <p>Mailing address goes here · CAN-SPAM &amp; TCPA compliant</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

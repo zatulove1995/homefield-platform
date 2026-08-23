@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=pf3">
+<link rel="stylesheet" href="styles.css?v=pf5">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%230A0D14'/%3E%3Cpath d='M9 9h14v8.5L16 25l-7-7.5z' fill='%232E5BFF'/%3E%3C/svg%3E">
 <script>document.documentElement.className += ' js';</script>
 <style>
@@ -59,6 +59,12 @@
 .pr-usage td{ font-family:var(--mono); font-size:13.5px; font-weight:500; text-align:right; white-space:nowrap; }
 .pr-usage td span{ display:block; margin-top:3px; font-size:11.5px; font-weight:400; color:var(--muted); white-space:normal; }
 .pr-usage__foot{ margin-top:auto; padding-top:18px; font-size:13px; line-height:1.55; color:var(--muted); }
+
+/* Channel-name links inside pricing cards/tables */
+.pr-chan{ font-weight:600; color:var(--accent); }
+.pr-chan:hover{ color:var(--accent-ink); }
+.pr-chan--onDark{ color:inherit; text-decoration:underline; text-underline-offset:3px; text-decoration-color:rgba(185,198,255,.55); }
+.pr-chan--onDark:hover{ color:#B9C6FF; }
 
 /* Sample-pricing footnote — site convention */
 .price-foot{
@@ -133,7 +139,16 @@
     </a>
 
     <nav class="nav__links" aria-label="Primary">
-      <a href="platform.html">Platform</a>
+      <div class="nav__dd">
+        <button class="nav__ddbtn" type="button" aria-haspopup="true">Product <span class="car">▾</span></button>
+        <div class="nav__ddmenu">
+          <a href="platform.html">Platform overview<small>Segments, journeys, reporting — one dashboard</small></a>
+          <a href="managed-email.html">Managed email<small>The channel we run for you</small></a>
+          <a href="sms.html">SMS<small>Consent-based follow-up texting</small></a>
+          <a href="postcards.html">Postcards<small>Triggered mail, no minimum drops</small></a>
+          <a href="retargeting.html">Meta retargeting<small>Audiences synced to your ad account</small></a>
+        </div>
+      </div>
       <a href="industries.html">Solutions</a>
       <a href="pricing.html">Pricing</a>
       <a href="faq.html">FAQ</a>
@@ -148,7 +163,11 @@
     </button>
   </div>
   <div class="mobilenav" id="mobileNav" hidden>
-    <a href="platform.html">Platform</a>
+    <a href="platform.html">Platform overview</a>
+    <a href="managed-email.html">Managed email</a>
+    <a href="sms.html">SMS</a>
+    <a href="postcards.html">Postcards</a>
+    <a href="retargeting.html">Meta retargeting</a>
     <a href="industries.html">Solutions</a>
     <a href="pricing.html">Pricing</a>
     <a href="faq.html">FAQ</a>
@@ -186,7 +205,7 @@
     <div class="pr-duo">
       <article class="tier tier--feature">
         <p class="tier__flag">Managed for you</p>
-        <p class="tier__name">Managed email</p>
+        <p class="tier__name"><a class="pr-chan pr-chan--onDark" href="managed-email.html">Managed email</a></p>
         <p class="tier__price tier__price--label">Per qualified lead<span>rate quoted by industry, on the call</span></p>
         <p class="tier__vol">The rate steps down at 51 qualified leads a month, and again at 300</p>
         <ul class="tier__list">
@@ -237,7 +256,7 @@
         <p class="tier__price">$199<span> / month</span></p>
         <p class="tier__vol">All three channels enabled, from day one</p>
         <ul class="tier__list">
-          <li>Audiences — your filters over 275M+ homeowner records, refreshed as homes enter their moment</li>
+          <li>Segments — your filters over 275M+ homeowner records, refreshed as homes enter their moment</li>
           <li>Triggers — renewal window entering, roof aging in, storm activity, new listing nearby</li>
           <li>Dashboards — every send, delivery, and reply in one place</li>
           <li>SMS, postcards, and retargeting — pay usage only on what fires</li>
@@ -250,15 +269,15 @@
         <table>
           <tbody>
             <tr>
-              <th scope="row">SMS<span>Consent-aware follow-up texting — sequences, two-way inbox, 10DLC registration handled</span></th>
+              <th scope="row"><a class="pr-chan" href="sms.html">SMS</a><span>Consent-aware follow-up texting — sequences, two-way inbox, 10DLC registration handled</span></th>
               <td>3&cent; / message</td>
             </tr>
             <tr>
-              <th scope="row">Postcards<span>Triggered direct mail — printed and mailed automatically, no minimum drops, no design work</span></th>
+              <th scope="row"><a class="pr-chan" href="postcards.html">Postcards</a><span>Triggered direct mail — printed and mailed automatically, no minimum drops, no design work</span></th>
               <td>79&cent; / card<span>postage included</span></td>
             </tr>
             <tr>
-              <th scope="row">Retargeting<span>Your homeowner segments synced to Meta as custom audiences</span></th>
+              <th scope="row"><a class="pr-chan" href="retargeting.html">Retargeting</a><span>Your homeowner segments synced to Meta as custom audiences</span></th>
               <td>Free to sync<span>ad spend runs in your Meta account</span></td>
             </tr>
           </tbody>
@@ -419,14 +438,16 @@
         <h5>Product</h5>
         <a href="platform.html">Platform</a>
         <a href="managed-email.html">Managed email</a>
-        <a href="industries.html">Solutions</a>
-        <a href="pricing.html">Pricing</a>
+        <a href="sms.html">SMS</a>
+        <a href="postcards.html">Postcards</a>
+        <a href="retargeting.html">Meta retargeting</a>
       </div>
       <div>
         <h5>Company</h5>
+        <a href="industries.html">Solutions</a>
+        <a href="pricing.html">Pricing</a>
         <a href="faq.html">FAQ</a>
         <a href="contact.html">Contact</a>
-        <a href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Get a demo</a>
       </div>
       <div>
         <h5>Legal</h5>

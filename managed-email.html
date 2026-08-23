@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Managed email — Homefield</title>
-<meta name="description" content="Done-for-you homeowner email. We handle the data, the warmed domains in your name, the writing, the sending and the reply reading — you answer homeowners asking for a quote, an estimate, a valuation, or an offer. Per qualified lead, one business per industry per ZIP.">
+<meta name="description" content="Done-for-you homeowner email. We handle the data, the warmed domains in your name, the per-address AI copy, the sending and the reply grading — you answer homeowners asking for a quote, an estimate, a valuation, or an offer. Per qualified lead, one business per industry per ZIP.">
 <meta property="og:title" content="Managed email — Homefield">
 <meta property="og:description" content="We run the email. You take the replies. Done-for-you homeowner outreach, billed per qualified lead — one business per industry per ZIP, never resold.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=pf3">
+<link rel="stylesheet" href="styles.css?v=pf5">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%230A0D14'/%3E%3Cpath d='M9 9h14v8.5L16 25l-7-7.5z' fill='%232E5BFF'/%3E%3C/svg%3E">
 <script>document.documentElement.className += ' js';</script>
 <style>
@@ -44,15 +44,22 @@
   .me-mail__bar{ display:flex; align-items:center; gap:6px; padding:12px 18px; background:var(--paper-3); border-bottom:1px solid var(--line); }
   .me-mail__tag{ margin-left:auto; font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
   .me-mail__meta{ padding:16px 22px; border-bottom:1px solid var(--line); display:grid; gap:6px; }
-  .me-mail__meta p{ font-size:13.5px; display:grid; grid-template-columns:64px 1fr; gap:10px; align-items:baseline; }
+  .me-mail__meta p:not([class]){ font-size:13.5px; display:grid; grid-template-columns:64px 1fr; gap:10px; align-items:baseline; }
   .me-mail__meta span{ color:var(--muted-dark); font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:.04em; }
   .me-mail__body{ padding:20px 22px; }
-  .me-mail__body p{ font-size:14.5px; line-height:1.65; margin-bottom:12px; }
+  .me-mail__body p:not([class]){ font-size:14.5px; line-height:1.65; margin-bottom:12px; }
   .me-mail__body p:last-child{ margin-bottom:0; }
   .me-mail__reply{ margin:0 22px 20px; background:var(--accent-soft); border-radius:var(--r); padding:14px 16px; }
   .me-mail__replylabel{ font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:6px; }
   .me-mail__reply p:last-child{ font-size:14.5px; font-style:italic; line-height:1.55; }
   .me-mail__foot{ display:flex; align-items:center; gap:10px; padding:14px 22px; border-top:1px solid var(--line); background:var(--paper-2); font-size:13px; color:var(--muted); flex-wrap:wrap; }
+
+  /* feature grid (dark band) */
+  .me-feat{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .me-feat__card{ background:rgba(255,255,255,.05); border:1px solid var(--line-dark); border-radius:var(--r); padding:26px 24px; }
+  .me-feat__k{ font-family:var(--mono); font-size:10px; letter-spacing:.09em; text-transform:uppercase; font-weight:500; color:#8FA8FF; margin-bottom:12px; }
+  .me-feat__card h3{ font-size:17px; color:#fff; margin-bottom:8px; }
+  .me-feat__card p:not([class]){ font-size:14px; color:var(--muted-dark); line-height:1.6; }
 
   /* billed vs never-billed */
   .me-qual{ display:grid; grid-template-columns:1fr 1fr; gap:20px; max-width:920px; margin:0 auto; }
@@ -81,11 +88,29 @@
     border-radius:50%; background:var(--paper); border:2px solid var(--muted-dark);
   }
   .me-tl__day{ font-family:var(--mono); font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); padding-top:3px; white-space:nowrap; }
-  .me-tl__row p{ font-size:15.5px; color:var(--muted); line-height:1.6; }
+  .me-tl__row p:not([class]){ font-size:15.5px; color:var(--muted); line-height:1.6; }
   .me-tl__row p strong{ color:var(--ink); font-weight:600; }
   .me-tl__row--win{ background:var(--accent-soft); border-radius:0 var(--r) var(--r) 0; padding-right:22px; }
   .me-tl__row--win::before{ background:var(--accent); border-color:var(--accent); }
   .me-tl__row--win .me-tl__day{ color:var(--accent-ink); }
+
+  /* in a journey */
+  .me-caps{ margin:-8px 0 40px; }
+  .me-flowframe{ max-width:800px; margin:0 auto; }
+  .me-hot{ background:var(--accent-soft); border-color:rgba(46,91,255,.45); }
+
+  /* works-with row */
+  .me-works{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; max-width:760px; margin:0 auto; }
+  .me-works span{ display:flex; align-items:center; justify-content:center; text-align:center;
+    background:var(--paper); border:1px solid var(--line); border-radius:var(--r-sm);
+    padding:19px 14px; font-size:14px; font-weight:600; letter-spacing:.01em; color:var(--muted); }
+
+  /* compliance note */
+  .me-comp{ max-width:760px; margin:40px auto 0; background:var(--paper); border:1px solid var(--line);
+    border-radius:var(--r-lg); padding:28px 30px; box-shadow:var(--shadow-sm); }
+  .me-comp__k{ font-family:var(--mono); font-size:10.5px; letter-spacing:.09em; text-transform:uppercase; font-weight:500; color:var(--accent-ink); margin-bottom:10px; }
+  .me-comp p:not([class]){ font-size:15px; color:var(--muted); line-height:1.65; }
+  .me-comp p strong{ color:var(--ink); font-weight:600; }
 
   /* centered action pair (pricing note) */
   .me-actions{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
@@ -93,6 +118,7 @@
   @media (max-width:960px){
     .me-split{ grid-template-columns:1fr; }
     .me-qual{ grid-template-columns:1fr; }
+    .me-feat{ grid-template-columns:1fr 1fr; }
   }
   @media (max-width:640px){
     .me-col{ padding:28px 22px; }
@@ -100,6 +126,9 @@
     .me-seq li{ grid-template-columns:64px 1fr; gap:12px; }
     .me-tl__row{ grid-template-columns:1fr; gap:6px; padding-left:24px; }
     .me-tl__row::before{ top:29px; }
+    .me-feat{ grid-template-columns:1fr; }
+    .me-works{ grid-template-columns:1fr 1fr; }
+    .me-comp{ padding:24px 20px; }
   }
 </style>
 </head>
@@ -119,7 +148,16 @@
     </a>
 
     <nav class="nav__links" aria-label="Primary">
-      <a href="platform.html">Platform</a>
+      <div class="nav__dd">
+        <button class="nav__ddbtn" type="button" aria-haspopup="true">Product <span class="car">▾</span></button>
+        <div class="nav__ddmenu">
+          <a href="platform.html">Platform overview<small>Segments, journeys, reporting — one dashboard</small></a>
+          <a href="managed-email.html">Managed email<small>The channel we run for you</small></a>
+          <a href="sms.html">SMS<small>Consent-based follow-up texting</small></a>
+          <a href="postcards.html">Postcards<small>Triggered mail, no minimum drops</small></a>
+          <a href="retargeting.html">Meta retargeting<small>Audiences synced to your ad account</small></a>
+        </div>
+      </div>
       <a href="industries.html">Solutions</a>
       <a href="pricing.html">Pricing</a>
       <a href="faq.html">FAQ</a>
@@ -134,7 +172,11 @@
     </button>
   </div>
   <div class="mobilenav" id="mobileNav" hidden>
-    <a href="platform.html">Platform</a>
+    <a href="platform.html">Platform overview</a>
+    <a href="managed-email.html">Managed email</a>
+    <a href="sms.html">SMS</a>
+    <a href="postcards.html">Postcards</a>
+    <a href="retargeting.html">Meta retargeting</a>
     <a href="industries.html">Solutions</a>
     <a href="pricing.html">Pricing</a>
     <a href="faq.html">FAQ</a>
@@ -156,7 +198,8 @@
       Done for you, end to end — the data, the warmed domains carrying your name, the writing,
       the sending, the reply reading. What reaches you is a homeowner asking for a
       <strong>quote</strong>, an <strong>estimate</strong>, a <strong>valuation</strong>,
-      or an <strong>offer</strong>.
+      or an <strong>offer</strong>. Built for home services, home insurance agencies,
+      real estate agents and investors.
     </p>
     <div class="hero__actions reveal">
       <a class="btn btn--primary btn--lg" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Get a demo</a>
@@ -236,37 +279,92 @@
 
     <!-- SAMPLE CONTENT — replace with a real, permissioned thread before launch -->
     <div class="grid-2__visual">
-      <div class="me-mail">
-        <div class="me-mail__bar">
-          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-          <span class="me-mail__tag">Sent in your business's name</span>
-        </div>
-        <div class="me-mail__meta">
-          <p><span>From</span> Sarah Whitman · Whitman Insurance Group</p>
-          <p><span>To</span> Homeowner on Birchwood Ln</p>
-          <p><span>Subject</span> Your home policy renews in about six weeks</p>
-        </div>
-        <div class="me-mail__body">
-          <p>Hi Dana — quick note from a local agency. Your homeowner's policy looks like it comes
-          up for renewal around late September, and most policies renew automatically at a higher
-          rate unless someone checks.</p>
-          <p>If you'd like, I can run a quick comparison before yours locks in — it takes about
-          ten minutes, and there's no obligation either way.</p>
-        </div>
-        <div class="me-mail__reply">
-          <p class="me-mail__replylabel">The homeowner replies</p>
-          <p>"We just got the renewal notice and it's up again. What would you need from us
-          to see if you can do better?"</p>
-        </div>
-        <div class="me-mail__foot">
-          <span class="pill pill--good">Qualified lead</span>
-          <span>Delivered to your inbox, Slack &amp; CRM — minutes later</span>
+      <div class="uiframe">
+        <div class="me-mail">
+          <div class="me-mail__bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="me-mail__tag">Sent in your business's name</span>
+          </div>
+          <div class="me-mail__meta">
+            <p><span>From</span> Sarah Whitman · Whitman Insurance Group</p>
+            <p><span>To</span> Homeowner on Birchwood Ln</p>
+            <p><span>Subject</span> Your home policy renews in about six weeks</p>
+          </div>
+          <div class="me-mail__body">
+            <p>Hi Dana — quick note from a local agency. Your homeowner's policy looks like it comes
+            up for renewal around late September, and most policies renew automatically at a higher
+            rate unless someone checks.</p>
+            <p>If you'd like, I can run a quick comparison before yours locks in — it takes about
+            ten minutes, and there's no obligation either way.</p>
+          </div>
+          <div class="me-mail__reply">
+            <p class="me-mail__replylabel">The homeowner replies</p>
+            <p>"We just got the renewal notice and it's up again. What would you need from us
+            to see if you can do better?"</p>
+          </div>
+          <div class="me-mail__foot">
+            <span class="pill pill--good">Qualified lead</span>
+            <span>Delivered to your inbox, Slack &amp; CRM — minutes later</span>
+          </div>
         </div>
       </div>
       <p class="fineprint">
         Insurance shown. A roofer's email names the roof coming up on year 18; an agent's names
         the equity — the shape never changes, only the moment.
       </p>
+    </div>
+  </div>
+</section>
+
+<!-- ── FEATURE GRID ──────────────────────────────────── -->
+<section class="section section--dark">
+  <div class="wrap">
+    <div class="sechead sechead--center sechead--onDark">
+      <p class="eyebrow">What's inside</p>
+      <h2>Six things you never have to build. <em>Or babysit.</em></h2>
+      <p class="lede">
+        Everything below runs without you. Homefield AI does the reading and the writing;
+        our infrastructure does the sending; you get the replies.
+      </p>
+    </div>
+
+    <div class="me-feat">
+      <div class="me-feat__card">
+        <p class="me-feat__k">Infrastructure</p>
+        <h3>Warmed domains, your name</h3>
+        <p>Sending runs on warmed domains we own that carry your business name — homeowners
+        talk to you from the first line, while your actual domain is never touched.</p>
+      </div>
+      <div class="me-feat__card">
+        <p class="me-feat__k">Homefield AI</p>
+        <h3>Per-address AI copy</h3>
+        <p>Every email names the real street and the real moment — the roof's age, the renewal
+        window, the equity. You approve every sequence word for word before anything sends.</p>
+      </div>
+      <div class="me-feat__card">
+        <p class="me-feat__k">Homefield AI</p>
+        <h3>Every reply graded</h3>
+        <p>Qualified or not — every reply is read and graded before it reaches you. Only
+        homeowners asking for something you sell get through, and only those are billed.</p>
+      </div>
+      <div class="me-feat__card">
+        <p class="me-feat__k">Sending</p>
+        <h3>Deliverability, managed</h3>
+        <p>Paced daily volume, watched send by send — inbox placement, bounce rates and domain
+        health are our problem, permanently, not a dashboard you check.</p>
+      </div>
+      <div class="me-feat__card">
+        <p class="me-feat__k">Territory</p>
+        <h3>Territory lock</h3>
+        <p>One business per industry per ZIP. Your ZIPs lock on signature, are never resold in
+        your industry, and release 30 days after you go inactive — no hostage clauses.</p>
+      </div>
+      <div class="me-feat__card">
+        <p class="me-feat__k">Timeline</p>
+        <h3>~21 days to first lead</h3>
+        <p>Domains come out of pre-warmed pools, so warmup takes about two weeks instead of
+        starting cold — and the first qualified leads land in the first sending week.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -389,6 +487,106 @@
   </div>
 </section>
 
+<!-- ── IN A JOURNEY ──────────────────────────────────── -->
+<section class="section">
+  <div class="wrap">
+    <div class="sechead sechead--center">
+      <p class="eyebrow eyebrow--dark">In a journey</p>
+      <h2>The opening move of <em>one cohesive strategy.</em></h2>
+      <p class="lede">
+        In the platform's journey builder, managed email is usually the first action after a
+        signal fires. The reply drives the SMS follow-up; the silence drives the postcard and
+        the ad — one multi-channel strategy per home, not four disconnected tools.
+      </p>
+    </div>
+
+    <div class="caps me-caps">
+      <span>Trigger</span><span>Managed email</span><span>SMS</span><span>Postcard</span><span>Meta audience</span>
+    </div>
+
+    <!-- SAMPLE CONTENT — illustrative journey for layout -->
+    <div class="uiframe me-flowframe">
+      <div class="flow">
+        <div class="flow__node flow__node--trigger">
+          <p class="flow__k">Trigger</p>
+          <p>Roof passes year 18 — the signals engine flags the home</p>
+        </div>
+        <div class="flow__node me-hot">
+          <p class="flow__k">Action · This page</p>
+          <p>Managed email · 3-touch sequence in your name</p>
+        </div>
+        <div class="flow__node">
+          <p class="flow__k">Wait</p>
+          <p>3 days</p>
+        </div>
+        <div class="flow__node">
+          <p class="flow__k">Branch</p>
+          <p>Replied?</p>
+        </div>
+        <div class="flow__branch">
+          <div class="flow__lane">
+            <div class="flow__node">
+              <p class="flow__k">Yes · Action</p>
+              <p>SMS follow-up · consent on reply</p>
+            </div>
+            <div class="flow__node">
+              <p class="flow__k">Alert</p>
+              <p>Qualified lead → inbox, Slack &amp; CRM</p>
+            </div>
+          </div>
+          <div class="flow__lane">
+            <div class="flow__node">
+              <p class="flow__k">No · Action</p>
+              <p>Postcard · aging-roof template</p>
+            </div>
+            <div class="flow__node">
+              <p class="flow__k">Action</p>
+              <p>Add to Meta audience</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="fineprint fineprint--center">
+      Journeys are built in the platform.
+      <a class="me-link" href="platform.html">See the full builder →</a>
+    </p>
+  </div>
+</section>
+
+<!-- ── WORKS WITH + COMPLIANCE ───────────────────────── -->
+<section class="section section--paper">
+  <div class="wrap">
+    <div class="sechead sechead--center">
+      <p class="eyebrow eyebrow--dark">Works with</p>
+      <h2>Leads land where you already work.</h2>
+      <p class="lede">
+        Every qualified lead is delivered minutes after the homeowner replies — full thread
+        attached — to whichever of these you run.
+      </p>
+    </div>
+
+    <div class="me-works">
+      <span>Slack</span>
+      <span>CRM webhook</span>
+      <span>Follow Up Boss</span>
+      <span>HubSpot</span>
+    </div>
+
+    <div class="me-comp">
+      <p class="me-comp__k">Compliance</p>
+      <p>
+        <strong>CAN-SPAM is handled — and it's our domains, not yours.</strong> Every send
+        identifies the real sender, carries a physical mailing address, honors one-click
+        unsubscribes instantly, and is scrubbed against suppression and opt-out lists first.
+        Sending runs on warmed domains we own that carry your business name, so your own
+        domain's reputation is never at stake.
+      </p>
+    </div>
+  </div>
+</section>
+
 <!-- ── PRICING NOTE ──────────────────────────────────── -->
 <section class="section section--tight">
   <div class="wrap">
@@ -405,6 +603,45 @@
       <a class="btn btn--primary btn--lg" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Get a demo</a>
       <a class="btn btn--outline btn--lg" href="pricing.html">How pricing works →</a>
     </div>
+  </div>
+</section>
+
+<!-- ── MINI FAQ ──────────────────────────────────────── -->
+<section class="section section--tight section--paper">
+  <div class="wrap wrap--narrow">
+    <div class="sechead sechead--center">
+      <p class="eyebrow eyebrow--dark">Questions</p>
+      <h2>Three quick answers.</h2>
+    </div>
+
+    <div class="faq">
+      <details class="faq__item">
+        <summary>What does the AI actually do?</summary>
+        <div class="faq__a"><p>Four concrete things. Homefield AI watches 275M+ homes and scores
+        40+ signals daily to pick the moment; it times every send to the home; it writes
+        per-address copy that names the real street and context; and it grades every reply —
+        qualified or not — which is how billing stays honest. It never sends without you:
+        you approve every sequence word for word first.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary>Will this touch my own email domain?</summary>
+        <div class="faq__a"><p>No — it's never touched. Sending runs on separate warmed domains
+        we own and manage that carry your business name, so the homeowner is talking to you from
+        the first sentence while your actual domain's reputation stays walled off entirely.
+        Your own email keeps working exactly as it does today.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary>Is this CAN-SPAM compliant?</summary>
+        <div class="faq__a"><p>Yes, and compliance is on us, not you. Every message identifies
+        the real sender, carries a physical mailing address, and honors one-click unsubscribes
+        immediately. We don't send to contacts on suppression or opt-out lists — and opt-outs
+        are suppressed permanently across the network.</p></div>
+      </details>
+    </div>
+
+    <p class="fineprint fineprint--center" style="margin-top:26px;">
+      <a class="me-link" href="faq.html">All questions →</a>
+    </p>
   </div>
 </section>
 
@@ -442,14 +679,16 @@
         <h5>Product</h5>
         <a href="platform.html">Platform</a>
         <a href="managed-email.html">Managed email</a>
-        <a href="industries.html">Solutions</a>
-        <a href="pricing.html">Pricing</a>
+        <a href="sms.html">SMS</a>
+        <a href="postcards.html">Postcards</a>
+        <a href="retargeting.html">Meta retargeting</a>
       </div>
       <div>
         <h5>Company</h5>
+        <a href="industries.html">Solutions</a>
+        <a href="pricing.html">Pricing</a>
         <a href="faq.html">FAQ</a>
         <a href="contact.html">Contact</a>
-        <a href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Get a demo</a>
       </div>
       <div>
         <h5>Legal</h5>

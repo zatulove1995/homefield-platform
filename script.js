@@ -138,6 +138,7 @@ const CALENDLY_URL = 'https://calendly.com/zatulovebrian/call';
         data.agency && `Agency: ${data.agency}`,
         data.zips && `ZIPs: ${data.zips}`,
         data.industry && `Industry: ${data.industry}`,
+        data.interest && `Interested in: ${data.interest}`,
         data.volume && `Leads wanted / mo: ${data.volume}`,
       ].filter(Boolean).join('\n');
       const url = new URL(CALENDLY_URL);

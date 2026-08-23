@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=pf3">
+<link rel="stylesheet" href="styles.css?v=pf5">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%230A0D14'/%3E%3Cpath d='M9 9h14v8.5L16 25l-7-7.5z' fill='%232E5BFF'/%3E%3C/svg%3E">
 <script>document.documentElement.className += ' js';</script>
 <style>
@@ -35,7 +35,16 @@
     </a>
 
     <nav class="nav__links" aria-label="Primary">
-      <a href="platform.html">Platform</a>
+      <div class="nav__dd">
+        <button class="nav__ddbtn" type="button" aria-haspopup="true">Product <span class="car">▾</span></button>
+        <div class="nav__ddmenu">
+          <a href="platform.html">Platform overview<small>Segments, journeys, reporting — one dashboard</small></a>
+          <a href="managed-email.html">Managed email<small>The channel we run for you</small></a>
+          <a href="sms.html">SMS<small>Consent-based follow-up texting</small></a>
+          <a href="postcards.html">Postcards<small>Triggered mail, no minimum drops</small></a>
+          <a href="retargeting.html">Meta retargeting<small>Audiences synced to your ad account</small></a>
+        </div>
+      </div>
       <a href="industries.html">Solutions</a>
       <a href="pricing.html">Pricing</a>
       <a href="faq.html">FAQ</a>
@@ -50,7 +59,11 @@
     </button>
   </div>
   <div class="mobilenav" id="mobileNav" hidden>
-    <a href="platform.html">Platform</a>
+    <a href="platform.html">Platform overview</a>
+    <a href="managed-email.html">Managed email</a>
+    <a href="sms.html">SMS</a>
+    <a href="postcards.html">Postcards</a>
+    <a href="retargeting.html">Meta retargeting</a>
     <a href="industries.html">Solutions</a>
     <a href="pricing.html">Pricing</a>
     <a href="faq.html">FAQ</a>
@@ -86,7 +99,7 @@
     <div class="faq">
       <details class="faq__item">
         <summary>What's managed and what's self-serve?</summary>
-        <div class="faq__a"><p>Managed Email is the done-for-you service: we run the campaigns end to end — warmed domains carrying your name, sequences you approve word for word, every reply read and graded — and you're billed per qualified lead, at a rate quoted by industry. The platform is the software side: SMS, postcards, and Facebook retargeting, driven by the same signals engine but by you — you pick the segments, set the triggers, and press the buttons. That's a subscription plus usage, not per-lead.</p></div>
+        <div class="faq__a"><p><a class="link" href="managed-email.html">Managed Email</a> is the done-for-you service: we run the campaigns end to end — warmed domains carrying your name, sequences you approve word for word, every reply read and graded — and you're billed per qualified lead, at a rate quoted by industry. The platform is the software side: <a class="link" href="sms.html">SMS</a>, <a class="link" href="postcards.html">postcards</a>, and <a class="link" href="retargeting.html">Facebook retargeting</a>, driven by the same signals engine but by you — you pick the segments, set the triggers, and press the buttons. That's a subscription plus usage, not per-lead.</p></div>
       </details>
       <details class="faq__item">
         <summary>Which businesses does Homefield serve?</summary>
@@ -114,7 +127,7 @@
     <div class="faq">
       <details class="faq__item">
         <summary>What exactly counts as a qualified lead?</summary>
-        <div class="faq__a"><p>A homeowner in your territory who replies to our outreach expressing interest — asking for a quote, an estimate, a valuation or an offer, asking what you'd charge, asking to be called. Every reply is read and graded by a person before it reaches your invoice.</p></div>
+        <div class="faq__a"><p>A homeowner in your territory who replies to our outreach expressing interest — asking for a quote, an estimate, a valuation or an offer, asking what you'd charge, asking to be called. Every reply is read and graded — qualified or not — before it reaches your invoice.</p></div>
       </details>
       <details class="faq__item">
         <summary>What never gets billed?</summary>
@@ -141,16 +154,20 @@
 
     <div class="faq">
       <details class="faq__item">
+        <summary>What does Homefield AI actually do?</summary>
+        <div class="faq__a"><p>Four concrete things. It watches 275M+ homes and scores 40+ signals on each of them daily. It times each touch to the individual home's moment — send-time per home, not per blast. It writes per-address copy, so every email names the real street and the real situation. And it grades every reply, qualified or not — which is how managed email bills honestly. What it never does is act alone: you approve every sequence before anything sends.</p></div>
+      </details>
+      <details class="faq__item">
         <summary>Is the SMS channel compliant?</summary>
-        <div class="faq__a"><p>Yes, because of what it is: consent-based follow-up, not cold texting. Sequences go only to homeowners who replied to your outreach or opted in, from a number registered to your business — 10DLC registration is handled inside the platform. Quiet hours are enforced automatically, STOP is honored instantly, and opt-outs are suppressed across every campaign. We don't sell cold SMS, and the platform won't send it.</p></div>
+        <div class="faq__a"><p>Yes, because of what it is: <a class="link" href="sms.html">consent-based follow-up</a>, not cold texting. Sequences go only to homeowners who replied to your outreach or opted in, from a number registered to your business — 10DLC registration is handled inside the platform. Quiet hours are enforced automatically, STOP is honored instantly, and opt-outs are suppressed across every campaign. We don't sell cold SMS, and the platform won't send it.</p></div>
       </details>
       <details class="faq__item">
         <summary>Is there a postcard minimum?</summary>
-        <div class="faq__a"><p>No. There's no drop, no batch, no 500-card floor. You pick a trigger — a renewal window entering, a roof aging past year 18, a storm crossing your ZIPs, a listing hitting the block — and cards print and mail one at a time as individual homes fire it. Per-card pricing includes postage, and templates are built in, so there's no design work either.</p></div>
+        <div class="faq__a"><p>No. There's no drop, no batch, no 500-card floor. You pick a trigger — a renewal window entering, a roof aging past year 18, a storm crossing your ZIPs, a listing hitting the block — and <a class="link" href="postcards.html">cards print and mail one at a time</a> as individual homes fire it. Per-card pricing includes postage, and templates are built in, so there's no design work either.</p></div>
       </details>
       <details class="faq__item">
         <summary>Does retargeting need my own ad account?</summary>
-        <div class="faq__a"><p>Yes. Your homeowner segments sync to your Meta ad account as custom audiences — the ads run from your account, under your name, and the ad spend is yours, paid to Meta directly. What the platform does is keep the audience right: your filters, refreshed as homes enter their moment, so the homeowner sees your ad the same week your email or card lands.</p></div>
+        <div class="faq__a"><p>Yes. Your homeowner segments <a class="link" href="retargeting.html">sync to your Meta ad account</a> as custom audiences — the ads run from your account, under your name, and the ad spend is yours, paid to Meta directly. What the platform does is keep the audience right: your filters, refreshed as homes enter their moment, so the homeowner sees your ad the same week your email or card lands.</p></div>
       </details>
       <details class="faq__item">
         <summary>Where do the audiences come from?</summary>
@@ -254,14 +271,16 @@
         <h5>Product</h5>
         <a href="platform.html">Platform</a>
         <a href="managed-email.html">Managed email</a>
-        <a href="industries.html">Solutions</a>
-        <a href="pricing.html">Pricing</a>
+        <a href="sms.html">SMS</a>
+        <a href="postcards.html">Postcards</a>
+        <a href="retargeting.html">Meta retargeting</a>
       </div>
       <div>
         <h5>Company</h5>
+        <a href="industries.html">Solutions</a>
+        <a href="pricing.html">Pricing</a>
         <a href="faq.html">FAQ</a>
         <a href="contact.html">Contact</a>
-        <a href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Get a demo</a>
       </div>
       <div>
         <h5>Legal</h5>
