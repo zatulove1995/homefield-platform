@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pricing — Homefield</title>
+<meta name="description" content="Two parts, priced two ways: managed email billed per qualified lead at a rate set by your industry, and the platform at a flat subscription plus usage for SMS, postcards, and retargeting. No contracts on either.">
+<meta property="og:title" content="Pricing — Homefield">
+<meta property="og:description" content="Two parts, priced two ways: managed email billed per qualified lead at a rate set by your industry, and the platform at a flat subscription plus usage for SMS, postcards, and retargeting. No contracts on either.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=pf1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%230A0D14'/%3E%3Cpath d='M9 9h14v8.5L16 25l-7-7.5z' fill='%232E5BFF'/%3E%3C/svg%3E">
+<script>document.documentElement.className += ' js';</script>
+<style>
+/* ── pricing-page components (pr-) ─────────────────── */
+
+/* Managed email — service card + "what counts" card, side by side */
+.pr-duo{ display:grid; grid-template-columns:1.15fr .85fr; gap:20px; align-items:stretch; }
+.pr-duo .tier{ display:flex; flex-direction:column; }
+.pr-duo .tier .btn{ margin-top:auto; }
+
+/* "What counts" mini-card */
+.pr-what{
+  background:var(--paper); border:1px solid var(--line); border-radius:var(--r-lg);
+  padding:26px 26px 22px; box-shadow:var(--shadow); display:flex; flex-direction:column;
+}
+.pr-what__label{
+  font-family:var(--mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--muted); margin-bottom:12px;
+}
+.pr-what__label + .pr-what__label{ margin-top:22px; }
+.pr-what p{ font-size:14.5px; color:var(--muted); line-height:1.6; }
+.pr-what p strong{ color:var(--ink); font-weight:600; }
+.pr-what__no{ display:flex; flex-direction:column; gap:9px; }
+.pr-what__no li{ position:relative; padding-left:24px; font-size:14.5px; color:var(--muted); line-height:1.5; }
+.pr-what__no li::before{
+  content:"\00d7"; position:absolute; left:3px; top:-2px;
+  font-weight:600; color:var(--muted); opacity:.55;
+}
+.pr-what__foot{ margin-top:auto; padding-top:18px; font-size:13px; line-height:1.55; color:var(--muted); }
+
+/* Platform — subscription card + usage table, side by side */
+.pr-plat{ display:grid; grid-template-columns:.85fr 1.15fr; gap:20px; align-items:stretch; }
+.pr-plat .tier{ display:flex; flex-direction:column; }
+.pr-plat .tier .btn{ margin-top:auto; }
+
+/* Usage rate table */
+.pr-usage{
+  background:var(--paper); border:1px solid var(--line); border-radius:var(--r-lg);
+  padding:26px 26px 22px; box-shadow:var(--shadow); display:flex; flex-direction:column;
+}
+.pr-usage table{ width:100%; border-collapse:collapse; }
+.pr-usage th, .pr-usage td{ padding:13px 0; border-top:1px solid var(--line); vertical-align:top; text-align:left; }
+.pr-usage th{ font-size:14.5px; font-weight:600; color:var(--ink); padding-right:18px; }
+.pr-usage th span{ display:block; margin-top:3px; font-size:13px; font-weight:400; color:var(--muted); line-height:1.5; }
+.pr-usage td{ font-family:var(--mono); font-size:13.5px; font-weight:500; text-align:right; white-space:nowrap; }
+.pr-usage td span{ display:block; margin-top:3px; font-size:11.5px; font-weight:400; color:var(--muted); white-space:normal; }
+.pr-usage__foot{ margin-top:auto; padding-top:18px; font-size:13px; line-height:1.55; color:var(--muted); }
+
+/* Sample-pricing footnote — site convention */
+.price-foot{
+  margin-top:28px; text-align:center;
+  font-family:var(--mono); font-size:12px; letter-spacing:.04em; color:var(--muted);
+}
+
+/* Worked-math cards (kept from the per-lead page) */
+.pr-math{ display:grid; grid-template-columns:1fr 1fr; gap:20px; align-items:stretch; }
+
+.pr-math__card{
+  background:var(--paper); border:1px solid var(--line); border-radius:var(--r-lg);
+  padding:26px 26px 22px; display:flex; flex-direction:column; box-shadow:var(--shadow);
+}
+.pr-math__card--nb{ background:var(--ink); border-color:var(--ink); color:#fff; box-shadow:var(--shadow-lg); }
+
+.pr-math__title{
+  font-family:var(--mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--muted); margin-bottom:14px;
+}
+.pr-math__card--nb .pr-math__title{ color:#8FA8FF; }
+
+.pr-math__rows{ margin:0; }
+.pr-math__row{
+  display:flex; justify-content:space-between; align-items:baseline; gap:18px;
+  padding:11px 0; border-top:1px solid var(--line); font-size:14.5px;
+}
+.pr-math__card--nb .pr-math__row{ border-top-color:var(--line-dark); }
+.pr-math__row dt{ color:var(--muted); line-height:1.45; }
+.pr-math__card--nb .pr-math__row dt{ color:var(--muted-dark); }
+.pr-math__row dd{
+  margin:0; font-family:var(--mono); font-size:13.5px; font-weight:500;
+  white-space:nowrap; text-align:right;
+}
+
+.pr-math__row--total{ padding:16px 0 2px; }
+.pr-math__row--total dt{ font-weight:600; color:var(--ink); }
+.pr-math__card--nb .pr-math__row--total dt{ color:#fff; }
+.pr-math__row--total dd{ font-family:var(--serif); font-weight:400; font-size:32px; letter-spacing:-.02em; line-height:1; }
+.pr-math__card--nb .pr-math__row--total dd{ color:#B9C6FF; }
+
+.pr-math__foot{
+  margin-top:auto; padding-top:18px; font-size:13px; line-height:1.55; color:var(--muted);
+}
+.pr-math__card--nb .pr-math__foot{ color:var(--muted-dark); }
+
+/* "Every plan includes" — targeting grid, standing alone on the dark band */
+.pr-includes{ margin-top:0; padding-top:0; border-top:0; }
+.section--dark .pr-includes p{ color:var(--muted-dark); }
+
+@media (max-width:960px){
+  .pr-duo, .pr-plat{ grid-template-columns:1fr; }
+}
+@media (max-width:760px){
+  .pr-math{ grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="index.html" aria-label="Homefield home">
+      <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".35"/>
+        <path d="M9 8 H23 V17 L16 24 L9 17 Z" fill="currentColor"/>
+        <path d="M16 8 H23 V17 L16 24 Z" fill="currentColor" opacity=".45"/>
+      </svg>
+      <span class="brand__word">Homefield</span>
+    </a>
+
+    <nav class="nav__links" aria-label="Primary">
+      <a href="managed-email.html">Managed email</a>
+      <a href="platform.html">Platform</a>
+      <a href="industries.html">Industries</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="faq.html">FAQ</a>
+    </nav>
+
+    <div class="nav__cta">
+      <a class="btn btn--ghost btn--sm" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Book a call</a>
+    </div>
+
+    <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+      <span></span><span></span>
+    </button>
+  </div>
+  <div class="mobilenav" id="mobileNav" hidden>
+    <a href="managed-email.html">Managed email</a>
+    <a href="platform.html">Platform</a>
+    <a href="industries.html">Industries</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="faq.html">FAQ</a>
+    <a class="btn btn--primary" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Book a call</a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ── HERO ──────────────────────────────────────────── -->
+<section class="hero hero--page">
+  <div class="hero__glow" aria-hidden="true"></div>
+  <div class="wrap hero__inner">
+    <p class="eyebrow reveal">Pricing</p>
+    <h1 class="hero__h1 reveal">One service. One platform.<br><em>Priced like it.</em></h1>
+    <p class="hero__sub reveal">
+      Managed email is billed per qualified lead — a rate set for your industry, nothing else on the
+      invoice. The platform is a subscription plus usage on the channels you turn on. Neither carries
+      a contract.
+    </p>
+  </div>
+</section>
+
+<!-- ── MANAGED EMAIL ─────────────────────────────────── -->
+<section class="section">
+  <div class="wrap">
+    <div class="sechead sechead--center">
+      <p class="eyebrow eyebrow--dark">The service — managed email</p>
+      <h2>You pay per reply. We run everything.</h2>
+      <p class="lede">One rate per qualified lead, set for your industry on the call — a roofing lead, an
+      insurance lead, and a listing lead are worth different amounts, so they're priced differently.
+      The rate steps down as your volume grows, and your territory is locked while you run.</p>
+    </div>
+
+    <div class="pr-duo">
+      <article class="tier tier--feature">
+        <p class="tier__flag">The flagship service</p>
+        <p class="tier__name">Managed email</p>
+        <p class="tier__price tier__price--label">Per qualified lead<span>rate quoted by industry, on the call</span></p>
+        <p class="tier__vol">The rate steps down at 51 qualified leads a month, and again at 300</p>
+        <ul class="tier__list">
+          <li>Done for you end to end — warmed domains carrying your name, personal 3-email sequences over 14 days</li>
+          <li>Every reply read and graded — you're billed only when a homeowner asks for a quote, an estimate, a valuation, or an offer</li>
+          <li>Exclusive: one business per industry per ZIP, locked on signature, never resold</li>
+          <li>No platform fee for the service itself — the per-lead rate is the whole invoice</li>
+          <li>Replies delivered to Slack, email, or your CRM — yours forever</li>
+        </ul>
+        <a class="btn btn--primary btn--full" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Book a call</a>
+      </article>
+
+      <aside class="pr-what">
+        <p class="pr-what__label">Billed — a qualified lead</p>
+        <p><strong>A homeowner in your territory who replies expressing interest</strong> — asking for a quote,
+        an estimate, a valuation, or an offer; asking what you'd charge; asking to be called.</p>
+
+        <p class="pr-what__label">Never billed</p>
+        <ul class="pr-what__no">
+          <li>Bounces and auto-replies</li>
+          <li>Unsubscribes and opt-outs</li>
+          <li>Wrong contacts</li>
+          <li>"No thanks" and hostile replies</li>
+        </ul>
+
+        <p class="pr-what__foot">Every line on the invoice is a reply you can open and read. Think one was
+        graded wrong? Flag it — obvious misgrades are credited, no argument.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ── THE PLATFORM ──────────────────────────────────── -->
+<section class="section section--paper">
+  <div class="wrap">
+    <div class="sechead sechead--center">
+      <p class="eyebrow eyebrow--dark">The software — the platform</p>
+      <h2>A subscription plus usage. Nothing buried.</h2>
+      <p class="lede">The platform is self-serve software on the same signals engine — SMS, postcards, and
+      retargeting, fired when a home enters its moment. Flat subscription for the software; per-unit
+      usage on what actually sends. Not territorial — open to any business.</p>
+    </div>
+
+    <!-- Sample platform pricing — illustrative figures, price-foot convention below -->
+    <div class="pr-plat">
+      <article class="tier">
+        <p class="tier__name">Platform</p>
+        <p class="tier__price">$199<span> / month</span></p>
+        <p class="tier__vol">All three channels enabled, from day one</p>
+        <ul class="tier__list">
+          <li>Audiences — your filters over 275M+ homeowner records, refreshed as homes enter their moment</li>
+          <li>Triggers — renewal window entering, roof aging in, storm activity, new listing nearby</li>
+          <li>Dashboards — every send, delivery, and reply in one place</li>
+          <li>SMS, postcards, and retargeting — pay usage only on what fires</li>
+        </ul>
+        <a class="btn btn--outline btn--full" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Book a call</a>
+      </article>
+
+      <div class="pr-usage">
+        <p class="pr-what__label">Usage — pay for what fires</p>
+        <table>
+          <tbody>
+            <tr>
+              <th scope="row">SMS<span>Consent-aware follow-up texting — sequences, two-way inbox, 10DLC registration handled</span></th>
+              <td>3&cent; / message</td>
+            </tr>
+            <tr>
+              <th scope="row">Postcards<span>Triggered direct mail — printed and mailed automatically, no minimum drops, no design work</span></th>
+              <td>79&cent; / card<span>postage included</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Retargeting<span>Your homeowner segments synced to Meta as custom audiences</span></th>
+              <td>Free to sync<span>ad spend runs in your Meta account</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="pr-usage__foot">No channel minimums, no per-channel fees. Turn a channel off and its line
+        disappears from the invoice.</p>
+      </div>
+    </div>
+
+    <p class="price-foot">Sample pricing for layout — set your own rates before launch.</p>
+  </div>
+</section>
+
+<!-- ── THE MATH, WORKED ──────────────────────────────── -->
+<section class="section">
+  <div class="wrap">
+    <div class="sechead">
+      <p class="eyebrow eyebrow--dark">The math, worked</p>
+      <h2>What each part actually costs</h2>
+      <p class="lede">
+        A per-lead price is noise until it becomes a cost per customer, and per-unit usage is noise
+        until it becomes a monthly number. Here's both, worked.
+      </p>
+    </div>
+
+    <!-- Illustrative worked examples — managed email is rate-agnostic (R), platform uses the sample rates above -->
+    <div class="pr-math">
+      <article class="pr-math__card pr-math__card--nb">
+        <p class="pr-math__title">Managed email — 100 leads a month</p>
+        <dl class="pr-math__rows">
+          <div class="pr-math__row"><dt>Qualified leads</dt><dd>100 / mo</dd></div>
+          <div class="pr-math__row"><dt>Your industry's per-lead rate</dt><dd>R</dd></div>
+          <div class="pr-math__row"><dt>Monthly spend</dt><dd>100 &times; R</dd></div>
+          <div class="pr-math__row"><dt>Close rate — within the range businesses report</dt><dd>21%</dd></div>
+          <div class="pr-math__row"><dt>Customers won</dt><dd>21</dd></div>
+          <div class="pr-math__row pr-math__row--total"><dt>Cost per acquired customer</dt><dd>&asymp; 4.8 &times; R</dd></div>
+        </dl>
+        <p class="pr-math__foot">All 100 replied in writing, at the moment they were ready. The 79 who didn't close this month are still yours to follow up — forever.</p>
+      </article>
+
+      <article class="pr-math__card">
+        <p class="pr-math__title">The platform — a sample month</p>
+        <dl class="pr-math__rows">
+          <div class="pr-math__row"><dt>Triggered postcards</dt><dd>500 &times; 79&cent; = $395</dd></div>
+          <div class="pr-math__row"><dt>Follow-up SMS</dt><dd>1,000 &times; 3&cent; = $30</dd></div>
+          <div class="pr-math__row"><dt>Retargeting sync</dt><dd>$0</dd></div>
+          <div class="pr-math__row"><dt>Usage total</dt><dd>&asymp; $425 / mo</dd></div>
+          <div class="pr-math__row"><dt>Platform subscription</dt><dd>$199</dd></div>
+          <div class="pr-math__row pr-math__row--total"><dt>All-in for the month</dt><dd>&asymp; $624</dd></div>
+        </dl>
+        <p class="pr-math__foot">Sample figures. 500 cards because 500 homes entered their moment that month — not because a mail house had a minimum. Retargeting ad spend runs separately, in your Meta account.</p>
+      </article>
+    </div>
+
+    <p class="fineprint">
+      At the 20–25% close rates businesses report, a qualified lead turns into a customer for roughly
+      four to five times its per-lead rate — whatever that rate is for your industry. The biggest
+      variable is follow-up speed: these are homeowners who just asked for a quote, an estimate, a
+      valuation, or an offer, and close rates track how fast they get one. Platform figures are the
+      sample rates above; your usage scales with how many homes hit their moment in your filters.
+    </p>
+  </div>
+</section>
+
+<!-- ── EVERY PLAN INCLUDES ───────────────────────────── -->
+<section class="section section--dark">
+  <div class="wrap">
+    <div class="sechead sechead--center sechead--onDark">
+      <p class="eyebrow">Every plan includes</p>
+      <h2>The parts you never pay extra for.</h2>
+    </div>
+
+    <div class="targeting pr-includes">
+      <div class="targeting__col">
+        <h4>The data</h4>
+        <p>275M+ homeowner records scored for the moment — renewal windows, roof and system age, equity and tenure, storm activity — cut to your filters. Both parts draw from the same signals engine.</p>
+      </div>
+      <div class="targeting__col">
+        <h4>The sending infrastructure</h4>
+        <p>Warmed domains carrying your name for managed email. Registered numbers, print and mail production, and Meta sync for the platform. Nothing to set up or maintain yourself.</p>
+      </div>
+      <div class="targeting__col">
+        <h4>The compliance</h4>
+        <p>CAN-SPAM managed end to end for email — real sender identity, physical address, instant unsubscribe. 10DLC registration and TCPA consent tooling for SMS, so texting stays a follow-up channel, provably.</p>
+      </div>
+      <div class="targeting__col">
+        <h4>The support</h4>
+        <p>Real humans who know your account, on email at every level and same-day at volume. Setup, sequence review, and a monthly read on what's working.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRICING FAQ ───────────────────────────────────── -->
+<section class="section section--paper">
+  <div class="wrap wrap--narrow">
+    <div class="sechead sechead--center">
+      <p class="eyebrow eyebrow--dark">Pricing FAQ</p>
+      <h2>The billing questions, answered</h2>
+    </div>
+
+    <div class="faq">
+      <details class="faq__item">
+        <summary>Can I buy the platform without managed email?</summary>
+        <div class="faq__a"><p>Yes. The platform is self-serve software, open to any business — subscription plus usage, no territory required, no managed service attached. Some businesses start there and add managed email when their ZIPs are open.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary>Can I run managed email without the platform?</summary>
+        <div class="faq__a"><p>Yes. Managed email is a complete service on its own — data, sending, grading, and delivery are all inside the per-lead rate, with no platform fee for the service itself. The platform is there when you want the same signals firing on more channels.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary>Is managed email exclusive?</summary>
+        <div class="faq__a"><p>Yes — one business per industry per ZIP, locked on signature, never resold. The software is not exclusive: the platform is available to any business, in any territory. Exclusivity is a property of the service, because the service sends as you.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary>Is there a cap on what I can spend?</summary>
+        <div class="faq__a"><p>If you want one. Set a monthly cap on either part — or both — and we pace to it: managed sending slows so qualified leads land inside the cap, and triggered channels queue sends rather than overshoot. No surprise invoices because the machine performed better than expected.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary>Are there contracts?</summary>
+        <div class="faq__a"><p>None. Both parts are month to month — pause or cancel anytime. Your managed-email territory holds for 30 days while paused; after that it releases to the next business in your industry.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ───────────────────────────────────────────── -->
+<section class="section section--cta">
+  <div class="wrap">
+    <div class="ctaband">
+      <h2>See it on your ZIPs.</h2>
+      <p>Fifteen minutes. We'll pull your territory live, show you how many homes hit their moment there every month, and walk the platform on your own market.</p>
+      <div class="ctaband__actions">
+        <a class="btn btn--primary btn--lg" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Book a call</a>
+        <a class="btn btn--quiet btn--lg" href="platform.html">See the platform →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <div class="foot__brand">
+      <a class="brand brand--foot" href="index.html">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true">
+          <circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".35"/>
+          <path d="M9 8 H23 V17 L16 24 L9 17 Z" fill="currentColor"/>
+          <path d="M16 8 H23 V17 L16 24 Z" fill="currentColor" opacity=".45"/>
+        </svg>
+        <span class="brand__word">Homefield</span>
+      </a>
+      <p>The homeowner marketing platform — managed email, SMS, postcards and retargeting, timed to the moment.</p>
+    </div>
+    <nav class="foot__links" aria-label="Footer">
+      <div>
+        <h5>Product</h5>
+        <a href="managed-email.html">Managed email</a>
+        <a href="platform.html">Platform</a>
+        <a href="industries.html">Industries</a>
+        <a href="pricing.html">Pricing</a>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Book a call</a>
+      </div>
+      <div>
+        <h5>Legal</h5>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </nav>
+  </div>
+  <div class="wrap foot__bar">
+    <p>&copy; <span id="yr">2026</span> Homefield. All rights reserved.</p>
+    <p>Mailing address goes here · CAN-SPAM &amp; TCPA compliant</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

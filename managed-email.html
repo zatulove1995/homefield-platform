@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Managed email — Homefield</title>
+<meta name="description" content="Done-for-you homeowner email. We handle the data, the warmed domains in your name, the writing, the sending and the reply reading — you answer homeowners asking for a quote, an estimate, a valuation, or an offer. Per qualified lead, one business per industry per ZIP.">
+<meta property="og:title" content="Managed email — Homefield">
+<meta property="og:description" content="We run the email. You take the replies. Done-for-you homeowner outreach, billed per qualified lead — one business per industry per ZIP, never resold.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=pf1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%230A0D14'/%3E%3Cpath d='M9 9h14v8.5L16 25l-7-7.5z' fill='%232E5BFF'/%3E%3C/svg%3E">
+<script>document.documentElement.className += ' js';</script>
+<style>
+  /* ── managed-email page (me-) ─────────────────────── */
+  .me-link{ font-weight:600; color:var(--accent); white-space:nowrap; }
+  .me-link:hover{ color:var(--accent-ink); }
+
+  /* division of labor: our column vs yours */
+  .me-split{ display:grid; grid-template-columns:1.35fr 1fr; gap:20px; align-items:stretch; }
+  .me-col{ background:var(--paper); border:1px solid var(--line); border-radius:var(--r-lg); padding:36px 34px; box-shadow:var(--shadow-sm); }
+  .me-col__label{ font-family:var(--mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:500; color:var(--muted); margin-bottom:24px; }
+  .me-col .ticks li{ font-size:15.5px; }
+  .me-col--you{ background:var(--ink); border-color:var(--ink); color:#fff; display:flex; flex-direction:column; }
+  .me-col--you .me-col__label{ color:#8FA8FF; }
+  .me-col__big{ font-family:var(--serif); font-weight:400; font-size:clamp(26px,2.8vw,34px); line-height:1.2; letter-spacing:-.02em; margin-bottom:16px; }
+  .me-col--you > p{ color:var(--muted-dark); font-size:15.5px; line-height:1.65; }
+  .me-col__foot{ margin-top:auto; padding-top:26px; border-top:1px solid var(--line-dark); font-size:13.5px; color:var(--muted-dark); line-height:1.6; }
+  .me-col__foot strong{ color:#fff; font-weight:600; }
+
+  /* the three-email sequence */
+  .me-seq{ display:flex; flex-direction:column; margin-top:4px; }
+  .me-seq li{ display:grid; grid-template-columns:82px 1fr; gap:18px; padding:15px 0; border-bottom:1px solid var(--line); font-size:15.5px; color:var(--muted); line-height:1.55; }
+  .me-seq li:first-child{ border-top:1px solid var(--line); }
+  .me-seq li strong{ color:var(--ink); font-weight:600; }
+  .me-seq__day{ font-family:var(--mono); font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--accent-ink); padding-top:4px; white-space:nowrap; }
+  .me-seq li.me-seq__exit{ background:var(--accent-soft); border:none; border-radius:var(--r); padding:15px 16px; margin-top:14px; }
+
+  /* sample email card (mail-card conventions) */
+  .me-mail{ background:var(--paper); border:1px solid var(--line); border-radius:var(--r-lg); box-shadow:var(--shadow); overflow:hidden; }
+  .me-mail__bar{ display:flex; align-items:center; gap:6px; padding:12px 18px; background:var(--paper-2); border-bottom:1px solid var(--line); }
+  .me-mail__tag{ margin-left:auto; font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
+  .me-mail__meta{ padding:16px 22px; border-bottom:1px solid var(--line); display:grid; gap:6px; }
+  .me-mail__meta p{ font-size:13.5px; display:grid; grid-template-columns:64px 1fr; gap:10px; align-items:baseline; }
+  .me-mail__meta span{ color:var(--muted-dark); font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:.04em; }
+  .me-mail__body{ padding:20px 22px; }
+  .me-mail__body p{ font-size:14.5px; line-height:1.65; margin-bottom:12px; }
+  .me-mail__body p:last-child{ margin-bottom:0; }
+  .me-mail__reply{ margin:0 22px 20px; background:var(--accent-soft); border-radius:var(--r); padding:14px 16px; }
+  .me-mail__replylabel{ font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:6px; }
+  .me-mail__reply p:last-child{ font-size:14.5px; font-style:italic; line-height:1.55; }
+  .me-mail__foot{ display:flex; align-items:center; gap:10px; padding:14px 22px; border-top:1px solid var(--line); background:var(--paper-2); font-size:13px; color:var(--muted); flex-wrap:wrap; }
+
+  /* billed vs never-billed */
+  .me-qual{ display:grid; grid-template-columns:1fr 1fr; gap:20px; max-width:920px; margin:0 auto; }
+  .me-qual__col{ background:var(--paper); border:1px solid var(--line); border-radius:var(--r-lg); padding:30px; box-shadow:var(--shadow-sm); }
+  .me-qual__col--yes{ border-color:rgba(46,91,255,.35); }
+  .me-qual__head{ margin-bottom:20px; }
+  .me-pill--no{ background:var(--paper-3); color:var(--muted); }
+  .me-qual__list{ display:flex; flex-direction:column; gap:13px; }
+  .me-qual__list li{ position:relative; padding-left:30px; font-size:15.5px; color:var(--muted); line-height:1.5; }
+  .me-qual__list li::before{
+    content:""; position:absolute; left:0; top:3px; width:18px; height:18px;
+    border-radius:50%; background-color:var(--accent-soft);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%232E5BFF'%3E%3Cpath d='M8.2 13.6 5.1 10.5l1.2-1.2 1.9 1.9 5-5 1.2 1.2z'/%3E%3C/svg%3E");
+    background-size:contain;
+  }
+  .me-qual__list--no li::before{
+    background-color:var(--paper-3);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2359627A'%3E%3Cpath d='M6.9 5.7 10 8.8l3.1-3.1 1.2 1.2L11.2 10l3.1 3.1-1.2 1.2L10 11.2l-3.1 3.1-1.2-1.2L8.8 10 5.7 6.9z'/%3E%3C/svg%3E");
+  }
+
+  /* day 0 → 21 timeline */
+  .me-tl{ max-width:800px; margin:0 auto; border-left:2px solid var(--line); }
+  .me-tl__row{ position:relative; display:grid; grid-template-columns:110px 1fr; gap:26px; padding:24px 0 24px 34px; }
+  .me-tl__row::before{
+    content:""; position:absolute; left:-7px; top:31px; width:12px; height:12px;
+    border-radius:50%; background:var(--paper); border:2px solid var(--muted-dark);
+  }
+  .me-tl__day{ font-family:var(--mono); font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); padding-top:3px; white-space:nowrap; }
+  .me-tl__row p{ font-size:15.5px; color:var(--muted); line-height:1.6; }
+  .me-tl__row p strong{ color:var(--ink); font-weight:600; }
+  .me-tl__row--win{ background:var(--accent-soft); border-radius:0 var(--r) var(--r) 0; padding-right:22px; }
+  .me-tl__row--win::before{ background:var(--accent); border-color:var(--accent); }
+  .me-tl__row--win .me-tl__day{ color:var(--accent-ink); }
+
+  /* centered action pair (pricing note) */
+  .me-actions{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+
+  @media (max-width:960px){
+    .me-split{ grid-template-columns:1fr; }
+    .me-qual{ grid-template-columns:1fr; }
+  }
+  @media (max-width:640px){
+    .me-col{ padding:28px 22px; }
+    .me-qual__col{ padding:24px 20px; }
+    .me-seq li{ grid-template-columns:64px 1fr; gap:12px; }
+    .me-tl__row{ grid-template-columns:1fr; gap:6px; padding-left:24px; }
+    .me-tl__row::before{ top:29px; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="index.html" aria-label="Homefield home">
+      <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".35"/>
+        <path d="M9 8 H23 V17 L16 24 L9 17 Z" fill="currentColor"/>
+        <path d="M16 8 H23 V17 L16 24 Z" fill="currentColor" opacity=".45"/>
+      </svg>
+      <span class="brand__word">Homefield</span>
+    </a>
+
+    <nav class="nav__links" aria-label="Primary">
+      <a href="managed-email.html">Managed email</a>
+      <a href="platform.html">Platform</a>
+      <a href="industries.html">Industries</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="faq.html">FAQ</a>
+    </nav>
+
+    <div class="nav__cta">
+      <a class="btn btn--ghost btn--sm" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Book a call</a>
+    </div>
+
+    <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+      <span></span><span></span>
+    </button>
+  </div>
+  <div class="mobilenav" id="mobileNav" hidden>
+    <a href="managed-email.html">Managed email</a>
+    <a href="platform.html">Platform</a>
+    <a href="industries.html">Industries</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="faq.html">FAQ</a>
+    <a class="btn btn--primary" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Book a call</a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ── HERO ──────────────────────────────────────────── -->
+<section class="hero hero--page">
+  <div class="hero__glow" aria-hidden="true"></div>
+  <div class="wrap hero__inner">
+    <p class="eyebrow reveal">Managed email</p>
+    <h1 class="hero__h1 reveal">
+      We run the email. <em>You take the replies.</em>
+    </h1>
+    <p class="hero__sub reveal">
+      Done for you, end to end — the data, the warmed domains carrying your name, the writing,
+      the sending, the reply reading. What reaches you is a homeowner asking for a
+      <strong>quote</strong>, an <strong>estimate</strong>, a <strong>valuation</strong>,
+      or an <strong>offer</strong>.
+    </p>
+    <div class="hero__actions reveal">
+      <a class="btn btn--primary btn--lg" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Book a call</a>
+      <a class="btn btn--quiet btn--lg" href="pricing.html">See pricing →</a>
+    </div>
+    <p class="hero__note reveal"><strong>Pay per qualified lead</strong> · Rate quoted by industry · No contract</p>
+
+    <ul class="hero__strip reveal" aria-label="At a glance">
+      <li><span>1</span> business per industry per ZIP</li>
+      <li><span>100–500</span> ZIPs locked per business</li>
+      <li><span>~21 days</span> to first lead</li>
+      <li><span>0</span> shared leads, ever</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ── WHAT WE HANDLE VS WHAT YOU DO ─────────────────── -->
+<section class="section section--tight section--paper">
+  <div class="wrap">
+    <div class="sechead sechead--center">
+      <p class="eyebrow eyebrow--dark">Division of labor</p>
+      <h2>Our column is long. Yours is one line.</h2>
+      <p class="lede">
+        Managed email is a service, not software — there's no dashboard to learn and no
+        sequence builder to babysit. Here's the entire split.
+      </p>
+    </div>
+
+    <div class="me-split">
+      <div class="me-col">
+        <p class="me-col__label">We handle</p>
+        <ul class="ticks">
+          <li><strong>Data</strong> — your ZIPs cut from 275M+ homeowner records, scored for the moment each home is in</li>
+          <li><strong>Domains</strong> — warmed sending domains that carry your business name; your own domain is never touched</li>
+          <li><strong>Copy</strong> — a personal three-email sequence, approved by you word for word</li>
+          <li><strong>Sending</strong> — paced daily volume, deliverability watched send by send</li>
+          <li><strong>Reply grading</strong> — every reply read; only real interest is passed on and billed</li>
+          <li><strong>Compliance</strong> — CAN-SPAM, physical address, suppression lists, one-click unsubscribes</li>
+        </ul>
+      </div>
+
+      <div class="me-col me-col--you">
+        <p class="me-col__label">You handle</p>
+        <p class="me-col__big">Answer qualified leads within a day.</p>
+        <p>
+          That's the entire column. The homeowner has already told you what they want — a quote,
+          an estimate, a valuation, an offer — in their own words. You reply like a person and
+          take it from there.
+        </p>
+        <p class="me-col__foot">
+          Businesses that follow up inside a day report <strong>20–25% close rates</strong>.
+          Speed is your only job — we handle everything upstream of it.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── THE SEQUENCE ──────────────────────────────────── -->
+<section class="section">
+  <div class="wrap grid-2">
+    <div class="grid-2__text">
+      <p class="eyebrow eyebrow--dark">The sequence</p>
+      <h2>Three emails over fourteen days. A reply ends it instantly.</h2>
+      <p class="lede">
+        Personal, plain-text notes — no templates dressed up as newsletters, no images,
+        no "Dear Homeowner." Each one reads like a short email from a local business,
+        because it is one.
+      </p>
+      <ul class="me-seq">
+        <li><span class="me-seq__day">Day 0</span><span><strong>Email one.</strong> Names the moment — the renewal window, the roof's age, the equity. One ask, no pitch.</span></li>
+        <li><span class="me-seq__day">Day 6</span><span><strong>Email two.</strong> A shorter nudge from a different angle, for the ones who meant to reply and didn't.</span></li>
+        <li><span class="me-seq__day">Day 14</span><span><strong>Email three.</strong> The last note. Offers an easy no — which is also what makes the yeses easy.</span></li>
+        <li class="me-seq__exit"><span class="me-seq__day">Any day</span><span><strong>A reply exits the sequence instantly.</strong> A homeowner who writes back never receives another automated send.</span></li>
+      </ul>
+    </div>
+
+    <!-- SAMPLE CONTENT — replace with a real, permissioned thread before launch -->
+    <div class="grid-2__visual">
+      <div class="me-mail">
+        <div class="me-mail__bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="me-mail__tag">Sent in your business's name</span>
+        </div>
+        <div class="me-mail__meta">
+          <p><span>From</span> Sarah Whitman · Whitman Insurance Group</p>
+          <p><span>To</span> Homeowner on Birchwood Ln</p>
+          <p><span>Subject</span> Your home policy renews in about six weeks</p>
+        </div>
+        <div class="me-mail__body">
+          <p>Hi Dana — quick note from a local agency. Your homeowner's policy looks like it comes
+          up for renewal around late September, and most policies renew automatically at a higher
+          rate unless someone checks.</p>
+          <p>If you'd like, I can run a quick comparison before yours locks in — it takes about
+          ten minutes, and there's no obligation either way.</p>
+        </div>
+        <div class="me-mail__reply">
+          <p class="me-mail__replylabel">The homeowner replies</p>
+          <p>"We just got the renewal notice and it's up again. What would you need from us
+          to see if you can do better?"</p>
+        </div>
+        <div class="me-mail__foot">
+          <span class="pill pill--good">Qualified lead</span>
+          <span>Delivered to your inbox, Slack &amp; CRM — minutes later</span>
+        </div>
+      </div>
+      <p class="fineprint">
+        Insurance shown. A roofer's email names the roof coming up on year 18; an agent's names
+        the equity — the shape never changes, only the moment.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ── QUALIFIED REPLIES ONLY ────────────────────────── -->
+<section class="section section--paper">
+  <div class="wrap">
+    <div class="sechead sechead--center">
+      <p class="eyebrow eyebrow--dark">What you pay for</p>
+      <h2>Qualified replies. Nothing else.</h2>
+      <p class="lede">
+        Every reply is read and graded before it reaches you. The bar for "qualified"
+        is written down, and the invoice follows it — every billed lead arrives with
+        its full reply thread attached.
+      </p>
+    </div>
+
+    <div class="me-qual">
+      <div class="me-qual__col me-qual__col--yes">
+        <p class="me-qual__head"><span class="pill pill--good">Billed — a qualified lead</span></p>
+        <ul class="me-qual__list">
+          <li>Asks for a quote, an estimate, a valuation, or an offer</li>
+          <li>Asks what you'd charge, or what the home is worth</li>
+          <li>Asks to be called, or asks for the next step</li>
+        </ul>
+      </div>
+
+      <div class="me-qual__col">
+        <p class="me-qual__head"><span class="pill me-pill--no">Never billed</span></p>
+        <ul class="me-qual__list me-qual__list--no">
+          <li>Bounces and auto-replies</li>
+          <li>Unsubscribes and opt-outs</li>
+          <li>Wrong contacts</li>
+          <li>Hostile replies</li>
+          <li>A polite "no thanks"</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="fineprint fineprint--center">
+      Think a billed lead shouldn't have qualified? Flag it — we review the thread, and if we
+      got it wrong it comes off the invoice.
+      <a class="me-link" href="faq.html">More in the FAQ →</a>
+    </p>
+  </div>
+</section>
+
+<!-- ── TERRITORY ─────────────────────────────────────── -->
+<section class="section">
+  <div class="wrap grid-2 grid-2--flip">
+    <div class="grid-2__text">
+      <p class="eyebrow eyebrow--dark">Territory</p>
+      <h2>One business per industry per ZIP.</h2>
+      <p class="lede">
+        Managed email is the only territorial product we sell — the platform's software
+        channels are open to everyone, but the leads are not. Once your ZIPs lock,
+        no other business in your industry can buy into them.
+      </p>
+      <ul class="ticks">
+        <li><strong>100–500 ZIP codes</strong> per business, chosen by you at onboarding</li>
+        <li><strong>Locked on signature</strong> — held as long as you're active</li>
+        <li><strong>Never resold</strong> in your industry, deduped across the entire network</li>
+        <li><strong>Replies yours forever</strong> — full follow-up rights, no expiry</li>
+        <li><strong>Releases 30 days</strong> after you go inactive — no hostage clauses</li>
+      </ul>
+      <a class="btn btn--dark" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Check if your ZIPs are open</a>
+    </div>
+    <div class="grid-2__visual">
+      <div class="map" role="img" aria-label="Illustration of ZIP codes locked to a single business per industry">
+        <div class="map__grid">
+          <!-- decorative -->
+        </div>
+        <div class="map__legend">
+          <span><i class="sw sw--locked"></i> Claimed</span>
+          <span><i class="sw sw--open"></i> Open</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TIMELINE ──────────────────────────────────────── -->
+<section class="section section--paper">
+  <div class="wrap">
+    <div class="sechead sechead--center">
+      <p class="eyebrow eyebrow--dark">Timeline</p>
+      <h2>Day 0 to day 21.</h2>
+      <p class="lede">
+        Your domains come out of pre-warmed pools, so warmup takes about two weeks instead
+        of starting cold. The first qualified leads land in the first sending week.
+      </p>
+    </div>
+
+    <div class="me-tl">
+      <div class="me-tl__row">
+        <span class="me-tl__day">Day 0</span>
+        <p><strong>Signature.</strong> Your ZIPs lock across the network. A 30-minute onboarding
+        call covers your branding, your territory, and the sender identity you sign off on.</p>
+      </div>
+      <div class="me-tl__row">
+        <span class="me-tl__day">Days 1–5</span>
+        <p><strong>Build.</strong> Your territory is cut from 275M+ homeowner records and scored
+        for timing; the sequence is drafted and approved by you, word for word.</p>
+      </div>
+      <div class="me-tl__row">
+        <span class="me-tl__day">Days 5–14</span>
+        <p><strong>Warm.</strong> Sending domains in your business's name finish warming from
+        pre-warmed pools; your list is verified and scrubbed against suppression lists.</p>
+      </div>
+      <div class="me-tl__row">
+        <span class="me-tl__day">Day 14</span>
+        <p><strong>First sends.</strong> Paced daily volume, deliverability watched send by send.</p>
+      </div>
+      <div class="me-tl__row me-tl__row--win">
+        <span class="me-tl__day">Day ~21</span>
+        <p><strong>First qualified leads.</strong> Replies arrive in the first sending week —
+        delivered to your inbox, Slack and CRM minutes after the homeowner hits send.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRICING NOTE ──────────────────────────────────── -->
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="sechead sechead--center">
+      <p class="eyebrow eyebrow--dark">Pricing</p>
+      <h2>Per qualified lead. Rate quoted by industry.</h2>
+      <p class="lede">
+        No dollar menu here, on purpose: the rate depends on what a customer is worth in your
+        industry, and we quote it on the call. What never changes is the unit — you pay for
+        homeowners who wrote back asking, and nothing else.
+      </p>
+    </div>
+    <div class="me-actions">
+      <a class="btn btn--primary btn--lg" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Book a call</a>
+      <a class="btn btn--outline btn--lg" href="pricing.html">How pricing works →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA BAND ──────────────────────────────────────── -->
+<section class="section section--cta">
+  <div class="wrap">
+    <div class="ctaband">
+      <h2>See it on your ZIPs.</h2>
+      <p>Fifteen minutes. We'll pull your territory live, show you how many homes hit their moment there every month, and walk the platform on your own market.</p>
+      <div class="ctaband__actions">
+        <a class="btn btn--primary btn--lg" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Book a call</a>
+        <a class="btn btn--quiet btn--lg" href="platform.html">See the platform →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <div class="foot__brand">
+      <a class="brand brand--foot" href="index.html">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true">
+          <circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".35"/>
+          <path d="M9 8 H23 V17 L16 24 L9 17 Z" fill="currentColor"/>
+          <path d="M16 8 H23 V17 L16 24 Z" fill="currentColor" opacity=".45"/>
+        </svg>
+        <span class="brand__word">Homefield</span>
+      </a>
+      <p>The homeowner marketing platform — managed email, SMS, postcards and retargeting, timed to the moment.</p>
+    </div>
+    <nav class="foot__links" aria-label="Footer">
+      <div>
+        <h5>Product</h5>
+        <a href="managed-email.html">Managed email</a>
+        <a href="platform.html">Platform</a>
+        <a href="industries.html">Industries</a>
+        <a href="pricing.html">Pricing</a>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Book a call</a>
+      </div>
+      <div>
+        <h5>Legal</h5>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </nav>
+  </div>
+  <div class="wrap foot__bar">
+    <p>&copy; <span id="yr">2026</span> Homefield. All rights reserved.</p>
+    <p>Mailing address goes here · CAN-SPAM &amp; TCPA compliant</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

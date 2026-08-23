@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The platform — audiences, SMS, postcards &amp; retargeting — Homefield</title>
+<meta name="description" content="The engine that times Homefield's managed email — renewal windows, roof and system age, equity, storms — as self-serve software. Build homeowner segments from 275M+ records and drive SMS follow-up, triggered postcards, and Facebook retargeting. All of it — managed email results included — lives in
+      one dashboard: one calendar, one budget, one report. Not territorial — available everywhere.">
+<meta property="og:title" content="The Homefield platform — every channel, fired at the moment">
+<meta property="og:description" content="Build homeowner segments from 275M+ records, then fire SMS follow-up, triggered postcards, and Facebook retargeting the week each home hits its moment. Self-serve, not territorial.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=pf1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%230A0D14'/%3E%3Cpath d='M9 9h14v8.5L16 25l-7-7.5z' fill='%232E5BFF'/%3E%3C/svg%3E">
+<script>document.documentElement.className += ' js';</script>
+<style>
+/* ── platform-page components (pl-) ─────────────────── */
+
+/* Segment builder — the audiences mockup */
+.pl-seg{ background:var(--paper); border:1px solid var(--line); border-radius:var(--r-lg); box-shadow:var(--shadow); overflow:hidden; }
+.pl-seg__bar{ display:flex; align-items:center; gap:6px; padding:12px 18px; background:var(--paper-3); border-bottom:1px solid var(--line); }
+.pl-seg__tag{ margin-left:auto; font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
+.pl-seg__body{ padding:22px 24px 18px; }
+.pl-seg__label{ font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-bottom:10px; }
+.pl-chips{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px; }
+.pl-chip{ font-size:13px; font-weight:500; padding:6px 12px; border-radius:999px; background:var(--accent-soft); color:var(--accent-ink); }
+.pl-chip--add{ background:transparent; border:1px dashed var(--line); color:var(--muted); }
+.pl-seg__count{ display:flex; align-items:baseline; gap:10px; padding:16px 0 14px; border-top:1px solid var(--line); }
+.pl-seg__num{ font-family:var(--serif); font-size:44px; line-height:1; letter-spacing:-.03em; }
+.pl-seg__unit{ font-size:14px; color:var(--muted); }
+.pl-seg__delta{ display:flex; flex-direction:column; gap:7px; }
+.pl-seg__delta li{ font-size:13.5px; color:var(--muted); line-height:1.5; }
+.pl-seg__delta span{ font-family:var(--mono); font-size:12px; font-weight:500; color:#0A7D6C; margin-right:6px; }
+.pl-seg__delta span.pl-out{ color:var(--muted); }
+.pl-seg__foot{ padding:13px 24px; border-top:1px solid var(--line); background:#FCFCFD; font-size:13px; color:var(--muted); }
+
+/* SMS thread — the follow-up mockup */
+.pl-sms{ max-width:400px; margin:0 auto; background:var(--paper); border:1px solid var(--line); border-radius:var(--r-lg); box-shadow:var(--shadow); overflow:hidden; }
+.pl-sms__bar{ display:flex; align-items:center; gap:6px; padding:12px 18px; background:var(--paper-3); border-bottom:1px solid var(--line); }
+.pl-sms__tag{ margin-left:auto; font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
+.pl-sms__thread{ padding:20px 18px 10px; display:flex; flex-direction:column; gap:10px; }
+.pl-sms__note{ text-align:center; font-size:12px; color:var(--muted); margin-bottom:4px; }
+.pl-sms__msg{ max-width:84%; padding:10px 14px; border-radius:18px; font-size:14.5px; line-height:1.5; }
+.pl-sms__msg--out{ align-self:flex-end; background:var(--accent); color:#fff; border-bottom-right-radius:6px; }
+.pl-sms__msg--in{ align-self:flex-start; background:var(--paper-3); color:var(--ink-3); border-bottom-left-radius:6px; }
+.pl-sms__foot{ margin-top:8px; padding:12px 18px; border-top:1px solid var(--line); background:#FCFCFD; font-size:12.5px; color:var(--muted); display:flex; flex-wrap:wrap; gap:4px 14px; }
+
+/* Postcard — the triggered-mail mockup */
+.pl-post__trigger{ display:flex; align-items:center; gap:10px; margin-bottom:16px; font-family:var(--mono); font-size:12.5px; color:var(--muted); flex-wrap:wrap; }
+.pl-post__trigger span{ font-family:var(--sans); font-size:10.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-ink); background:var(--accent-soft); padding:4px 10px; border-radius:999px; }
+.pl-post__card{ display:grid; grid-template-columns:1.5fr 1fr; background:var(--paper); border:1px solid var(--line); border-radius:var(--r); box-shadow:var(--shadow-lg); overflow:hidden; }
+.pl-post__front{ padding:26px 26px 24px; display:flex; flex-direction:column; }
+.pl-post__brand{ font-size:11.5px; font-weight:600; letter-spacing:.09em; text-transform:uppercase; color:var(--accent-ink); }
+.pl-post__head{ font-family:var(--serif); font-weight:400; font-size:clamp(22px,2.6vw,30px); line-height:1.08; letter-spacing:-.02em; margin:16px 0 10px; }
+.pl-post__body{ font-size:13.5px; color:var(--muted); line-height:1.55; }
+.pl-post__addr{ border-left:1px dashed var(--line); padding:20px; display:flex; flex-direction:column; min-height:200px; }
+.pl-post__stamp{ align-self:flex-end; width:46px; height:54px; border:1px solid var(--line); border-radius:4px; display:grid; place-items:center; font-family:var(--mono); font-size:8.5px; text-transform:uppercase; color:var(--muted); text-align:center; line-height:1.35; padding:4px; }
+.pl-post__to{ margin-top:auto; font-family:var(--mono); font-size:12.5px; color:var(--ink-3); line-height:1.6; }
+.pl-post__to span{ display:block; font-size:10px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin-bottom:4px; }
+.pl-post__foot{ margin-top:16px; font-size:13px; color:var(--muted); display:flex; gap:6px 16px; flex-wrap:wrap; }
+
+/* Facebook ad tile — the retargeting mockup */
+.pl-ad{ max-width:420px; margin:0 auto; }
+.pl-ad__sync{ display:flex; align-items:center; gap:8px; margin-bottom:14px; font-family:var(--mono); font-size:12px; color:var(--muted); flex-wrap:wrap; }
+.pl-ad__sync i{ width:7px; height:7px; border-radius:50%; background:var(--teal); flex-shrink:0; }
+.pl-ad__tile{ background:var(--paper); border:1px solid var(--line); border-radius:var(--r); box-shadow:var(--shadow); overflow:hidden; }
+.pl-ad__head{ display:flex; align-items:center; gap:10px; padding:14px 16px 10px; }
+.pl-ad__avatar{ width:36px; height:36px; border-radius:50%; background:var(--accent); color:#fff; display:grid; place-items:center; font-size:12.5px; font-weight:600; flex-shrink:0; }
+.pl-ad__page{ font-size:14px; font-weight:600; }
+.pl-ad__sub{ font-size:12px; color:var(--muted); }
+.pl-ad__text{ padding:0 16px 12px; font-size:14px; line-height:1.5; color:var(--ink-3); }
+.pl-ad__media{ aspect-ratio:1.91/1; background:linear-gradient(135deg, var(--ink) 0%, var(--ink-3) 55%, var(--accent-ink) 140%); color:#fff; display:flex; flex-direction:column; justify-content:flex-end; padding:18px; }
+.pl-ad__media p{ font-family:var(--serif); font-size:23px; line-height:1.1; letter-spacing:-.02em; max-width:280px; }
+.pl-ad__foot{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 16px; background:var(--paper-2); border-top:1px solid var(--line); }
+.pl-ad__domain{ font-size:10.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); }
+.pl-ad__title{ font-size:13.5px; font-weight:600; }
+.pl-ad__cta{ flex-shrink:0; font-size:13px; font-weight:600; padding:8px 14px; border-radius:var(--r-sm); background:var(--paper-3); border:1px solid var(--line); white-space:nowrap; }
+
+/* One home's week — timeline on the dark section */
+.pl-week{ display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
+.pl-week__item{ position:relative; padding-top:26px; }
+.pl-week__item::before{ content:""; position:absolute; top:0; left:0; right:-24px; height:1px; background:var(--line-dark); }
+.pl-week__item:last-child::before{ right:0; }
+.pl-week__item::after{ content:""; position:absolute; top:-4.5px; left:0; width:10px; height:10px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 5px rgba(46,91,255,.18); }
+.pl-week__item--reply::after{ background:var(--teal); box-shadow:0 0 0 5px rgba(15,179,155,.18); }
+.pl-week__day{ display:block; font-family:var(--mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:#8FA8FF; margin-bottom:10px; }
+.pl-week__item h3{ font-size:19px; margin-bottom:8px; }
+.pl-week__item p{ font-size:14.5px; color:var(--muted-dark); line-height:1.6; }
+
+/* Self-serve vs managed — recap cards */
+.pl-vs{ display:grid; grid-template-columns:1fr 1fr; gap:20px; align-items:stretch; }
+.pl-vs__card{ background:var(--paper); border:1px solid var(--line); border-radius:var(--r-lg); padding:32px 30px 30px; display:flex; flex-direction:column; }
+.pl-vs__card--managed{ background:var(--ink); border-color:var(--ink); color:#fff; box-shadow:var(--shadow-lg); }
+.pl-vs__label{ font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+.pl-vs__card--managed .pl-vs__label{ color:#8FA8FF; }
+.pl-vs__card h3{ font-size:24px; margin-bottom:10px; }
+.pl-vs__lede{ font-size:15px; color:var(--muted); line-height:1.6; margin-bottom:22px; }
+.pl-vs__card--managed .pl-vs__lede{ color:var(--muted-dark); }
+.pl-vs__card .ticks{ margin-bottom:30px; }
+.pl-vs__card .btn{ margin-top:auto; align-self:flex-start; }
+
+@media (max-width:960px){
+  .pl-week{ grid-template-columns:1fr 1fr; gap:36px 24px; }
+  .pl-vs{ grid-template-columns:1fr; }
+}
+@media (max-width:640px){
+  .pl-week{ grid-template-columns:1fr; gap:32px; }
+  .pl-week__item::before{ right:0; }
+  .pl-post__card{ grid-template-columns:1fr; }
+  .pl-post__addr{ border-left:0; border-top:1px dashed var(--line); min-height:160px; }
+  .pl-seg__num{ font-size:36px; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="index.html" aria-label="Homefield home">
+      <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".35"/>
+        <path d="M9 8 H23 V17 L16 24 L9 17 Z" fill="currentColor"/>
+        <path d="M16 8 H23 V17 L16 24 Z" fill="currentColor" opacity=".45"/>
+      </svg>
+      <span class="brand__word">Homefield</span>
+    </a>
+
+    <nav class="nav__links" aria-label="Primary">
+      <a href="managed-email.html">Managed email</a>
+      <a href="platform.html">Platform</a>
+      <a href="industries.html">Industries</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="faq.html">FAQ</a>
+    </nav>
+
+    <div class="nav__cta">
+      <a class="btn btn--ghost btn--sm" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Book a call</a>
+    </div>
+
+    <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+      <span></span><span></span>
+    </button>
+  </div>
+  <div class="mobilenav" id="mobileNav" hidden>
+    <a href="managed-email.html">Managed email</a>
+    <a href="platform.html">Platform</a>
+    <a href="industries.html">Industries</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="faq.html">FAQ</a>
+    <a class="btn btn--primary" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Book a call</a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ── HERO ──────────────────────────────────────────── -->
+<section class="hero hero--page">
+  <div class="hero__glow" aria-hidden="true"></div>
+  <div class="wrap hero__inner">
+    <p class="eyebrow reveal">The platform</p>
+    <h1 class="hero__h1 reveal">The same signals. <em>Now in your hands.</em></h1>
+    <p class="hero__sub reveal">
+      The engine that times our managed email — renewal windows, roof and system age, equity,
+      storms — as self-serve software, driving three more channels: SMS follow-up, triggered
+      postcards, and Facebook retargeting.
+    </p>
+    <p class="hero__note reveal"><strong>Not territorial.</strong> Every ZIP is open to every business — no lock required.</p>
+  </div>
+</section>
+
+<!-- ── AUDIENCES ─────────────────────────────────────── -->
+<section class="section">
+  <div class="wrap grid-2">
+    <div class="grid-2__text">
+      <p class="eyebrow eyebrow--dark">Audiences</p>
+      <h2>Start with 275M+ homes. Keep only your slice.</h2>
+      <p class="lede">
+        The same homeowner records that time our managed email, with your filters on top.
+        Save a segment once and it maintains itself — homes join as they enter their moment
+        and drop out when it passes.
+      </p>
+      <ul class="ticks">
+        <li><strong>Your filters</strong> — ZIP, home value, home and system age, tenure, equity, owner-occupancy</li>
+        <li><strong>Living segments</strong> — refreshed as renewal windows open, roofs age in, and storms pass through</li>
+        <li><strong>One segment, three channels</strong> — the same audience drives your texts, cards, and ads</li>
+      </ul>
+    </div>
+
+    <!-- SAMPLE CONTENT — illustrative segment for layout -->
+    <div class="grid-2__visual">
+      <div class="pl-seg">
+        <div class="pl-seg__bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="pl-seg__tag">Audience builder</span>
+        </div>
+        <div class="pl-seg__body">
+          <p class="pl-seg__label">Filters</p>
+          <div class="pl-chips">
+            <span class="pl-chip">ZIP 30204–30224</span>
+            <span class="pl-chip">Value $250k–$600k</span>
+            <span class="pl-chip">Roof 17+ yrs</span>
+            <span class="pl-chip">Tenure 7+ yrs</span>
+            <span class="pl-chip">Equity 40%+</span>
+            <span class="pl-chip">Owner-occupied</span>
+            <span class="pl-chip pl-chip--add">+ Add filter</span>
+          </div>
+          <div class="pl-seg__count">
+            <span class="pl-seg__num">4,318</span>
+            <span class="pl-seg__unit">homes match today</span>
+          </div>
+          <ul class="pl-seg__delta">
+            <li><span>+112</span>entered a renewal window this week</li>
+            <li><span>+37</span>roofs crossed year 18</li>
+            <li><span class="pl-out">−54</span>moments passed — removed automatically</li>
+          </ul>
+        </div>
+        <p class="pl-seg__foot">Refreshes daily. No list-buying, no CSV uploads, no stale data.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SMS ───────────────────────────────────────────── -->
+<section class="section section--paper">
+  <div class="wrap grid-2 grid-2--flip">
+    <div class="grid-2__text">
+      <p class="eyebrow eyebrow--dark">SMS</p>
+      <h2>The follow-up channel. Never the cold one.</h2>
+      <p class="lede">
+        We don't do cold texts, and neither should you. SMS on Homefield goes only to homeowners
+        who replied or opted in — the fastest way to turn a warm reply into a booked appointment,
+        with the compliance handled for you.
+      </p>
+      <ul class="ticks">
+        <li><strong>Automated sequences</strong> to homeowners who replied or opted in — consent-aware by design</li>
+        <li><strong>Two-way inbox</strong> — pick up any thread by hand the moment it gets interesting</li>
+        <li><strong>10DLC registration handled</strong> — carrier compliance done for you at signup</li>
+        <li><strong>Quiet hours and opt-outs automatic</strong> — STOP honored instantly, every time</li>
+        <li><strong>3¢ a message</strong>, billed on usage — no bundles, no breakage</li>
+      </ul>
+    </div>
+
+    <!-- SAMPLE CONTENT — illustrative consented thread for layout -->
+    <div class="grid-2__visual">
+      <div class="pl-sms">
+        <div class="pl-sms__bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="pl-sms__tag">Two-way inbox</span>
+        </div>
+        <div class="pl-sms__thread">
+          <p class="pl-sms__note">Dana · replied to your email Tue · consented</p>
+          <p class="pl-sms__msg pl-sms__msg--out">Hi Dana, it's Mike from Ridgeline Roofing — you asked about a roof estimate. Would Thursday morning or Friday afternoon work for a quick look?</p>
+          <p class="pl-sms__msg pl-sms__msg--in">Friday afternoon works. Anytime after 2.</p>
+          <p class="pl-sms__msg pl-sms__msg--out">Booked — Friday 2:30. I'll text when I'm 15 minutes out.</p>
+        </div>
+        <div class="pl-sms__foot">
+          <span>Quiet hours enforced</span>
+          <span>Opt-outs automatic</span>
+          <span>10DLC registered</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── POSTCARDS ─────────────────────────────────────── -->
+<section class="section">
+  <div class="wrap grid-2">
+    <div class="grid-2__text">
+      <p class="eyebrow eyebrow--dark">Postcards</p>
+      <h2>Mail that fires on a signal, not a season.</h2>
+      <p class="lede">
+        Choose a trigger — a renewal window opening, a roof aging in, a storm passing through,
+        a listing going up nearby — and cards print and mail themselves. The waste in direct mail
+        was never the card; it was blasting a whole ZIP because it's Tuesday.
+      </p>
+      <ul class="ticks">
+        <li><strong>Triggered by the signal</strong> — renewal window, roof age, storm activity, new listing nearby</li>
+        <li><strong>No minimum drops</strong> — one card mails when one home is ready</li>
+        <li><strong>No design work</strong> — templates in your branding, ready the day you sign up</li>
+        <li><strong>79¢ a card</strong>, postage included — billed only for what mails</li>
+      </ul>
+    </div>
+
+    <!-- SAMPLE CONTENT — illustrative card for layout -->
+    <div class="grid-2__visual">
+      <div class="pl-post">
+        <p class="pl-post__trigger"><span>Trigger</span> Roof entering year 18 · ZIP 30204</p>
+        <div class="pl-post__card">
+          <div class="pl-post__front">
+            <p class="pl-post__brand">Ridgeline Roofing</p>
+            <p class="pl-post__head">Your roof was built in 2008.</p>
+            <p class="pl-post__body">Most roofs go 18–22 years. A 20-minute inspection now beats
+            a leak in February — and it's free for Maple Grove homes this month.</p>
+          </div>
+          <div class="pl-post__addr">
+            <span class="pl-post__stamp">First-class postage paid</span>
+            <p class="pl-post__to"><span>To</span>Dana M.<br>214 Birchwood Ln<br>Maple Grove</p>
+          </div>
+        </div>
+        <p class="pl-post__foot"><span>Printed &amp; mailed automatically</span><span>·</span><span>In the mailbox ~3 days after the trigger</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FACEBOOK RETARGETING ──────────────────────────── -->
+<section class="section section--paper">
+  <div class="wrap grid-2 grid-2--flip">
+    <div class="grid-2__text">
+      <p class="eyebrow eyebrow--dark">Facebook retargeting</p>
+      <h2>Be everywhere, the week it matters.</h2>
+      <p class="lede">
+        Sync any segment to Meta as a custom audience, refreshed continuously as homes enter
+        and leave their moment. Ads run from your own ad account — so the homeowner sees you
+        the same week the email or the card lands.
+      </p>
+      <ul class="ticks">
+        <li><strong>Segments sync as custom audiences</strong> and stay in step automatically</li>
+        <li><strong>Your ad account</strong> — your pixel, your spend, your account history</li>
+        <li><strong>Timed to the other channels</strong> — the ad follows the email and the card, same home, same week</li>
+        <li><strong>Free to sync</strong> — ad spend runs in your Meta account</li>
+      </ul>
+    </div>
+
+    <!-- SAMPLE CONTENT — illustrative ad for layout -->
+    <div class="grid-2__visual">
+      <div class="pl-ad">
+        <p class="pl-ad__sync"><i></i>Segment: Roofs entering year 18 · 4,318 people · synced 2h ago</p>
+        <div class="pl-ad__tile">
+          <div class="pl-ad__head">
+            <span class="pl-ad__avatar">RR</span>
+            <div>
+              <p class="pl-ad__page">Ridgeline Roofing</p>
+              <p class="pl-ad__sub">Sponsored</p>
+            </div>
+          </div>
+          <p class="pl-ad__text">If your roof went on before 2009, this is the year to have it looked at — before the small stuff becomes the expensive stuff.</p>
+          <div class="pl-ad__media">
+            <p>Your neighborhood's roofs are turning 18.</p>
+          </div>
+          <div class="pl-ad__foot">
+            <div>
+              <p class="pl-ad__domain">ridgelineroofing.com</p>
+              <p class="pl-ad__title">Free 20-minute roof check</p>
+            </div>
+            <span class="pl-ad__cta">Learn more</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BETTER TOGETHER ───────────────────────────────── -->
+<section class="section section--dark">
+  <div class="wrap">
+    <div class="sechead sechead--onDark">
+      <p class="eyebrow">Better together</p>
+      <h2>One home's week on Homefield.</h2>
+      <p class="lede">Channels don't compete — they compound. Here's how a single home experiences
+      the same moment, across four touches that all know what the others are doing.</p>
+    </div>
+
+    <ol class="pl-week">
+      <li class="pl-week__item reveal">
+        <span class="pl-week__day">Mon</span>
+        <h3>The email lands</h3>
+        <p>"Your policy renews in about six weeks." Personal, plain-text, in your name — timed to the signal.</p>
+      </li>
+      <li class="pl-week__item reveal">
+        <span class="pl-week__day">Wed</span>
+        <h3>The card arrives</h3>
+        <p>Same home, same signal. The print run was triggered the day the email went out.</p>
+      </li>
+      <li class="pl-week__item reveal">
+        <span class="pl-week__day">All week</span>
+        <h3>The ad follows</h3>
+        <p>Your name in their feed Tuesday, Thursday, Saturday — from your ad account, to that one segment.</p>
+      </li>
+      <li class="pl-week__item pl-week__item--reply reveal">
+        <span class="pl-week__day">Fri</span>
+        <h3>They reply</h3>
+        <p>Four touches in five days, every one fired at the moment — not blasted at everyone.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ── SELF-SERVE VS MANAGED ─────────────────────────── -->
+<section class="section">
+  <div class="wrap">
+    <div class="sechead sechead--center">
+      <p class="eyebrow eyebrow--dark">Which one is for you</p>
+      <h2>Run the software. Or let us run the flagship.</h2>
+      <p class="lede">Same signals engine underneath. The difference is who does the work — and whether the ground is yours alone.</p>
+    </div>
+
+    <div class="pl-vs">
+      <article class="pl-vs__card pl-vs__card--managed reveal">
+        <p class="pl-vs__label">Managed email — done for you</p>
+        <h3>We run it. You take the replies.</h3>
+        <p class="pl-vs__lede">Our flagship service: warmed domains in your name, personal sequences,
+        every reply read and graded. You're billed per qualified lead, at a rate quoted for your industry.</p>
+        <ul class="ticks ticks--light">
+          <li><strong>Territorial</strong> — one business per industry per ZIP, locked on signature</li>
+          <li><strong>Pay per qualified lead</strong> — rate quoted by industry, never for auto-replies or no-thanks</li>
+          <li><strong>~21 days to first lead</strong> — warmup and list build included</li>
+        </ul>
+        <a class="btn btn--primary" href="managed-email.html">See managed email</a>
+      </article>
+
+      <article class="pl-vs__card reveal">
+        <p class="pl-vs__label">The platform — self-serve</p>
+        <h3>You run it. Everywhere you like.</h3>
+        <p class="pl-vs__lede">Audiences, SMS follow-up, triggered postcards, and retargeting in your own
+        hands — no territory required, open to any business in any ZIP, including ones we manage email in.</p>
+        <ul class="ticks">
+          <li><strong>Not territorial</strong> — every ZIP open to every business</li>
+          <li><strong>$199/mo + usage</strong> — SMS 3¢/message, postcards 79¢ each incl. postage, retargeting free to sync</li>
+          <li><strong>Live the day you sign up</strong> — segments, templates, and 10DLC handled at onboarding</li>
+        </ul>
+        <a class="btn btn--outline" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Book a call</a>
+      </article>
+    </div>
+
+    <!-- SAMPLE PRICING — layout only -->
+    <p class="fineprint fineprint--center">
+      Sample pricing for layout — set your own rates before launch. Managed email is billed per
+      qualified lead at a rate quoted by industry; the two run together, and most managed clients
+      add the platform for follow-up.
+    </p>
+  </div>
+</section>
+
+<!-- ── CTA BAND ──────────────────────────────────────── -->
+<section class="section section--cta">
+  <div class="wrap">
+    <div class="ctaband">
+      <h2>See it on your ZIPs.</h2>
+      <p>Fifteen minutes. We'll pull your territory live, show you how many homes hit their moment there every month, and walk the platform on your own market.</p>
+      <div class="ctaband__actions">
+        <a class="btn btn--primary btn--lg" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Book a call</a>
+        <a class="btn btn--quiet btn--lg" href="managed-email.html">See managed email →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <div class="foot__brand">
+      <a class="brand brand--foot" href="index.html">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true">
+          <circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".35"/>
+          <path d="M9 8 H23 V17 L16 24 L9 17 Z" fill="currentColor"/>
+          <path d="M16 8 H23 V17 L16 24 Z" fill="currentColor" opacity=".45"/>
+        </svg>
+        <span class="brand__word">Homefield</span>
+      </a>
+      <p>The homeowner marketing platform — managed email, SMS, postcards and retargeting, timed to the moment.</p>
+    </div>
+    <nav class="foot__links" aria-label="Footer">
+      <div>
+        <h5>Product</h5>
+        <a href="managed-email.html">Managed email</a>
+        <a href="platform.html">Platform</a>
+        <a href="industries.html">Industries</a>
+        <a href="pricing.html">Pricing</a>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Book a call</a>
+      </div>
+      <div>
+        <h5>Legal</h5>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </nav>
+  </div>
+  <div class="wrap foot__bar">
+    <p>&copy; <span id="yr">2026</span> Homefield. All rights reserved.</p>
+    <p>Mailing address goes here · CAN-SPAM &amp; TCPA compliant</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

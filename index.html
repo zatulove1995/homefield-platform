@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Homefield — The homeowner marketing platform</title>
+<meta name="description" content="Homefield finds the homes that are ready — the policy about to renew, the roof hitting year 18, the equity that says it's time to sell — then reaches them by managed email, SMS, postcards and Facebook retargeting. Timed, not blasted.">
+<meta property="og:title" content="Homefield — The homeowner marketing platform">
+<meta property="og:description" content="Every homeowner, at their moment, on every channel — managed email done for you, plus self-serve SMS, postcards and Facebook retargeting on one signals engine.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=pf1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%230A0D14'/%3E%3Cpath d='M9 9h14v8.5L16 25l-7-7.5z' fill='%232E5BFF'/%3E%3C/svg%3E">
+<script>document.documentElement.className += ' js';</script>
+<style>
+  .hm-link{ font-weight:600; color:var(--accent); white-space:nowrap; }
+  .hm-link:hover{ color:var(--accent-ink); }
+  .hm-more{ margin-top:44px; text-align:center; font-size:16px; }
+
+  /* ── One service + one platform ── */
+  .hm-duo{ display:grid; grid-template-columns:1.1fr 1fr; gap:20px; align-items:stretch; }
+  .hm-duo__card{ display:flex; flex-direction:column; background:var(--paper); border:1px solid var(--line);
+    border-radius:var(--r-lg); padding:36px 34px; box-shadow:var(--shadow-sm); }
+  .hm-duo__card--feature{ border-color:var(--accent); box-shadow:0 0 0 1px var(--accent), var(--shadow); }
+  .hm-duo__kicker{ font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--muted); margin-bottom:14px; }
+  .hm-duo__card--feature .hm-duo__kicker{ color:var(--accent-ink); }
+  .hm-duo__card h3{ font-size:23px; margin-bottom:12px; }
+  .hm-duo__card > p{ font-size:15.5px; color:var(--muted); line-height:1.65; margin-bottom:20px; }
+  .hm-duo .ticks{ margin-bottom:24px; }
+  .hm-duo .ticks li{ font-size:14.5px; }
+  .hm-duo__price{ font-family:var(--mono); font-size:12.5px; letter-spacing:.03em; color:var(--muted);
+    padding-top:16px; border-top:1px solid var(--line); margin-bottom:14px; }
+  .hm-duo__card--feature .hm-duo__price{ color:var(--accent-ink); }
+  .hm-duo__link{ margin-top:auto; font-size:15px; }
+
+  /* ── Signals engine ── */
+  .hm-sig{ grid-template-columns:repeat(4,1fr); gap:16px; }
+  .hm-sig .step h3{ font-size:18px; }
+  .hm-sig .step p{ font-size:14px; }
+
+  /* ── Channels that stack ── */
+  .hm-chan{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .hm-chan__tile{ display:flex; flex-direction:column; background:var(--paper); border:1px solid var(--line);
+    border-radius:var(--r-lg); box-shadow:var(--shadow-sm); overflow:hidden; }
+  .hm-chan__mock{ flex:1; display:flex; flex-direction:column; justify-content:center; min-height:210px;
+    padding:24px; background:var(--paper-2); border-bottom:1px solid var(--line); }
+  .hm-chan__cap{ padding:18px 22px 20px; }
+  .hm-chan__cap h3{ font-size:16.5px; margin-bottom:5px; }
+  .hm-chan__cap p{ font-size:13.5px; color:var(--muted); line-height:1.55; }
+
+  .hm-sms{ display:flex; flex-direction:column; gap:8px; }
+  .hm-sms__from{ font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--muted); text-align:center; margin-bottom:6px; }
+  .hm-sms__b{ max-width:88%; padding:9px 13px; border-radius:16px; font-size:13px; line-height:1.45; }
+  .hm-sms__b--out{ align-self:flex-end; background:var(--accent); color:#fff; border-bottom-right-radius:5px; }
+  .hm-sms__b--in{ align-self:flex-start; background:var(--paper-3); color:var(--ink); border-bottom-left-radius:5px; }
+
+  .hm-post{ position:relative; background:var(--paper); border:1px solid var(--line); border-radius:var(--r-sm);
+    padding:18px 18px 16px; box-shadow:var(--shadow-sm); }
+  .hm-post__stamp{ position:absolute; top:12px; right:12px; width:34px; height:40px;
+    border:1px dashed var(--muted-dark); border-radius:3px; display:flex; align-items:center; justify-content:center;
+    font-family:var(--mono); font-size:9.5px; color:var(--muted); }
+  .hm-post__head{ font-family:var(--serif); font-size:17.5px; line-height:1.3; letter-spacing:-.01em;
+    max-width:82%; margin-bottom:14px; }
+  .hm-post__addr{ font-family:var(--mono); font-size:10.5px; line-height:1.7; color:var(--muted); }
+  .hm-post__sign{ margin-top:10px; font-size:12px; font-weight:600; color:var(--accent-ink); }
+
+  .hm-ad{ background:var(--paper); border:1px solid var(--line); border-radius:var(--r-sm); overflow:hidden;
+    box-shadow:var(--shadow-sm); }
+  .hm-ad__top{ display:flex; align-items:center; gap:9px; padding:11px 13px 9px; }
+  .hm-ad__av{ width:26px; height:26px; border-radius:50%; background:var(--accent-soft); color:var(--accent-ink);
+    display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; flex-shrink:0; }
+  .hm-ad__who{ font-size:12px; font-weight:600; line-height:1.3; }
+  .hm-ad__who span{ display:block; font-size:10.5px; font-weight:400; color:var(--muted); }
+  .hm-ad__txt{ padding:0 13px 11px; font-size:12px; line-height:1.5; color:var(--muted); }
+  .hm-ad__img{ height:62px; background:var(--accent-soft); display:flex; align-items:center; justify-content:center; }
+  .hm-ad__img svg{ width:30px; height:30px; color:var(--accent); opacity:.4; }
+  .hm-ad__bar{ display:flex; justify-content:space-between; align-items:center; gap:10px; padding:9px 13px;
+    border-top:1px solid var(--line); font-size:11px; color:var(--muted); }
+  .hm-ad__cta{ font-size:10.5px; font-weight:600; color:var(--ink); background:var(--paper-3);
+    padding:5px 11px; border-radius:6px; white-space:nowrap; }
+
+  /* ── Email mockup ── */
+  .hm-mail{ max-width:640px; margin:0 auto; background:var(--paper); border:1px solid var(--line); border-radius:var(--r-lg); box-shadow:var(--shadow-sm); overflow:hidden; }
+  .hm-mail__bar{ display:flex; align-items:center; gap:6px; padding:12px 18px; background:var(--paper-2); border-bottom:1px solid var(--line); }
+  .hm-mail__tag{ margin-left:auto; font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
+  .hm-mail__meta{ padding:16px 22px; border-bottom:1px solid var(--line); display:grid; gap:6px; }
+  .hm-mail__meta p{ font-size:13.5px; display:grid; grid-template-columns:64px 1fr; gap:10px; align-items:baseline; }
+  .hm-mail__meta span{ color:var(--muted-dark); font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:.04em; }
+  .hm-mail__body{ padding:20px 22px; }
+  .hm-mail__body p{ font-size:14.5px; line-height:1.65; margin-bottom:12px; }
+  .hm-mail__body p:last-child{ margin-bottom:0; }
+  .hm-mail__reply{ margin:0 22px 20px; background:var(--accent-soft); border-radius:var(--r); padding:14px 16px; }
+  .hm-mail__replylabel{ font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:6px; }
+  .hm-mail__reply p:last-child{ font-size:14.5px; font-style:italic; line-height:1.55; }
+  .hm-mail__foot{ display:flex; align-items:center; gap:10px; padding:14px 22px; border-top:1px solid var(--line); background:var(--paper-2); font-size:13px; color:var(--muted); flex-wrap:wrap; }
+
+  /* ── Timed vs blasted (bar panel) ── */
+  .hm-cost{ border:1px solid var(--line); border-radius:var(--r-lg); background:var(--paper); overflow:hidden; box-shadow:var(--shadow-sm); }
+  .hm-cost__head{ display:flex; justify-content:space-between; align-items:center; gap:16px; padding:13px 28px; background:var(--paper-2); border-bottom:1px solid var(--line); }
+  .hm-cost__title{ font-family:var(--mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:500; }
+  .hm-cost__stamp{ font-family:var(--mono); font-size:11.5px; letter-spacing:.04em; color:var(--muted); }
+  .hm-cost__row{ display:grid; grid-template-columns:215px 1fr 110px 122px; gap:22px; align-items:center; padding:20px 28px; border-bottom:1px solid var(--line); }
+  .hm-cost__row:last-child{ border-bottom:none; }
+  .hm-cost__who{ font-weight:600; font-size:15px; }
+  .hm-cost__who span{ display:block; font-size:13px; color:var(--muted); font-weight:400; margin-top:2px; }
+  .hm-cost__bar{ height:8px; border-radius:99px; background:var(--paper-3); overflow:hidden; }
+  .hm-cost__bar i{ display:block; height:100%; border-radius:99px; background:var(--ink-3); }
+  .hm-cost__num{ text-align:right; font-family:var(--mono); font-size:13.5px; font-weight:500; white-space:nowrap; }
+  .hm-cost__x{ justify-self:end; font-family:var(--mono); font-size:10.5px; letter-spacing:.03em; white-space:nowrap;
+    color:var(--muted); background:var(--paper-3); padding:4px 10px; border-radius:99px; }
+  .hm-cost__x--win{ color:var(--accent-ink); background:#fff; border:1px solid var(--accent); font-weight:500; }
+  .hm-cost__row--win{ background:var(--accent-soft); }
+  .hm-cost__row--win .hm-cost__bar i{ background:var(--accent); }
+  .hm-cost__row--win .hm-cost__num{ color:var(--accent-ink); font-weight:700; }
+
+  /* ── Industries teaser ── */
+  .hm-ind{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+  .hm-ind__card{ display:flex; flex-direction:column; background:var(--paper); border:1px solid var(--line);
+    border-radius:var(--r); padding:26px 24px; box-shadow:var(--shadow-sm); transition:box-shadow .2s, transform .2s; }
+  .hm-ind__card:hover{ box-shadow:var(--shadow); transform:translateY(-2px); }
+  .hm-ind__card h3{ font-size:17px; margin-bottom:7px; }
+  .hm-ind__card p{ font-size:13.5px; color:var(--muted); line-height:1.55; margin-bottom:16px; }
+  .hm-ind__card span{ margin-top:auto; font-size:13.5px; font-weight:600; color:var(--accent); }
+  .hm-ind__card:hover span{ color:var(--accent-ink); }
+
+  @media(max-width:960px){
+    .hm-duo{ grid-template-columns:1fr; }
+    .hm-sig{ grid-template-columns:1fr 1fr; }
+    .hm-chan{ grid-template-columns:1fr; max-width:520px; margin:0 auto; }
+    .hm-chan__mock{ min-height:0; padding:22px; }
+    .hm-ind{ grid-template-columns:1fr 1fr; }
+  }
+  @media(max-width:640px){
+    .hm-sig{ grid-template-columns:1fr; }
+    .hm-ind{ grid-template-columns:1fr; }
+    .hm-duo__card{ padding:28px 24px; }
+  }
+  @media(max-width:820px){
+    .hm-cost__row{ grid-template-columns:1fr auto auto; row-gap:12px; padding:16px 20px; }
+    .hm-cost__bar{ grid-column:1 / -1; grid-row:2; }
+    .hm-cost__head{ padding:11px 20px; }
+    .hm-cost__stamp{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="index.html" aria-label="Homefield home">
+      <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".35"/>
+        <path d="M9 8 H23 V17 L16 24 L9 17 Z" fill="currentColor"/>
+        <path d="M16 8 H23 V17 L16 24 Z" fill="currentColor" opacity=".45"/>
+      </svg>
+      <span class="brand__word">Homefield</span>
+    </a>
+
+    <nav class="nav__links" aria-label="Primary">
+      <a href="managed-email.html">Managed email</a>
+      <a href="platform.html">Platform</a>
+      <a href="industries.html">Industries</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="faq.html">FAQ</a>
+    </nav>
+
+    <div class="nav__cta">
+      <a class="btn btn--ghost btn--sm" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Book a call</a>
+    </div>
+
+    <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+      <span></span><span></span>
+    </button>
+  </div>
+  <div class="mobilenav" id="mobileNav" hidden>
+    <a href="managed-email.html">Managed email</a>
+    <a href="platform.html">Platform</a>
+    <a href="industries.html">Industries</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="faq.html">FAQ</a>
+    <a class="btn btn--primary" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Book a call</a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ── HERO ──────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero__glow" aria-hidden="true"></div>
+  <div class="wrap hero__inner">
+    <p class="eyebrow reveal">The homeowner marketing platform</p>
+    <h1 class="hero__h1 reveal">
+      Every homeowner, at their moment.<br>
+      <em>On every channel.</em>
+    </h1>
+    <p class="hero__sub reveal">
+      Homefield finds the homes that are ready — the policy about to renew, the roof hitting
+      year 18, the equity that says it's time to sell — then reaches them by managed email,
+      SMS, postcards and Facebook retargeting. <strong>Timed, not blasted.</strong>
+    </p>
+    <div class="hero__actions reveal">
+      <a class="btn btn--primary btn--lg" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Book a call</a>
+      <a class="btn btn--quiet btn--lg" href="platform.html">See the platform →</a>
+    </div>
+    <p class="hero__note reveal"><strong>Managed email</strong> done for you · <strong>SMS, postcards &amp; retargeting</strong> self-serve</p>
+
+    <ul class="hero__strip reveal" aria-label="At a glance">
+      <li><span>275M+</span> homeowner records scored for the moment</li>
+      <li><span>4</span> channels, one signals engine</li>
+      <li><span>~21 days</span> to first managed-email lead</li>
+      <li><span>1</span> business per industry per ZIP (managed email)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ── ONE SERVICE + ONE PLATFORM ────────────────────── -->
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="sechead sechead--center">
+      <p class="eyebrow eyebrow--dark">One service, one platform</p>
+      <h2>One service, done for you. <em>One platform, self-serve.</em></h2>
+      <p class="lede">
+        Managed Email is the flagship — we run it, you take the replies. The Platform puts
+        the same signals engine behind three more channels you drive yourself.
+      </p>
+    </div>
+
+    <div class="hm-duo">
+      <div class="hm-duo__card hm-duo__card--feature">
+        <p class="hm-duo__kicker">Done for you · Flagship</p>
+        <h3>Managed Email</h3>
+        <p>
+          We run warmed-domain campaigns in your business's name — personal three-email
+          sequences, timed to each home's signal — read every reply, and hand you the ones
+          asking for a quote, an estimate, a valuation or an offer.
+        </p>
+        <ul class="ticks">
+          <li><strong>Billed per qualified lead</strong> — rate quoted by industry</li>
+          <li><strong>ZIP-locked</strong> — one business per industry per ZIP, never resold</li>
+          <li><strong>~21 days</strong> to first lead — replies yours forever</li>
+        </ul>
+        <p class="hm-duo__price">Per qualified lead · rate by industry</p>
+        <p class="hm-duo__link"><a class="hm-link" href="managed-email.html">How managed email works →</a></p>
+      </div>
+
+      <div class="hm-duo__card">
+        <p class="hm-duo__kicker">Self-serve software</p>
+        <h3>The Platform</h3>
+        <p>
+          The same signals engine, driving three more channels you run yourself — SMS
+          follow-up, triggered postcards and Facebook retargeting — from one dashboard.
+        </p>
+        <ul class="ticks">
+          <li><strong>SMS</strong> — consent-aware follow-up sequences, two-way inbox</li>
+          <li><strong>Postcards</strong> — a signal fires, a card prints and mails</li>
+          <li><strong>Retargeting</strong> — homeowner segments synced to Meta</li>
+        </ul>
+        <!-- SAMPLE PRICING — set real rates before launch -->
+        <p class="hm-duo__price">$199/mo + usage</p>
+        <p class="hm-duo__link"><a class="hm-link" href="platform.html">Explore the platform →</a></p>
+      </div>
+    </div>
+
+    <p class="fineprint fineprint--center">
+      Platform pricing shown is sample pricing for layout — set your own rates before launch.
+      Managed Email is quoted per qualified lead, by industry.
+    </p>
+  </div>
+</section>
+
+<!-- ── THE SIGNALS ENGINE ────────────────────────────── -->
+<section class="section section--tight section--paper">
+  <div class="wrap">
+    <div class="sechead sechead--center">
+      <p class="eyebrow eyebrow--dark">The signals engine</p>
+      <h2>275M+ homes, scored for <em>the moment.</em></h2>
+      <p class="lede">
+        Every channel fires off the same four signals — so a home hears from you when it's
+        ready, not when a list vendor sold its address.
+      </p>
+    </div>
+
+    <ul class="steps hm-sig">
+      <li class="step">
+        <p class="step__n">01</p>
+        <h3>Renewal window</h3>
+        <p>Modeled from closing anniversaries — most policies bind at purchase, so the renewal window is a date we can see coming.</p>
+      </li>
+      <li class="step">
+        <p class="step__n">02</p>
+        <h3>Roof &amp; system age</h3>
+        <p>Build year plus permit history — roofs past year 18 and HVAC past year 12, flagged before the breakdown call.</p>
+      </li>
+      <li class="step">
+        <p class="step__n">03</p>
+        <h3>Equity &amp; tenure</h3>
+        <p>Years in the home and equity accrued — the two numbers that precede almost every listing.</p>
+      </li>
+      <li class="step">
+        <p class="step__n">04</p>
+        <h3>Storm activity</h3>
+        <p>Hail and wind events mapped to rooftops, matched to homes old enough to have real damage.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ── THE EMAIL ─────────────────────────────────────── -->
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="sechead sechead--center">
+      <p class="eyebrow eyebrow--dark">Managed email</p>
+      <h2>The flagship: one email, <em>at exactly the right moment.</em></h2>
+      <p class="lede">
+        This one's an insurance agency. A roofer's says 'your roof is coming up on year 18';
+        an investor's says 'we buy houses on your street as-is.' Same machine, different moment.
+      </p>
+    </div>
+
+    <!-- SAMPLE CONTENT — replace with a real, permissioned thread before launch -->
+    <div class="hm-mail">
+      <div class="hm-mail__bar">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="hm-mail__tag">Sent in your business's name</span>
+      </div>
+      <div class="hm-mail__meta">
+        <p><span>From</span> Sarah Whitman · Whitman Insurance Group</p>
+        <p><span>To</span> Homeowner on Birchwood Ln</p>
+        <p><span>Subject</span> Your home policy renews in about six weeks</p>
+      </div>
+      <div class="hm-mail__body">
+        <p>Hi Dana — quick note from a local agency. Your homeowner's policy looks like it comes
+        up for renewal around late September, and most policies renew automatically at a higher
+        rate unless someone checks.</p>
+        <p>If you'd like, I can run a quick comparison before yours locks in — it takes about
+        ten minutes, and there's no obligation either way.</p>
+      </div>
+      <div class="hm-mail__reply">
+        <p class="hm-mail__replylabel">The homeowner replies</p>
+        <p>"We just got the renewal notice and it's up again. What would you need from us
+        to see if you can do better?"</p>
+      </div>
+      <div class="hm-mail__foot">
+        <span class="pill pill--good">Qualified lead</span>
+        <span>Delivered to your inbox, Slack &amp; CRM — minutes later</span>
+      </div>
+    </div>
+
+    <p class="hm-more"><a class="hm-link" href="managed-email.html">How managed email works →</a></p>
+  </div>
+</section>
+
+<!-- ── CHANNELS THAT STACK ───────────────────────────── -->
+<section class="section section--tight section--paper">
+  <div class="wrap">
+    <div class="sechead sechead--center">
+      <p class="eyebrow eyebrow--dark">Channels that stack</p>
+      <h2>The email lands, the card arrives, <em>the ad follows.</em></h2>
+      <p class="lede">
+        Same home, same week. Each channel makes the others convert better — and every channel,
+        managed email included, runs from one dashboard: one calendar, one budget, one strategy.
+      </p>
+    </div>
+
+    <!-- SAMPLE CONTENT — mockups use a fictional business; replace copy before launch -->
+    <div class="hm-chan">
+      <div class="hm-chan__tile">
+        <div class="hm-chan__mock" role="img" aria-label="Sample SMS follow-up thread between a roofing business and a homeowner">
+          <div class="hm-sms">
+            <p class="hm-sms__from">Ridgeline Roofing · SMS</p>
+            <p class="hm-sms__b hm-sms__b--out">Thanks for getting back to us about the roof — want us to swing by Thursday?</p>
+            <p class="hm-sms__b hm-sms__b--in">Thursday works. Morning if you can.</p>
+          </div>
+        </div>
+        <div class="hm-chan__cap">
+          <h3>SMS</h3>
+          <p>Consent-aware follow-up texting — for homeowners who replied or opted in.</p>
+        </div>
+      </div>
+
+      <div class="hm-chan__tile">
+        <div class="hm-chan__mock" role="img" aria-label="Sample postcard front addressed to a homeowner">
+          <div class="hm-post">
+            <span class="hm-post__stamp">◈</span>
+            <p class="hm-post__head">Your neighbors on Maple Ave just replaced their roof…</p>
+            <p class="hm-post__addr">The Nguyen household<br>214 Maple Ave</p>
+            <p class="hm-post__sign">— Ridgeline Roofing</p>
+          </div>
+        </div>
+        <div class="hm-chan__cap">
+          <h3>Postcards</h3>
+          <p>Triggered mail — a signal fires, a card prints. No minimum drops.</p>
+        </div>
+      </div>
+
+      <div class="hm-chan__tile">
+        <div class="hm-chan__mock" role="img" aria-label="Sample sponsored social post from the same roofing business">
+          <div class="hm-ad">
+            <div class="hm-ad__top">
+              <span class="hm-ad__av">R</span>
+              <p class="hm-ad__who">Ridgeline Roofing<span>Sponsored</span></p>
+            </div>
+            <p class="hm-ad__txt">Storm season's coming — free roof checkups on Maple Ave this month.</p>
+            <div class="hm-ad__img">
+              <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M9 8 H23 V17 L16 24 L9 17 Z" fill="currentColor"/></svg>
+            </div>
+            <div class="hm-ad__bar">
+              <span>ridgelineroofing.com</span>
+              <span class="hm-ad__cta">Learn more</span>
+            </div>
+          </div>
+        </div>
+        <div class="hm-chan__cap">
+          <h3>Facebook retargeting</h3>
+          <p>Your homeowner segments, synced to Meta as custom audiences.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TIMED VS BLASTED ──────────────────────────────── -->
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="sechead">
+      <p class="eyebrow eyebrow--dark">Timed vs. blasted</p>
+      <h2>Most of any blast is wasted. <em>The moment isn't.</em></h2>
+      <p class="lede">
+        In a typical 5,000-home territory, roughly 400 homes enter their moment in a given
+        quarter. Blasting the other 4,600 isn't marketing — it's spend.
+      </p>
+    </div>
+
+    <!-- SAMPLE FIGURES — illustrative math, see fineprint -->
+    <div class="hm-cost">
+      <div class="hm-cost__head">
+        <span class="hm-cost__title">Reaching 5,000 homes when only 400 are in their moment</span>
+        <span class="hm-cost__stamp">Sample quarter · one territory</span>
+      </div>
+      <div class="hm-cost__row">
+        <div class="hm-cost__who">Blast mail to all 5,000<span>Every home gets a card, ready or not</span></div>
+        <div class="hm-cost__bar"><i style="width:100%"></i></div>
+        <span class="hm-cost__num">$3,950</span>
+        <span class="hm-cost__x">wasted on 92%</span>
+      </div>
+      <div class="hm-cost__row">
+        <div class="hm-cost__who">Blast email to all 5,000<span>One template, one send, whole list</span></div>
+        <div class="hm-cost__bar"><i style="width:53%"></i></div>
+        <span class="hm-cost__num">~0.2% reply</span>
+        <span class="hm-cost__x">wasted on 92%</span>
+      </div>
+      <div class="hm-cost__row hm-cost__row--win">
+        <div class="hm-cost__who">Homefield<span>The 400 in their moment — on every channel</span></div>
+        <div class="hm-cost__bar"><i style="width:8%"></i></div>
+        <span class="hm-cost__num">$316 in cards</span>
+        <span class="hm-cost__x hm-cost__x--win">your cost</span>
+      </div>
+    </div>
+
+    <p class="fineprint">
+      Sample figures: 400 ≈ homes entering their moment in a typical 5,000-home territory in a quarter —
+      renewal windows opening, roofs aging in, equity crossing the line. Card math at 79¢ per postcard,
+      postage included: 5,000 × 79¢ vs 400 × 79¢. The ~0.2% reply is a commonly cited rate for untargeted
+      cold email. <a class="hm-link" href="pricing.html">See pricing →</a>
+    </p>
+  </div>
+</section>
+
+<!-- ── INDUSTRIES TEASER ─────────────────────────────── -->
+<section class="section section--tight section--paper">
+  <div class="wrap">
+    <div class="sechead sechead--center">
+      <p class="eyebrow eyebrow--dark">Industries</p>
+      <h2>Four industries. <em>One machine.</em></h2>
+      <p class="lede">Same signals engine, different moment.</p>
+    </div>
+
+    <div class="hm-ind">
+      <a class="hm-ind__card" href="industries.html">
+        <h3>Home services</h3>
+        <p>Roof at year 18, HVAC at year 12 — reach them before the breakdown call.</p>
+        <span>For home services →</span>
+      </a>
+      <a class="hm-ind__card" href="industries.html">
+        <h3>Home insurance</h3>
+        <p>The renewal window opens six weeks out. Your quote gets there first.</p>
+        <span>For insurance →</span>
+      </a>
+      <a class="hm-ind__card" href="industries.html">
+        <h3>Real estate agents</h3>
+        <p>Equity and tenure that say it's time to list — before they pick an agent.</p>
+        <span>For agents →</span>
+      </a>
+      <a class="hm-ind__card" href="industries.html">
+        <h3>Real estate investors</h3>
+        <p>Long-tenure, high-equity owners who'd take a fair offer over a listing.</p>
+        <span>For investors →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ TEASER ────────────────────────────────────── -->
+<section class="section">
+  <div class="wrap wrap--narrow">
+    <div class="sechead sechead--center">
+      <p class="eyebrow eyebrow--dark">FAQ</p>
+      <h2>Straight answers</h2>
+    </div>
+
+    <div class="faq">
+      <details class="faq__item">
+        <summary>What's managed and what's self-serve?</summary>
+        <div class="faq__a"><p>Managed Email is done for you: we run warmed-domain campaigns in your business's name, read every reply, and deliver qualified leads — billed per qualified lead, rate quoted by industry, one business per industry per ZIP. The Platform is self-serve: the same signals engine driving SMS follow-up, triggered postcards and Facebook retargeting from one dashboard, open to any business.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary>Do I need all four channels?</summary>
+        <div class="faq__a"><p>No. Most businesses start with one — usually managed email — and add channels as the moment proves out. They stack: the email lands, the card arrives, the ad follows, same home, same week, so each channel makes the others convert better.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary>Is the SMS compliant?</summary>
+        <div class="faq__a"><p>Yes — because it's consent-based follow-up, not cold texting. Sequences only go to homeowners who replied or opted in, every message honors opt-outs automatically, and 10DLC registration is handled for you.</p></div>
+      </details>
+    </div>
+
+    <p class="hm-more"><a class="hm-link" href="faq.html">All questions →</a></p>
+  </div>
+</section>
+
+<!-- ── CTA BAND ──────────────────────────────────────── -->
+<section class="section section--cta">
+  <div class="wrap">
+    <div class="ctaband">
+      <h2>See it on your ZIPs.</h2>
+      <p>Fifteen minutes. We'll pull your territory live, show you how many homes hit their moment there every month, and walk the platform on your own market.</p>
+      <div class="ctaband__actions">
+        <a class="btn btn--primary btn--lg" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Book a call</a>
+        <a class="btn btn--quiet btn--lg" href="platform.html">See the platform →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <div class="foot__brand">
+      <a class="brand brand--foot" href="index.html">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true">
+          <circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".35"/>
+          <path d="M9 8 H23 V17 L16 24 L9 17 Z" fill="currentColor"/>
+          <path d="M16 8 H23 V17 L16 24 Z" fill="currentColor" opacity=".45"/>
+        </svg>
+        <span class="brand__word">Homefield</span>
+      </a>
+      <p>The homeowner marketing platform — managed email, SMS, postcards and retargeting, timed to the moment.</p>
+    </div>
+    <nav class="foot__links" aria-label="Footer">
+      <div>
+        <h5>Product</h5>
+        <a href="managed-email.html">Managed email</a>
+        <a href="platform.html">Platform</a>
+        <a href="industries.html">Industries</a>
+        <a href="pricing.html">Pricing</a>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Book a call</a>
+      </div>
+      <div>
+        <h5>Legal</h5>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </nav>
+  </div>
+  <div class="wrap foot__bar">
+    <p>&copy; <span id="yr">2026</span> Homefield. All rights reserved.</p>
+    <p>Mailing address goes here · CAN-SPAM &amp; TCPA compliant</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
