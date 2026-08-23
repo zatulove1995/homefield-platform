@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=pf5">
+<link rel="stylesheet" href="styles.css?v=pf7">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%230A0D14'/%3E%3Cpath d='M9 9h14v8.5L16 25l-7-7.5z' fill='%232E5BFF'/%3E%3C/svg%3E">
 <script>document.documentElement.className += ' js';</script>
 <style>
@@ -137,7 +137,8 @@
     </nav>
 
     <div class="nav__cta">
-      <a class="btn btn--ghost btn--sm" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Get a demo</a>
+      <a class="signin" href="#">Sign in</a>
+      <a class="btn btn--primary btn--sm" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Get a demo</a>
     </div>
 
     <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
@@ -161,7 +162,6 @@
 
 <!-- ── HERO ──────────────────────────────────────────── -->
 <section class="hero hero--page">
-  <div class="hero__glow" aria-hidden="true"></div>
   <div class="wrap hero__inner">
     <p class="eyebrow reveal">Meta retargeting</p>
     <h1 class="hero__h1 reveal">Be everywhere,<br><em>the week it matters.</em></h1>
@@ -191,6 +191,8 @@
           <div class="rt-sync__bar">
             <span class="dot"></span><span class="dot"></span><span class="dot"></span>
             <span class="rt-sync__tag">Audience sync</span>
+            <!-- SAMPLE FIGURE — layout only -->
+            <span class="statchip">synced daily · 412 homes</span>
           </div>
           <div class="rt-sync__body">
             <p class="rt-sync__label">Segment</p>
@@ -252,36 +254,42 @@
 
     <div class="rt-feats">
       <article class="rt-feat reveal">
+        <div class="icn" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/></svg></div>
         <p class="rt-feat__k">Segments</p>
         <h3>Built from your filters</h3>
         <p>The same audience builder that drives your texts and cards — ZIP, home value, roof and
         system age, tenure, equity — synced straight to Meta. No exports, no uploads.</p>
       </article>
       <article class="rt-feat reveal">
+        <div class="icn" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-2 2"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l2-2"/></svg></div>
         <p class="rt-feat__k">Always current</p>
         <h3>Synced &amp; refreshed automatically</h3>
         <p>Homes join the audience the day they enter their moment and the sync runs daily. The
         audience in Ads Manager is never a stale copy of last month's list.</p>
       </article>
       <article class="rt-feat reveal">
+        <div class="icn" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 5 3.5 8.5 7 10 3.5-1.5 7-5 7-10V6l-7-3z"/><path d="m9 12 2 2 4-4"/></svg></div>
         <p class="rt-feat__k">Your account</p>
         <h3>Runs in your ad account</h3>
         <p>Your business page, your pixel, your spend, your account history. Homefield maintains
         the audience inside your account and never touches the budget.</p>
       </article>
       <article class="rt-feat reveal">
+        <div class="icn" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
         <p class="rt-feat__k">Timing</p>
         <h3>Pairs with email and mail</h3>
         <p>The audience mirrors the homes your other channels touch this week — so the ad shows up
         in the feed while the email sits in the inbox and the card sits on the counter.</p>
       </article>
       <article class="rt-feat reveal">
+        <div class="icn" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12h4l2-7 4 14 2-7h6"/></svg></div>
         <p class="rt-feat__k">Frequency-safe</p>
         <h3>Homes leave when the moment passes</h3>
         <p>Renewal closed, roof replaced, home sold — the home drops out of the audience
         automatically. Nobody sees your ad for months on end.</p>
       </article>
       <article class="rt-feat reveal">
+        <div class="icn" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/></svg></div>
         <p class="rt-feat__k">Journeys</p>
         <h3>A step in any journey</h3>
         <p>"Add to Meta audience" is a journey action like any other. Drop it after any email,

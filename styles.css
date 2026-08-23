@@ -48,7 +48,7 @@ body{
 
 img{ max-width:100%; display:block; }
 
-h1,h2,h3,h4{ margin:0; line-height:1.1; letter-spacing:-.02em; font-weight:600; }
+h1,h2,h3,h4{ margin:0; line-height:1.08; letter-spacing:-.03em; font-weight:800; }
 p{ margin:0; }
 ul,ol{ margin:0; padding:0; list-style:none; }
 a{ color:inherit; text-decoration:none; }
@@ -130,11 +130,11 @@ a{ color:inherit; text-decoration:none; }
 
 .nav{
   position:sticky; top:0; z-index:100;
-  background:rgba(10,13,20,.72);
+  background:rgba(255,255,255,.85);
   backdrop-filter:saturate(180%) blur(14px);
   -webkit-backdrop-filter:saturate(180%) blur(14px);
-  border-bottom:1px solid rgba(255,255,255,.08);
-  color:#fff;
+  border-bottom:1px solid var(--line);
+  color:var(--ink);
   transition:background .25s ease, border-color .25s ease, color .25s ease;
 }
 .nav.is-solid{
@@ -202,11 +202,11 @@ a{ color:inherit; text-decoration:none; }
 .hero__inner{ position:relative; max-width:900px; }
 
 .hero__h1{
-  font-family:var(--serif); font-weight:400;
+  font-family:var(--sans); font-weight:800;
   font-size:clamp(44px,7vw,80px); line-height:1.02; letter-spacing:-.025em;
   margin-bottom:26px;
 }
-.hero__h1 em{ font-style:italic; color:#B9C6FF; }
+.hero__h1 em{ font-family:var(--serif); font-style:italic; font-weight:400; color:var(--accent); letter-spacing:-.01em; }
 
 .hero__sub{ font-size:clamp(17px,2vw,20px); color:var(--muted-dark); max-width:610px; margin-bottom:36px; }
 
@@ -471,7 +471,7 @@ a{ color:inherit; text-decoration:none; }
 
 .section--cta{ background:var(--ink); color:#fff; }
 .cta{ display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start; }
-.cta h2{ font-family:var(--serif); font-weight:400; font-size:clamp(30px,4vw,44px); margin-bottom:16px; letter-spacing:-.02em; }
+.cta h2{ font-family:var(--sans); font-weight:800; font-size:clamp(30px,4vw,44px); margin-bottom:16px; letter-spacing:-.02em; }
 .cta__text > p{ color:var(--muted-dark); font-size:17px; margin-bottom:26px; }
 
 .form{
@@ -579,7 +579,7 @@ a{ color:inherit; text-decoration:none; }
 .hero--page .hero__sub{ margin-bottom:8px; }
 
 .ctaband{ text-align:center; max-width:660px; margin:0 auto; }
-.ctaband h2{ font-family:var(--serif); font-weight:400; font-size:clamp(30px,4vw,44px); margin-bottom:14px; letter-spacing:-.02em; }
+.ctaband h2{ font-family:var(--sans); font-weight:800; font-size:clamp(30px,4vw,44px); margin-bottom:14px; letter-spacing:-.02em; }
 .ctaband p{ color:var(--muted-dark); font-size:17px; margin-bottom:28px; }
 .ctaband__actions{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
 
@@ -649,3 +649,59 @@ a{ color:inherit; text-decoration:none; }
 .flow__lane .flow__node + .flow__node{ margin-top:26px; }
 .flow__lane .flow__node + .flow__node::before{ top:-27px; height:26px; }
 @media(max-width:640px){ .flow__branch{ grid-template-columns:1fr; } .flow__branch::before{ display:none; } }
+
+/* ============ SaaS skin pass ============ */
+h2 em, .big em, .ctaband h2 em{ font-family:var(--serif); font-style:italic; font-weight:400; letter-spacing:-.01em; }
+.section h2 em{ color:var(--accent); }
+.section--dark h2 em, .section--cta h2 em, .big em{ color:#B9C6FF; }
+
+/* light nav overrides (nav is permanently 'solid' now) */
+.nav .brand{ color:var(--ink); }
+.nav .brand__mark{ color:var(--accent); }
+.nav__links a{ color:var(--muted); }
+.nav__links a:hover, .nav__links a.is-current{ color:var(--ink); }
+.nav__ddbtn{ color:var(--muted); }
+.nav__dd:hover .nav__ddbtn, .nav__dd:focus-within .nav__ddbtn{ color:var(--ink); }
+.nav__toggle span{ background:var(--ink); }
+.nav .btn--ghost{ border-color:var(--line); color:var(--ink); }
+.nav .btn--ghost:hover{ background:var(--paper-2); }
+.nav .signin{ font-size:14.5px; font-weight:500; color:var(--muted); margin-right:14px; }
+.nav .signin:hover{ color:var(--ink); }
+.mobilenav{ background:var(--paper); color:var(--ink); border-top:1px solid var(--line); }
+.mobilenav a{ color:var(--ink); }
+
+/* ── 3. Light hero ── */
+.hero{ background:
+    radial-gradient(70% 60% at 15% 0%, rgba(46,91,255,.10), transparent 60%),
+    radial-gradient(55% 50% at 90% 10%, rgba(15,179,155,.07), transparent 60%),
+    var(--paper); color:var(--ink); }
+.hero .hero__glow{ display:none; }
+.hero__sub{ color:var(--muted); }
+.hero__note{ color:var(--muted); }
+.hero__note strong{ color:var(--ink); }
+.hero__sub strong{ color:var(--ink); }
+.hero .eyebrow{ color:var(--accent); }
+.hero__strip{ border-top:1px solid var(--line); }
+.hero__strip li, .hero__strip div{ color:var(--muted); }
+.hero__strip span{ color:var(--ink); font-family:var(--sans); font-weight:800; letter-spacing:-.02em; }
+.hero .btn--quiet{ color:var(--ink); }
+.hero .btn--quiet:hover{ color:var(--accent-ink); }
+
+/* ── 4. shared software artifacts ── */
+.icn{ width:40px; height:40px; border-radius:12px; background:var(--accent-soft); display:flex;
+  align-items:center; justify-content:center; margin-bottom:14px; }
+.icn svg{ width:20px; height:20px; stroke:var(--accent-ink); stroke-width:1.8; fill:none;
+  stroke-linecap:round; stroke-linejoin:round; }
+.icn--teal{ background:rgba(15,179,155,.12); } .icn--teal svg{ stroke:#0B8A77; }
+.toast{ position:absolute; display:flex; align-items:center; gap:9px; background:var(--paper);
+  border:1px solid var(--line); border-radius:12px; padding:10px 14px; box-shadow:var(--shadow-lg);
+  font-size:12.5px; font-weight:600; z-index:5; }
+.toast .tdot{ width:8px; height:8px; border-radius:50%; background:var(--teal); flex:0 0 auto; }
+.toast small{ display:block; font-weight:400; color:var(--muted); font-size:11px; }
+.chart{ display:flex; align-items:flex-end; gap:6px; height:64px; }
+.chart i{ flex:1; border-radius:4px 4px 0 0; background:var(--accent-soft); }
+.chart i.hi{ background:var(--accent); }
+.chart i.md{ background:#8FA6FF; }
+.statchip{ font-family:var(--mono); font-size:10px; letter-spacing:.06em; text-transform:uppercase;
+  font-weight:700; padding:4px 10px; border-radius:999px; background:rgba(15,179,155,.12); color:#0B8A77; }
+.statchip--blue{ background:var(--accent-soft); color:var(--accent-ink); }

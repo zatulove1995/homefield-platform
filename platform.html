@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=pf5">
+<link rel="stylesheet" href="styles.css?v=pf7">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%230A0D14'/%3E%3Cpath d='M9 9h14v8.5L16 25l-7-7.5z' fill='%232E5BFF'/%3E%3C/svg%3E">
 <script>document.documentElement.className += ' js';</script>
 <style>
@@ -152,6 +152,18 @@
 .pl-int__wall li{ font-family:var(--mono); font-size:13px; letter-spacing:.04em; color:var(--ink-3); opacity:.75; white-space:nowrap; }
 .pl-int__note{ text-align:center; font-size:13px; color:var(--muted); }
 
+/* Pass-3 software-skin additions */
+.pl-arch__box .icn{ width:32px; height:32px; border-radius:10px; margin-bottom:12px; }
+.pl-arch__box .icn svg{ width:17px; height:17px; }
+.pl-arch__box--engine .icn{ background:rgba(46,91,255,.28); }
+.pl-arch__box--engine .icn svg{ stroke:#8FA8FF; }
+.pl-seg__stats{ display:flex; flex-wrap:wrap; gap:8px; padding-bottom:16px; }
+.pl-report__viz{ display:grid; grid-template-columns:1.3fr 1fr; gap:26px; align-items:end; padding:20px 22px; border-top:1px solid var(--line); }
+.pl-report__vizlabel{ font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-bottom:12px; }
+.pl-report__vizx{ display:flex; gap:6px; margin-top:8px; }
+.pl-report__vizx span{ flex:1; text-align:center; font-family:var(--mono); font-size:9.5px; letter-spacing:.03em; text-transform:uppercase; color:var(--muted); white-space:nowrap; }
+.pl-report__stats{ display:flex; flex-direction:column; align-items:flex-start; gap:8px; padding-bottom:4px; }
+
 @media (max-width:960px){
   .pl-arch{ grid-template-columns:1fr; }
   .pl-arch__joint{ margin-top:12px; margin-bottom:12px; height:38px; padding:0; justify-content:center; }
@@ -167,6 +179,8 @@
   .pl-post__addr{ border-left:0; border-top:1px dashed var(--line); min-height:160px; }
   .pl-seg__num{ font-size:36px; }
   .pl-report__tabs{ gap:18px; padding:0 18px; }
+  .pl-report__viz{ grid-template-columns:1fr; gap:18px; padding:18px; }
+  .pl-report__stats{ flex-direction:row; flex-wrap:wrap; }
   .pl-int__wall{ gap:12px 22px; }
   .pl-jsteps{ margin-top:32px; }
 }
@@ -204,7 +218,8 @@
     </nav>
 
     <div class="nav__cta">
-      <a class="btn btn--ghost btn--sm" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Get a demo</a>
+      <a class="signin" href="#">Sign in</a>
+      <a class="btn btn--primary btn--sm" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Get a demo</a>
     </div>
 
     <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
@@ -228,9 +243,8 @@
 
 <!-- ── HERO ──────────────────────────────────────────── -->
 <section class="hero hero--page">
-  <div class="hero__glow" aria-hidden="true"></div>
   <div class="wrap hero__inner">
-    <p class="eyebrow reveal">Platform overview</p>
+    <p class="eyebrow eyebrow--dark reveal">Platform overview</p>
     <h1 class="hero__h1 reveal">The same signals. <em>Now in your hands.</em></h1>
     <p class="hero__sub reveal">
       The engine that times our managed email — renewal windows, roof and system age, equity,
@@ -261,6 +275,7 @@
       <div class="pl-arch__col">
         <p class="pl-arch__step">Data in</p>
         <div class="pl-arch__box">
+          <div class="icn" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-9M22 20H2"/></svg></div>
           <h3>275M+ homes &amp; your data</h3>
           <p>Everything the engine watches, refreshed daily.</p>
           <ul class="pl-arch__list">
@@ -276,6 +291,7 @@
       <div class="pl-arch__col">
         <p class="pl-arch__step">The engine</p>
         <div class="pl-arch__box pl-arch__box--engine">
+          <div class="icn" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/></svg></div>
           <h3>The signals engine</h3>
           <p>Scores every home for its moment — and times the touch to it.</p>
           <div class="pl-arch__chips">
@@ -294,6 +310,7 @@
       <div class="pl-arch__col">
         <p class="pl-arch__step">Channels out</p>
         <div class="pl-arch__box">
+          <div class="icn" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m3 11 18-8-8 18-2-8-8-2z"/></svg></div>
           <h3>Four channels, one calendar</h3>
           <p>Every touch fired at the moment — not blasted at everyone.</p>
           <ul class="pl-arch__list">
@@ -348,6 +365,11 @@
             <div class="pl-seg__count">
               <span class="pl-seg__num">4,318</span>
               <span class="pl-seg__unit">homes match today</span>
+            </div>
+            <!-- SAMPLE figures — layout only -->
+            <div class="pl-seg__stats">
+              <span class="statchip statchip--blue">Refreshes daily</span>
+              <span class="statchip statchip--blue">412 homes in their moment</span>
             </div>
             <ul class="pl-seg__delta">
               <li><span>+112</span>entered a renewal window this week</li>
@@ -420,18 +442,21 @@
 
     <div class="steps pl-jsteps">
       <article class="step reveal">
+        <div class="icn" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12h4l2-7 4 14 2-7h6"/></svg></div>
         <p class="step__n">TRIGGERS</p>
         <h3>Start from any signal</h3>
         <p>Renewal windows, roof age, storm paths, equity — or your own events: a quote sent,
         a job finished, a webhook from your CRM. Anything the engine sees can start a journey.</p>
       </article>
       <article class="step reveal">
+        <div class="icn" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-2 2"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l2-2"/></svg></div>
         <p class="step__n">CHANNELS</p>
         <h3>Steps, not silos</h3>
         <p>Email, SMS, postcards and Meta are steps in the same flow — each touch knows what
         the last one did, so the card never mails to a home that already replied.</p>
       </article>
       <article class="step reveal">
+        <div class="icn" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
         <p class="step__n">PACING</p>
         <h3>Every home at its own pace</h3>
         <p>A journey isn't a blast date. Each home enters the day its own signal fires and moves
@@ -684,6 +709,24 @@
               </tr>
             </tbody>
           </table>
+        </div>
+        <!-- SAMPLE CONTENT — trend is illustrative; deliberately numeric-free -->
+        <div class="pl-report__viz">
+          <div>
+            <p class="pl-report__vizlabel">Cost per customer trend</p>
+            <div class="chart" aria-hidden="true">
+              <i style="height:96%"></i>
+              <i class="md" style="height:72%"></i>
+              <i class="md" style="height:54%"></i>
+              <i class="hi" style="height:40%"></i>
+            </div>
+            <p class="pl-report__vizx" aria-hidden="true"><span>Email only</span><span>+ SMS</span><span>+ Postcards</span><span>+ Meta</span></p>
+          </div>
+          <div class="pl-report__stats">
+            <span class="statchip statchip--blue">102 replies · 4 channels</span>
+            <span class="statchip statchip--blue">Every customer counted once</span>
+            <span class="statchip">Cost per customer falls as channels stack</span>
+          </div>
         </div>
         <p class="pl-report__foot">A customer counts once — even after four touches across four channels. Total is platform spend only — managed email is billed per qualified lead.</p>
       </div>

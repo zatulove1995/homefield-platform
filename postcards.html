@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=pf5">
+<link rel="stylesheet" href="styles.css?v=pf7">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%230A0D14'/%3E%3Cpath d='M9 9h14v8.5L16 25l-7-7.5z' fill='%232E5BFF'/%3E%3C/svg%3E">
 <script>document.documentElement.className += ' js';</script>
 <style>
@@ -123,7 +123,8 @@
     </nav>
 
     <div class="nav__cta">
-      <a class="btn btn--ghost btn--sm" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Get a demo</a>
+      <a class="signin" href="#">Sign in</a>
+      <a class="btn btn--primary btn--sm" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Get a demo</a>
     </div>
 
     <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
@@ -147,7 +148,6 @@
 
 <!-- ── HERO ──────────────────────────────────────────── -->
 <section class="hero hero--page">
-  <div class="hero__glow" aria-hidden="true"></div>
   <div class="wrap hero__inner">
     <p class="eyebrow reveal">Postcards</p>
     <h1 class="hero__h1 reveal">Mail that fires on a signal.<br><em>Not a mailing list.</em></h1>
@@ -183,6 +183,8 @@
         <div class="pc-build__bar">
           <span class="dot"></span><span class="dot"></span><span class="dot"></span>
           <span class="pc-build__tag">Postcard trigger</span>
+          <!-- SAMPLE FIGURE — layout only -->
+          <span class="statchip statchip--blue">82 queued this mo</span>
         </div>
         <div class="pc-build__body">
           <div class="pc-build__rules">
@@ -239,36 +241,42 @@
 
     <div class="pc-feat">
       <article class="pc-feat__card reveal">
+        <div class="icn" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m3 11 18-8-8 18-2-8-8-2z"/></svg></div>
         <p class="pc-feat__k">Triggers</p>
         <h3>Fires on the signal</h3>
         <p>A renewal window opening, a roof crossing year 18, a storm passing through, a listing
         going up nearby. Pick the moment — the engine watches 275M+ homes for it, daily.</p>
       </article>
       <article class="pc-feat__card reveal">
+        <div class="icn" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/></svg></div>
         <p class="pc-feat__k">Volume</p>
         <h3>No minimum drops</h3>
         <p>Cards go one at a time. When one home crosses the trigger, one card mails; when 400 do
         after a storm, 400 mail. Never a case count you have to fill.</p>
       </article>
       <article class="pc-feat__card reveal">
+        <div class="icn" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/></svg></div>
         <p class="pc-feat__k">Templates</p>
         <h3>Your branding, per industry</h3>
         <p>Proven layouts for roofing, HVAC, insurance and real estate — set in your name, colors
         and license line at onboarding. No designer, nothing to upload.</p>
       </article>
       <article class="pc-feat__card reveal">
+        <div class="icn" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div>
         <p class="pc-feat__k">Postage</p>
         <h3>Postage included</h3>
         <p>79¢ a card covers print, first-class postage and mailing. You're billed only for what
         actually mails — no bundles, no breakage.</p>
       </article>
       <article class="pc-feat__card reveal">
+        <div class="icn" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 5 3.5 8.5 7 10 3.5-1.5 7-5 7-10V6l-7-3z"/><path d="m9 12 2 2 4-4"/></svg></div>
         <p class="pc-feat__k">Hygiene</p>
         <h3>Clean addresses, automatically</h3>
         <p>Every address is checked against USPS delivery data before print. Returned mail
         suppresses the home, and your customer list keeps customers out of the run.</p>
       </article>
       <article class="pc-feat__card reveal">
+        <div class="icn" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-2 2"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l2-2"/></svg></div>
         <p class="pc-feat__k">Journeys</p>
         <h3>A step in any journey</h3>
         <p>Drop a postcard node into a journey like any other action. The classic move: no reply
