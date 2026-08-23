@@ -4,19 +4,39 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The platform — audiences, SMS, postcards &amp; retargeting — Homefield</title>
-<meta name="description" content="The engine that times Homefield's managed email — renewal windows, roof and system age, equity, storms — as self-serve software. Build homeowner segments from 275M+ records and drive SMS follow-up, triggered postcards, and Facebook retargeting. All of it — managed email results included — lives in
-      one dashboard: one calendar, one budget, one report. Not territorial — available everywhere.">
+<meta name="description" content="The engine that times Homefield's managed email — renewal windows, roof and system age, equity, storms — as self-serve software. Build homeowner segments from 275M+ records, drive SMS follow-up, triggered postcards, and Facebook retargeting, and read the whole strategy in one report. Not territorial — available everywhere.">
 <meta property="og:title" content="The Homefield platform — every channel, fired at the moment">
-<meta property="og:description" content="Build homeowner segments from 275M+ records, then fire SMS follow-up, triggered postcards, and Facebook retargeting the week each home hits its moment. Self-serve, not territorial.">
+<meta property="og:description" content="Build homeowner segments from 275M+ records, then fire SMS follow-up, triggered postcards, and Facebook retargeting the week each home hits its moment. One calendar, one budget, one report. Self-serve, not territorial.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=pf1">
+<link rel="stylesheet" href="styles.css?v=pf2">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%230A0D14'/%3E%3Cpath d='M9 9h14v8.5L16 25l-7-7.5z' fill='%232E5BFF'/%3E%3C/svg%3E">
 <script>document.documentElement.className += ' js';</script>
 <style>
 /* ── platform-page components (pl-) ─────────────────── */
+
+/* Platform diagram — data in → engine → channels out */
+.pl-arch{ display:grid; grid-template-columns:1fr 44px 1.08fr 44px 1fr; align-items:stretch; }
+.pl-arch__col{ display:flex; flex-direction:column; }
+.pl-arch__step{ font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:10px; }
+.pl-arch__box{ flex:1; background:var(--paper); border:1px solid var(--line); border-radius:var(--r-lg); padding:24px 24px 22px; box-shadow:var(--shadow-sm); }
+.pl-arch__box h3{ font-size:19px; margin-bottom:6px; }
+.pl-arch__box > p{ font-size:13.5px; color:var(--muted); line-height:1.55; margin-bottom:14px; }
+.pl-arch__box--engine{ background:var(--ink); border-color:var(--ink); color:#fff; box-shadow:var(--shadow-lg); }
+.pl-arch__box--engine > p{ color:var(--muted-dark); }
+.pl-arch__list{ display:flex; flex-direction:column; gap:10px; }
+.pl-arch__list li{ font-size:13.5px; line-height:1.45; color:var(--ink-3); padding-left:16px; position:relative; }
+.pl-arch__list li::before{ content:""; position:absolute; left:0; top:7px; width:6px; height:6px; border-radius:50%; background:var(--accent); }
+.pl-arch__list li strong{ font-weight:600; color:var(--ink); }
+.pl-arch__list li span{ display:block; font-size:12px; color:var(--muted); }
+.pl-arch__chips{ display:flex; flex-wrap:wrap; gap:7px; margin-bottom:14px; }
+.pl-arch__chip{ font-family:var(--mono); font-size:11px; line-height:1; padding:6px 10px; border-radius:999px; border:1px solid var(--line-dark); color:#fff; opacity:.85; white-space:nowrap; }
+.pl-arch__engineFoot{ font-family:var(--mono); font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:#8FA8FF; }
+.pl-arch__joint{ position:relative; display:flex; align-items:center; margin-top:26px; padding:0 6px; }
+.pl-arch__joint i{ display:block; width:100%; height:1px; background:var(--muted); opacity:.35; }
+.pl-arch__joint::after{ content:""; position:absolute; right:2px; top:50%; transform:translateY(-50%); border-left:6px solid var(--muted); border-top:4px solid transparent; border-bottom:4px solid transparent; opacity:.55; }
 
 /* Segment builder — the audiences mockup */
 .pl-seg{ background:var(--paper); border:1px solid var(--line); border-radius:var(--r-lg); box-shadow:var(--shadow); overflow:hidden; }
@@ -89,6 +109,23 @@
 .pl-week__item h3{ font-size:19px; margin-bottom:8px; }
 .pl-week__item p{ font-size:14.5px; color:var(--muted-dark); line-height:1.6; }
 
+/* One place — the reporting mockup */
+.pl-report{ max-width:780px; margin:0 auto; background:var(--paper); border:1px solid var(--line); border-radius:var(--r-lg); box-shadow:var(--shadow-lg); overflow:hidden; }
+.pl-report__bar{ display:flex; align-items:center; gap:6px; padding:12px 18px; background:var(--paper-3); border-bottom:1px solid var(--line); }
+.pl-report__tag{ margin-left:auto; font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
+.pl-report__tabs{ display:flex; gap:24px; padding:0 22px; border-bottom:1px solid var(--line); }
+.pl-report__tab{ padding:13px 2px 11px; font-size:13.5px; font-weight:500; color:var(--muted); border-bottom:2px solid transparent; }
+.pl-report__tab--on{ color:var(--accent-ink); font-weight:600; border-bottom-color:var(--accent); }
+.pl-report__scroll{ overflow-x:auto; }
+.pl-report__table{ width:100%; min-width:520px; border-collapse:collapse; font-size:14px; }
+.pl-report__table th{ font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); font-weight:500; text-align:right; padding:14px 22px 10px; border-bottom:1px solid var(--line); }
+.pl-report__table th:first-child{ text-align:left; }
+.pl-report__table td{ padding:13px 22px; border-bottom:1px solid var(--line); text-align:right; font-variant-numeric:tabular-nums; color:var(--ink-3); }
+.pl-report__table td:first-child{ text-align:left; font-weight:500; color:var(--ink); }
+.pl-report__table td:first-child span{ display:block; font-size:12px; font-weight:400; color:var(--muted); }
+.pl-report__total td{ background:var(--accent-soft); border-bottom:0; font-weight:600; color:var(--accent-ink); }
+.pl-report__foot{ padding:12px 22px; border-top:1px solid var(--line); background:#FCFCFD; font-size:12.5px; color:var(--muted); }
+
 /* Self-serve vs managed — recap cards */
 .pl-vs{ display:grid; grid-template-columns:1fr 1fr; gap:20px; align-items:stretch; }
 .pl-vs__card{ background:var(--paper); border:1px solid var(--line); border-radius:var(--r-lg); padding:32px 30px 30px; display:flex; flex-direction:column; }
@@ -101,7 +138,18 @@
 .pl-vs__card .ticks{ margin-bottom:30px; }
 .pl-vs__card .btn{ margin-top:auto; align-self:flex-start; }
 
+/* Integrations strip */
+.pl-int{ padding:64px 0; }
+.pl-int__caption{ text-align:center; font-family:var(--mono); font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:26px; }
+.pl-int__wall{ display:flex; flex-wrap:wrap; justify-content:center; gap:14px 34px; max-width:880px; margin:0 auto 18px; list-style:none; padding:0; }
+.pl-int__wall li{ font-family:var(--mono); font-size:13px; letter-spacing:.04em; color:var(--ink-3); opacity:.75; white-space:nowrap; }
+.pl-int__note{ text-align:center; font-size:13px; color:var(--muted); }
+
 @media (max-width:960px){
+  .pl-arch{ grid-template-columns:1fr; }
+  .pl-arch__joint{ margin-top:12px; margin-bottom:12px; height:38px; padding:0; justify-content:center; }
+  .pl-arch__joint i{ width:1px; height:100%; }
+  .pl-arch__joint::after{ right:auto; left:50%; top:auto; bottom:0; transform:translateX(-50%); border-top:6px solid var(--muted); border-left:4px solid transparent; border-right:4px solid transparent; border-bottom:0; }
   .pl-week{ grid-template-columns:1fr 1fr; gap:36px 24px; }
   .pl-vs{ grid-template-columns:1fr; }
 }
@@ -111,6 +159,8 @@
   .pl-post__card{ grid-template-columns:1fr; }
   .pl-post__addr{ border-left:0; border-top:1px dashed var(--line); min-height:160px; }
   .pl-seg__num{ font-size:36px; }
+  .pl-report__tabs{ gap:18px; padding:0 18px; }
+  .pl-int__wall{ gap:12px 22px; }
 }
 </style>
 </head>
@@ -130,15 +180,15 @@
     </a>
 
     <nav class="nav__links" aria-label="Primary">
-      <a href="managed-email.html">Managed email</a>
       <a href="platform.html">Platform</a>
-      <a href="industries.html">Industries</a>
+      <a href="managed-email.html">Managed email</a>
+      <a href="industries.html">Solutions</a>
       <a href="pricing.html">Pricing</a>
       <a href="faq.html">FAQ</a>
     </nav>
 
     <div class="nav__cta">
-      <a class="btn btn--ghost btn--sm" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Book a call</a>
+      <a class="btn btn--ghost btn--sm" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Get a demo</a>
     </div>
 
     <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
@@ -146,12 +196,12 @@
     </button>
   </div>
   <div class="mobilenav" id="mobileNav" hidden>
-    <a href="managed-email.html">Managed email</a>
     <a href="platform.html">Platform</a>
-    <a href="industries.html">Industries</a>
+    <a href="managed-email.html">Managed email</a>
+    <a href="industries.html">Solutions</a>
     <a href="pricing.html">Pricing</a>
     <a href="faq.html">FAQ</a>
-    <a class="btn btn--primary" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Book a call</a>
+    <a class="btn btn--primary" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Get a demo</a>
   </div>
 </header>
 
@@ -169,6 +219,67 @@
       postcards, and Facebook retargeting.
     </p>
     <p class="hero__note reveal"><strong>Not territorial.</strong> Every ZIP is open to every business — no lock required.</p>
+  </div>
+</section>
+
+<!-- ── PLATFORM DIAGRAM ──────────────────────────────── -->
+<section class="section section--paper">
+  <div class="wrap">
+    <div class="sechead sechead--center">
+      <p class="eyebrow eyebrow--dark">How it fits together</p>
+      <h2>Data in. Moment scored. <em>Channels out.</em></h2>
+      <p class="lede">The whole platform on one slide: everything we watch, the engine that times it,
+      and the four channels it fires.</p>
+    </div>
+
+    <div class="pl-arch reveal">
+      <div class="pl-arch__col">
+        <p class="pl-arch__step">Data in</p>
+        <div class="pl-arch__box">
+          <h3>275M+ homes &amp; your data</h3>
+          <p>Everything the engine watches, refreshed daily.</p>
+          <ul class="pl-arch__list">
+            <li><strong>275M+ homeowner records</strong><span>value, age, tenure, equity, occupancy</span></li>
+            <li><strong>Permits, closings &amp; storm paths</strong><span>the events that move a home toward its moment</span></li>
+            <li><strong>Your replies, leads &amp; CRM events</strong><span>what you already know flows back in</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pl-arch__joint" aria-hidden="true"><i></i></div>
+
+      <div class="pl-arch__col">
+        <p class="pl-arch__step">The engine</p>
+        <div class="pl-arch__box pl-arch__box--engine">
+          <h3>The signals engine</h3>
+          <p>Scores every home for its moment — and times the touch to it.</p>
+          <div class="pl-arch__chips">
+            <span class="pl-arch__chip">Renewal window</span>
+            <span class="pl-arch__chip">Roof year 18</span>
+            <span class="pl-arch__chip">HVAC year 12</span>
+            <span class="pl-arch__chip">Equity + tenure</span>
+            <span class="pl-arch__chip">Storm path</span>
+          </div>
+          <p class="pl-arch__engineFoot">40+ signals per home · scored daily</p>
+        </div>
+      </div>
+
+      <div class="pl-arch__joint" aria-hidden="true"><i></i></div>
+
+      <div class="pl-arch__col">
+        <p class="pl-arch__step">Channels out</p>
+        <div class="pl-arch__box">
+          <h3>Four channels, one calendar</h3>
+          <p>Every touch fired at the moment — not blasted at everyone.</p>
+          <ul class="pl-arch__list">
+            <li><strong>Managed email</strong><span>done-for-you flagship, billed per qualified lead</span></li>
+            <li><strong>SMS</strong><span>consent-based follow-up, never cold</span></li>
+            <li><strong>Postcards</strong><span>triggered mail, no minimum drops</span></li>
+            <li><strong>Meta</strong><span>retargeting from your own ad account</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -391,6 +502,81 @@
   </div>
 </section>
 
+<!-- ── ONE PLACE ─────────────────────────────────────── -->
+<section class="section section--paper">
+  <div class="wrap">
+    <div class="sechead sechead--center">
+      <p class="eyebrow eyebrow--dark">One place</p>
+      <h2>Stop grading channels. <em>Grade the strategy.</em></h2>
+      <p class="lede">One calendar, one budget, one report — cost per customer across the strategy, not per channel.</p>
+    </div>
+
+    <!-- SAMPLE CONTENT — illustrative report for layout; figures are not benchmarks -->
+    <div class="pl-report reveal">
+      <div class="pl-report__bar">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="pl-report__tag">Reporting</span>
+      </div>
+      <div class="pl-report__tabs" aria-hidden="true">
+        <span class="pl-report__tab">Overview</span>
+        <span class="pl-report__tab pl-report__tab--on">Channels</span>
+        <span class="pl-report__tab">Homes</span>
+      </div>
+      <div class="pl-report__scroll">
+        <table class="pl-report__table">
+          <thead>
+            <tr>
+              <th>Channel</th>
+              <th>Spend</th>
+              <th>Replies</th>
+              <th>Cost / customer</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Managed email<span>done-for-you</span></td>
+              <td>$1,480</td>
+              <td>42</td>
+              <td>$123</td>
+            </tr>
+            <tr>
+              <td>SMS follow-up<span>3¢ / message</span></td>
+              <td>$86</td>
+              <td>31</td>
+              <td>$29</td>
+            </tr>
+            <tr>
+              <td>Postcards<span>79¢ / card, postage incl.</span></td>
+              <td>$612</td>
+              <td>18</td>
+              <td>$102</td>
+            </tr>
+            <tr>
+              <td>Meta retargeting<span>spend from your ad account</span></td>
+              <td>$540</td>
+              <td>11</td>
+              <td>$135</td>
+            </tr>
+            <tr class="pl-report__total">
+              <td>Total — the strategy</td>
+              <td>$2,718</td>
+              <td>102</td>
+              <td>$109</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="pl-report__foot">A customer counts once — even after four touches across four channels.</p>
+    </div>
+
+    <!-- SAMPLE FIGURES — layout only -->
+    <p class="fineprint fineprint--center">
+      Sample report for layout — figures are illustrative, not benchmarks. Managed email is billed
+      per qualified lead at a rate quoted by industry.
+    </p>
+  </div>
+</section>
+
 <!-- ── SELF-SERVE VS MANAGED ─────────────────────────── -->
 <section class="section">
   <div class="wrap">
@@ -424,7 +610,7 @@
           <li><strong>$199/mo + usage</strong> — SMS 3¢/message, postcards 79¢ each incl. postage, retargeting free to sync</li>
           <li><strong>Live the day you sign up</strong> — segments, templates, and 10DLC handled at onboarding</li>
         </ul>
-        <a class="btn btn--outline" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Book a call</a>
+        <a class="btn btn--outline" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Get a demo</a>
       </article>
     </div>
 
@@ -437,14 +623,36 @@
   </div>
 </section>
 
+<!-- ── INTEGRATIONS ──────────────────────────────────── -->
+<section class="section section--paper pl-int">
+  <div class="wrap">
+    <p class="pl-int__caption">Works with what you already run</p>
+    <ul class="pl-int__wall" aria-label="Integrations">
+      <li>ServiceTitan</li>
+      <li>Jobber</li>
+      <li>Housecall Pro</li>
+      <li>Follow Up Boss</li>
+      <li>Salesforce</li>
+      <li>HubSpot</li>
+      <li>AMS360</li>
+      <li>EZLynx</li>
+      <li>MLS/IDX</li>
+      <li>Meta Ads</li>
+      <li>Zapier</li>
+      <li>Webhooks &amp; CSV</li>
+    </ul>
+    <p class="pl-int__note">Leads and events flow both ways — replies land in your CRM, and your customer list keeps them out of your segments.</p>
+  </div>
+</section>
+
 <!-- ── CTA BAND ──────────────────────────────────────── -->
 <section class="section section--cta">
   <div class="wrap">
     <div class="ctaband">
       <h2>See it on your ZIPs.</h2>
-      <p>Fifteen minutes. We'll pull your territory live, show you how many homes hit their moment there every month, and walk the platform on your own market.</p>
+      <p>Fifteen minutes. We'll pull your market live, show you how many homes hit their moment there every month, and walk the platform on your own territory.</p>
       <div class="ctaband__actions">
-        <a class="btn btn--primary btn--lg" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Book a call</a>
+        <a class="btn btn--primary btn--lg" href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Get a demo</a>
         <a class="btn btn--quiet btn--lg" href="managed-email.html">See managed email →</a>
       </div>
     </div>
@@ -469,16 +677,16 @@
     <nav class="foot__links" aria-label="Footer">
       <div>
         <h5>Product</h5>
-        <a href="managed-email.html">Managed email</a>
         <a href="platform.html">Platform</a>
-        <a href="industries.html">Industries</a>
+        <a href="managed-email.html">Managed email</a>
+        <a href="industries.html">Solutions</a>
         <a href="pricing.html">Pricing</a>
       </div>
       <div>
         <h5>Company</h5>
         <a href="faq.html">FAQ</a>
         <a href="contact.html">Contact</a>
-        <a href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Book a call</a>
+        <a href="https://calendly.com/zatulovebrian/call" target="_blank" rel="noopener">Get a demo</a>
       </div>
       <div>
         <h5>Legal</h5>
