@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=pf2">
+<link rel="stylesheet" href="styles.css?v=pf3">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%230A0D14'/%3E%3Cpath d='M9 9h14v8.5L16 25l-7-7.5z' fill='%232E5BFF'/%3E%3C/svg%3E">
 <script>document.documentElement.className += ' js';</script>
 <style>
@@ -29,7 +29,7 @@
   /* ── Hero dashboard mock ── */
   .hm-dash{ margin-top:64px; background:var(--paper); color:var(--ink); border:1px solid var(--line);
     border-radius:var(--r-lg); box-shadow:var(--shadow-lg); overflow:hidden; }
-  .hm-dash__bar{ display:flex; align-items:center; gap:6px; padding:12px 18px; background:var(--paper-2); border-bottom:1px solid var(--line); }
+  .hm-dash__bar{ display:flex; align-items:center; gap:6px; padding:12px 18px; background:var(--paper-3); border-bottom:1px solid var(--line); }
   .hm-dash__tag{ margin-left:auto; font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
   .hm-dash__body{ display:grid; grid-template-columns:172px 1fr; }
   .hm-dash__side{ display:flex; flex-direction:column; gap:2px; padding:20px 0;
@@ -61,7 +61,7 @@
   /* ── Why four-up ── */
   .hm-why{ grid-template-columns:repeat(4,1fr); gap:16px; }
   .hm-why .step h3{ font-size:18px; }
-  .hm-why .step p{ font-size:14px; }
+  .hm-why .step p:not([class]){ font-size:14px; }
   .hm-why__k{ font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
     color:var(--accent-ink); margin-bottom:12px; }
 
@@ -69,7 +69,7 @@
   .hm-chips{ display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-top:44px; }
   .hm-chips .hm-chip{ font-size:12px; letter-spacing:.02em; padding:8px 16px; }
 
-  /* ── One service + one platform ── */
+  /* ── (retired duo card styles kept for reuse) ── */
   .hm-duo{ display:grid; grid-template-columns:1.1fr 1fr; gap:20px; align-items:stretch; }
   .hm-duo__card{ display:flex; flex-direction:column; background:var(--paper); border:1px solid var(--line);
     border-radius:var(--r-lg); padding:36px 34px; box-shadow:var(--shadow-sm); }
@@ -78,7 +78,7 @@
     color:var(--muted); margin-bottom:14px; }
   .hm-duo__card--feature .hm-duo__kicker{ color:var(--accent-ink); }
   .hm-duo__card h3{ font-size:23px; margin-bottom:12px; }
-  .hm-duo__card > p{ font-size:15.5px; color:var(--muted); line-height:1.65; margin-bottom:20px; }
+  .hm-duo__card > p:not([class]){ font-size:15.5px; color:var(--muted); line-height:1.65; margin-bottom:20px; }
   .hm-duo .ticks{ margin-bottom:24px; }
   .hm-duo .ticks li{ font-size:14.5px; }
   .hm-duo__price{ font-family:var(--mono); font-size:12.5px; letter-spacing:.03em; color:var(--muted);
@@ -93,7 +93,7 @@
   .hm-chanmail__k{ font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
     color:var(--accent-ink); margin-bottom:14px; }
   .hm-chanmail__txt h3{ font-size:23px; margin-bottom:12px; }
-  .hm-chanmail__txt > p{ font-size:15.5px; color:var(--muted); line-height:1.65; margin-bottom:18px; }
+  .hm-chanmail__txt > p:not([class]){ font-size:15.5px; color:var(--muted); line-height:1.65; margin-bottom:18px; }
 
   /* ── Channel tiles ── */
   .hm-chan{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
@@ -140,7 +140,7 @@
 
   /* ── Email mockup ── */
   .hm-mail{ max-width:640px; margin:0 auto; background:var(--paper); border:1px solid var(--line); border-radius:var(--r-lg); box-shadow:var(--shadow-sm); overflow:hidden; }
-  .hm-mail__bar{ display:flex; align-items:center; gap:6px; padding:12px 18px; background:var(--paper-2); border-bottom:1px solid var(--line); }
+  .hm-mail__bar{ display:flex; align-items:center; gap:6px; padding:12px 18px; background:var(--paper-3); border-bottom:1px solid var(--line); }
   .hm-mail__tag{ margin-left:auto; font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
   .hm-mail__meta{ padding:16px 22px; border-bottom:1px solid var(--line); display:grid; gap:6px; }
   .hm-mail__meta p{ font-size:13.5px; display:grid; grid-template-columns:64px 1fr; gap:10px; align-items:baseline; }
@@ -270,7 +270,6 @@
 
     <nav class="nav__links" aria-label="Primary">
       <a href="platform.html">Platform</a>
-      <a href="managed-email.html">Managed email</a>
       <a href="industries.html">Solutions</a>
       <a href="pricing.html">Pricing</a>
       <a href="faq.html">FAQ</a>
@@ -286,7 +285,6 @@
   </div>
   <div class="mobilenav" id="mobileNav" hidden>
     <a href="platform.html">Platform</a>
-    <a href="managed-email.html">Managed email</a>
     <a href="industries.html">Solutions</a>
     <a href="pricing.html">Pricing</a>
     <a href="faq.html">FAQ</a>
@@ -418,7 +416,7 @@
       </li>
       <li class="step">
         <p class="hm-why__k">Service</p>
-        <h3>Done-for-you expertise</h3>
+        <h3>Done-for-you email</h3>
         <p>Managed email runs the hardest channel for you — warmed domains, written sequences, every reply read.</p>
       </li>
     </ul>
@@ -465,76 +463,22 @@
 </section>
 
 <!-- ── ONE SERVICE + ONE PLATFORM ────────────────────── -->
-<section class="section section--tight section--paper">
-  <div class="wrap">
-    <div class="sechead sechead--center">
-      <p class="eyebrow eyebrow--dark">One service, one platform</p>
-      <h2>One service, done for you. <em>One platform, self-serve.</em></h2>
-      <p class="lede">
-        Managed Email is the flagship — we run it, you take the replies. The Platform puts
-        the same signals engine behind three more channels you drive yourself.
-      </p>
-    </div>
-
-    <div class="hm-duo">
-      <div class="hm-duo__card hm-duo__card--feature">
-        <p class="hm-duo__kicker">Done for you · Flagship</p>
-        <h3>Managed Email</h3>
-        <p>
-          We run warmed-domain campaigns in your business's name — personal three-email
-          sequences, timed to each home's signal — read every reply, and hand you the ones
-          asking for a quote, an estimate, a valuation or an offer.
-        </p>
-        <ul class="ticks">
-          <li><strong>Billed per qualified lead</strong> — rate quoted by industry</li>
-          <li><strong>ZIP-locked</strong> — one business per industry per ZIP, never resold</li>
-          <li><strong>~21 days</strong> to first lead — replies yours forever</li>
-        </ul>
-        <p class="hm-duo__price">Per qualified lead · rate by industry</p>
-        <p class="hm-duo__link"><a class="hm-link" href="managed-email.html">How managed email works →</a></p>
-      </div>
-
-      <div class="hm-duo__card">
-        <p class="hm-duo__kicker">Self-serve software</p>
-        <h3>The Platform</h3>
-        <p>
-          The same signals engine, driving three more channels you run yourself — SMS
-          follow-up, triggered postcards and Meta retargeting — from one dashboard.
-        </p>
-        <ul class="ticks">
-          <li><strong>SMS</strong> — consent-aware follow-up sequences, two-way inbox</li>
-          <li><strong>Postcards</strong> — a signal fires, a card prints and mails</li>
-          <li><strong>Retargeting</strong> — homeowner segments synced to Meta</li>
-        </ul>
-        <!-- SAMPLE PRICING — set real rates before launch -->
-        <p class="hm-duo__price">$199/mo + usage</p>
-        <p class="hm-duo__link"><a class="hm-link" href="platform.html">Explore the platform →</a></p>
-      </div>
-    </div>
-
-    <p class="fineprint fineprint--center">
-      Platform pricing shown is sample pricing for layout — set your own rates before launch.
-      Managed Email is quoted per qualified lead, by industry.
-    </p>
-  </div>
-</section>
-
 <!-- ── CHANNELS ──────────────────────────────────────── -->
-<section class="section section--tight">
+<section class="section section--tight section--paper">
   <div class="wrap">
     <div class="sechead sechead--center">
       <p class="eyebrow eyebrow--dark">Channels</p>
       <h2>The email lands, the card arrives, <em>the ad follows.</em></h2>
       <p class="lede">
-        Same home, same week. Each channel makes the others convert better — and every one
-        of them fires off the same signals engine.
+        Four channels, one signals engine: email — the one we run for you — plus SMS, postcards
+        and Meta retargeting. Same home, same week; each touch makes the others convert better.
       </p>
     </div>
 
     <!-- SAMPLE CONTENT — replace with a real, permissioned thread before launch -->
     <div class="hm-chanmail">
       <div class="hm-chanmail__txt">
-        <p class="hm-chanmail__k">Done for you · Flagship</p>
+        <p class="hm-chanmail__k">Email · Managed for you</p>
         <h3>Managed email</h3>
         <p>
           We run warmed-domain campaigns in your business's name, timed to each home's
@@ -718,7 +662,7 @@
         <p class="hm-res__num">22</p>
         <p class="hm-res__unit">roof installs in 90 days</p>
         <p class="hm-res__who">Torres Roofing &amp; Exteriors</p>
-        <p class="hm-res__story">Storm and roof-age signals across 41 ZIPs — managed email opened the door, postcards followed.</p>
+        <p class="hm-res__story">Storm and roof-age signals across 140 ZIPs — managed email opened the door, postcards followed.</p>
       </div>
       <div class="hm-res__card">
         <p class="hm-res__tag">Sample · Insurance</p>

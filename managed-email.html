@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=pf2">
+<link rel="stylesheet" href="styles.css?v=pf3">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%230A0D14'/%3E%3Cpath d='M9 9h14v8.5L16 25l-7-7.5z' fill='%232E5BFF'/%3E%3C/svg%3E">
 <script>document.documentElement.className += ' js';</script>
 <style>
@@ -27,7 +27,7 @@
   .me-col--you{ background:var(--ink); border-color:var(--ink); color:#fff; display:flex; flex-direction:column; }
   .me-col--you .me-col__label{ color:#8FA8FF; }
   .me-col__big{ font-family:var(--serif); font-weight:400; font-size:clamp(26px,2.8vw,34px); line-height:1.2; letter-spacing:-.02em; margin-bottom:16px; }
-  .me-col--you > p{ color:var(--muted-dark); font-size:15.5px; line-height:1.65; }
+  .me-col--you > p:not([class]){ color:var(--muted-dark); font-size:15.5px; line-height:1.65; }
   .me-col__foot{ margin-top:auto; padding-top:26px; border-top:1px solid var(--line-dark); font-size:13.5px; color:var(--muted-dark); line-height:1.6; }
   .me-col__foot strong{ color:#fff; font-weight:600; }
 
@@ -41,7 +41,7 @@
 
   /* sample email card (mail-card conventions) */
   .me-mail{ background:var(--paper); border:1px solid var(--line); border-radius:var(--r-lg); box-shadow:var(--shadow); overflow:hidden; }
-  .me-mail__bar{ display:flex; align-items:center; gap:6px; padding:12px 18px; background:var(--paper-2); border-bottom:1px solid var(--line); }
+  .me-mail__bar{ display:flex; align-items:center; gap:6px; padding:12px 18px; background:var(--paper-3); border-bottom:1px solid var(--line); }
   .me-mail__tag{ margin-left:auto; font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
   .me-mail__meta{ padding:16px 22px; border-bottom:1px solid var(--line); display:grid; gap:6px; }
   .me-mail__meta p{ font-size:13.5px; display:grid; grid-template-columns:64px 1fr; gap:10px; align-items:baseline; }
@@ -120,7 +120,6 @@
 
     <nav class="nav__links" aria-label="Primary">
       <a href="platform.html">Platform</a>
-      <a href="managed-email.html">Managed email</a>
       <a href="industries.html">Solutions</a>
       <a href="pricing.html">Pricing</a>
       <a href="faq.html">FAQ</a>
@@ -136,7 +135,6 @@
   </div>
   <div class="mobilenav" id="mobileNav" hidden>
     <a href="platform.html">Platform</a>
-    <a href="managed-email.html">Managed email</a>
     <a href="industries.html">Solutions</a>
     <a href="pricing.html">Pricing</a>
     <a href="faq.html">FAQ</a>

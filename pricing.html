@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=pf2">
+<link rel="stylesheet" href="styles.css?v=pf3">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%230A0D14'/%3E%3Cpath d='M9 9h14v8.5L16 25l-7-7.5z' fill='%232E5BFF'/%3E%3C/svg%3E">
 <script>document.documentElement.className += ' js';</script>
 <style>
@@ -32,7 +32,7 @@
   color:var(--muted); margin-bottom:12px;
 }
 .pr-what__label + .pr-what__label{ margin-top:22px; }
-.pr-what p{ font-size:14.5px; color:var(--muted); line-height:1.6; }
+.pr-what p:not([class]){ font-size:14.5px; color:var(--muted); line-height:1.6; }
 .pr-what p strong{ color:var(--ink); font-weight:600; }
 .pr-what__no{ display:flex; flex-direction:column; gap:9px; }
 .pr-what__no li{ position:relative; padding-left:24px; font-size:14.5px; color:var(--muted); line-height:1.5; }
@@ -112,7 +112,7 @@
 @media (max-width:960px){
   .pr-duo, .pr-plat{ grid-template-columns:1fr; }
 }
-@media (max-width:760px){
+@media (max-width:640px){
   .pr-math{ grid-template-columns:1fr; }
 }
 </style>
@@ -134,7 +134,6 @@
 
     <nav class="nav__links" aria-label="Primary">
       <a href="platform.html">Platform</a>
-      <a href="managed-email.html">Managed email</a>
       <a href="industries.html">Solutions</a>
       <a href="pricing.html">Pricing</a>
       <a href="faq.html">FAQ</a>
@@ -150,7 +149,6 @@
   </div>
   <div class="mobilenav" id="mobileNav" hidden>
     <a href="platform.html">Platform</a>
-    <a href="managed-email.html">Managed email</a>
     <a href="industries.html">Solutions</a>
     <a href="pricing.html">Pricing</a>
     <a href="faq.html">FAQ</a>
@@ -165,11 +163,11 @@
   <div class="hero__glow" aria-hidden="true"></div>
   <div class="wrap hero__inner">
     <p class="eyebrow reveal">Pricing</p>
-    <h1 class="hero__h1 reveal">One service. One platform.<br><em>Priced like it.</em></h1>
+    <h1 class="hero__h1 reveal">One platform.<br><em>Priced per channel.</em></h1>
     <p class="hero__sub reveal">
-      Managed email is billed per qualified lead — a rate set for your industry, nothing else on the
-      invoice. The platform is a subscription plus usage on the channels you turn on. Neither carries
-      a contract.
+      Email — the channel we run for you — is billed per qualified lead, a rate set for your industry.
+      SMS, postcards and retargeting are a subscription plus usage, on whichever you turn on. No
+      channel carries a contract.
     </p>
   </div>
 </section>
@@ -178,7 +176,7 @@
 <section class="section">
   <div class="wrap">
     <div class="sechead sechead--center">
-      <p class="eyebrow eyebrow--dark">The service — managed email</p>
+      <p class="eyebrow eyebrow--dark">The email channel — managed</p>
       <h2>You pay per reply. We run everything.</h2>
       <p class="lede">One rate per qualified lead, set for your industry on the call — a roofing lead, an
       insurance lead, and a listing lead are worth different amounts, so they're priced differently.
@@ -187,7 +185,7 @@
 
     <div class="pr-duo">
       <article class="tier tier--feature">
-        <p class="tier__flag">The flagship service</p>
+        <p class="tier__flag">Managed for you</p>
         <p class="tier__name">Managed email</p>
         <p class="tier__price tier__price--label">Per qualified lead<span>rate quoted by industry, on the call</span></p>
         <p class="tier__vol">The rate steps down at 51 qualified leads a month, and again at 300</p>
